@@ -1,26 +1,32 @@
-# dat2pgis
+## dat2pgis -> a DAT adatcsere formátum kezelése PostgreSQL/PostGIS-ben
+Amióta egyeduralkodóvá vált az ingatlan-nyilvántartásban a DATR, illetve a hazai földmérésben *(legalábbis az ingatlan-nyilvántartást érintően)* a DAT adatcsere fomátum és  **nem állt rendelkezésemre semmilyen szoftver, amivel ezeket a térképeket kezelhetem**, azon mesterkedtem, hogy tudnám a PostGIS-be tölteni a "térképeimet" és abban megoldani a különféle térinformatikai jellegű feladataimat.
+Mivel korábban más megoldottam az ITR ASCII PostGIS-ben történő kezelését...
 
-DAT adatcsere formátum kezelése PostgreSQL/PostGIS-ben
-------------------------------------------------------
-A program a "csillagos DAT" fájl PostGIS-be történő betöltését végzi el, így a térképi állomány kezelhető például a QGis, Openjump, illetve -egy SHP-s exportálást követően- Digiterra szorftverekkel is...
+A "program" a "csillagos DAT" fájl PostGIS-be történő betöltését végzi el, így a térképi állományok kezelhetők például a QGis, Openjump, illetve más szorftverekkel is: például egy SHP export után DigiTerra-val.
 
-Előfeltételek
--------------
-- PostgreSQL
-- PostGIS
-- Perl
+#### Bevezetés
+A továbbiakban feltételezem, hogy ismered a 
 
-PostgreSQL
-----------
+#### Előfeltételek
+A feldolgozás 
+
+#### PostgreSQL
 ...
 
-PostGIS
--------
+#### PostGIS
+A PostGIS egy remek kiegészítő a PostgreSQL adatbázis kezelőhöz, mellyel térbeli adatokat tudunk adatbázisban kezelni, valahogy úgy, mint az Oracle Spatial-ban... (bővebb információt a technológiáról az Open Geospatial Consortium, Inc.® (OGC) honlapján találhatsz.)
+
+A PostGIS-ben tárolt adatokat például olyan nyílt forrású programokkal kezelhetjük, mint az OpenJump, Quantum GIS, uDig, Grass, vagy mint a Mapserver, de akár egyszerű SQL utasításokkal is sokféle feladat megoldható, tulajdonképpen anélkül, hogy egyáltalán látnánk a térképet...
+
+Az első PostGIS-sel tett próbálkozásaim óta azon voltam, hogy hogyan tudnám ezt a remek kiegészítőt egyes gyakran ismétlődő, unalmas, más programokkal sok egér-kattintást igénylő eljárások helyettesítésére használni... pár esetben ez már sikerült is, ezekről olvashatsz a következő oldalakon.
 ...
 
-Perl
-----
-...
+#### Perl
+
+#######
+DAT : http://fish.fomi.hu/letoltes/nyilvanos/dat/DAT-M1_20160205.pdf
+
+
 
 Thanks to...
 ------------
