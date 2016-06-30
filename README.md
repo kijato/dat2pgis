@@ -15,3 +15,6 @@ Előfeltételek
 
 [![PostgreSQL](https://wiki.postgresql.org/wiki/File:PostgreSQL_logo.3colors.svg)](http://www.postgresql.org)
 [![PostGIS](https://en.wikipedia.org/wiki/File:PostGIS_logo.png)](http://www.postgis.org)
+
+![wxWidgets Logo](https://www.wxwidgets.org/assets/img/header-logo.png)
+[![AppVeyor](https://img.shields.io/appveyor/ci/wxWidgets/wxWidgets/master.svg?label=Windows)](https://ci.appveyor.com/project/wxWidgets/wxwidgets)
