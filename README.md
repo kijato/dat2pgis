@@ -22,12 +22,7 @@ Perl
 ----
 ...
 
----------
-![PostgreSQL](https://wiki.postgresql.org/wiki/File:PostgreSQL_logo.3colors.svg)
-
-[![PostgreSQL](https://wiki.postgresql.org/wiki/File:PostgreSQL_logo.3colors.svg)](http://www.postgresql.org)
-
-[![PostGIS](https://en.wikipedia.org/wiki/File:PostGIS_logo.png)](http://www.postgis.org)
-
-![wxWidgets Logo](https://www.wxwidgets.org/assets/img/header-logo.png)
-[![AppVeyor](https://img.shields.io/appveyor/ci/wxWidgets/wxWidgets/master.svg?label=Windows)](https://ci.appveyor.com/project/wxWidgets/wxwidgets)
+Thanks to...
+------------
+[![PostgreSQL](https://wiki.postgresql.org/images/3/30/PostgreSQL_logo.3colors.120x120.png)](http://www.postgresql.org)
+[![PostGIS](https://upload.wikimedia.org/wikipedia/en/6/60/PostGIS_logo.png)](http://www.postgis.org)
