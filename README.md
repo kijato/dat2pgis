@@ -1,11 +1,15 @@
-## dat2pgis -> a DAT adatcsere formátum kezelése PostgreSQL/PostGIS-ben
-Amióta egyeduralkodóvá vált az ingatlan-nyilvántartásban a DATR, illetve a hazai földmérésben *(legalábbis az ingatlan-nyilvántartást érintően)* a DAT adatcsere fomátum és  **nem állt rendelkezésemre semmilyen szoftver, amivel ezeket a térképeket kezelhetem**, azon mesterkedtem, hogy tudnám a PostGIS-be tölteni a "térképeimet" és abban megoldani a különféle térinformatikai jellegű feladataimat.
-Mivel korábban más megoldottam az ITR ASCII PostGIS-ben történő kezelését...
+## dat2pgis, avagy a DAT adatcsere formátum kezelése PostgreSQL/PostGIS-ben
 
-A "program" a "csillagos DAT" fájl PostGIS-be történő betöltését végzi el, így a térképi állományok kezelhetők például a QGis, Openjump, illetve más szorftverekkel is: például egy SHP export után DigiTerra-val.
+#### Előszó
+Amióta bevezetésre került az ingatlan-nyilvántartásban a DATR, illetve a hazai földmérésben *(legalábbis az ingatlan-nyilvántartást érintően)* a DAT adatcsere fomátum és **nem állt rendelkezésemre semmilyen szoftver, amivel ezeket a térképeket kezelhetem**, azon mesterkedtem, hogy tudnám a PostGIS-be tölteni a "térképeimet" és abban megoldani a különféle térinformatikai jellegű feladataimat, mint például a közigazgatási határok kezelése, különféle listák, poligonok, stb szerinti földrészlet-leválogatások...
+Mivel korábban már megoldottam az ITR ASCII PostGIS-ben történő kezelését is, nyilvánvaló volt, hogy ezt a DAT adatcsere-formátummal is meg kell tudni oldanom...
 
 #### Bevezetés
-A továbbiakban feltételezem, hogy ismered a 
+A "program" a "csillagos DAT" fájl PostGIS-be történő betöltését végzi el, így a térképi állományok kezelhetők például a QGis, Openjump, illetve más szorftverekkel is, illetve egy SHP export után például DigiTerra-val is.
+
+A betöltés maga tuljdonképpen egy nevetségesen egyszerű művelet, a DAT fájlból SQL utasításokat generálok, majd a betöltés után tárolt eljárásokkal (SQL és plpgsql) töltöm fel a geometria mezőket adatokkal.
+
+A továbbiakban feltételezem, hogy ismered a PostgreSQL
 
 #### Előfeltételek
 A feldolgozás 
