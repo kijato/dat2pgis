@@ -1,10 +1,16 @@
 ## dat2pgis, avagy a DAT adatcsere formátum kezelése PostgreSQL/PostGIS-ben
 
 #### Előszó
-Amióta bevezetésre került az ingatlan-nyilvántartásban a DATR, illetve a hazai földmérésben *(legalábbis az ingatlan-nyilvántartást érintően)* a DAT adatcsere fomátum és **nem állt rendelkezésemre semmilyen szoftver, amivel ezeket a térképeket kezelhetem**, azon mesterkedtem, hogy tudnám a PostGIS-be tölteni a "térképeimet" és abban megoldani a különféle térinformatikai jellegű feladataimat, mint például a közigazgatási határok kezelése, különféle listák, poligonok, stb szerinti földrészlet-leválogatások...
-Mivel korábban már megoldottam az ITR ASCII PostGIS-ben történő kezelését is, nyilvánvaló volt, hogy ezt a DAT adatcsere-formátummal is meg kell tudni oldanom...
+Amióta elterjedt a hazai földmérésben a DAT adatcsere fomátum és **(nem állt rendelkezésemre semmilyen szoftver, amivel ezeket a térképeket igazán hatékonyan kezelhettem)**, azon gondolkodtam, hogy hogyan tudnám a PostgreSQL adatbáziskezelő PostGIS nevű kiegészítőjével megoldani a különféle térinformatikai jellegű feladataimat, mint például a közigazgatási határok kezelése, különféle listák, poligonok, szerinti földrészlet-leválogatások elvégzése, nagytömegben (egyszerre akár az egész megyét feldolgozva), lehetőleg minimális emberi beavatkozással.
+Mivel korábban már megoldottam az ITR ASCII PostGIS-ben történő kezelését, nyilvánvaló volt, hogy ezt a feladatot a DAT adatcsere-formátummal is meg kellett tudni oldani...
+E leírás valójában nem egy konkrét programról szól, sokkal inkább egy módszerről, mellyel a DAT adatcsere formátum feldogozható és sokoldalúan felhasználható.
 
 #### Bevezetés
+A DAT adatcsere formátum egy részletesen kidolgozott struktúra, mely egy viszonylag egyszerű felépítésű, szöveges adatfájlban ölt testet. Minden egyes fájl, a DAT szabvályzatban rögzített táblázatoknak megfelelő szerkezetben tárolja az adatokat. A fejlécet követően egy-egy sor nevesíti a táblázatot, melyet a táblázat sorai követnek, az egyes adatokat '*' karakterrel elválasztva.
+A táblázatok adatbázisba szervezése, illetve az adatsorok betöltése alapvetően nem túl bonyolult feladat. A nehézséget az jelenti, hogy az adatcsere formátum "túl gyakran" változik, így vagy a betöltő-programot kell "felokosítani", vagy olyan egyszerűvé kell tenni, hogy bármikor módosítható legyen. Emiatt esett a választásom a Perl nyelvre...
+
+Az adatbázis-kezelési egység a település, mely egy-egy sémának nevezett gyűjtőben létrehozott táblákba töltődik be...
+
 A "program" a "csillagos DAT" fájl PostGIS-be történő betöltését végzi el, így a térképi állományok kezelhetők például a QGis, Openjump, illetve más szorftverekkel is, illetve egy SHP export után például DigiTerra-val is.
 
 A betöltés maga tuljdonképpen egy nevetségesen egyszerű művelet, a DAT fájlból SQL utasításokat generálok, majd a betöltés után tárolt eljárásokkal (SQL és plpgsql) töltöm fel a geometria mezőket adatokkal.
