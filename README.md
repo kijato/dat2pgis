@@ -16,14 +16,14 @@ Ennyi kitérő után hozzunk létre egy PostgreSQL szervert!
 #### PostgreSQL
 Bár a PostgreSQL-nek létezik grafikus felületű, "automata" telepítője, én évek óta nem használom... Ehelyett az [EnterpriseDB](http://www.enterprisedb.com/products-services-training/pgbindownload) oldaláról letölthető 9.4.8-as verziójú ZIP fájl letöltését és az alábbi batch fájlok alkalmazását javaslom:
 
--datr_sablon_install.bat
--fmo-datr_sablon.sql
--pg_admin3.bat
--pg_conf.bat
--pg_init.bat
--pg_init_postgis.bat
--pg_start.bat
--pg_stop.bat
+- datr_sablon_install.bat
+- fmo-datr_sablon.sql
+- pg_admin3.bat
+- pg_conf.bat
+- pg_init.bat
+- pg_init_postgis.bat
+- pg_start.bat
+- pg_stop.bat
 
 ...
 
