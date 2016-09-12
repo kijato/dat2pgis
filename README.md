@@ -6,15 +6,16 @@ Amióta elterjedt a hazai földmérésben a DAT adatcsere fomátum **(és mert s
 
 #### Bevezetés
 
-A leírás valójában nem egy konkrét programról szól, sokkal inkább egy módszerről, mellyel a DAT adatcsere formátumú fájlok a PostGIS segítségével feldogozhatók és ezt követően sokoldalúan felhasználhatók, hiszen ha már a térkép "be van töltve" az adatbázisba, akkor az érdemi adatokat a "nyers" SQL parancsoktól kezdve a QGis, Openjump szorftvereken át számtalan PostGIS kompatibilis programmal használhatjuk. *(Egy SHP export után például a DigiTerra-val is.)*
+A leírás valójában nem egy konkrét programról szól, sokkal inkább egy módszerről, mellyel a DAT adatcsere formátumú fájlok a PostGIS segítségével feldogozhatók és ezt követően sokoldalúan felhasználhatók, hiszen ha már a térkép "be van töltve" az adatbázisba, akkor az érdemi adatokat a "nyers" SQL parancsoktól kezdve a QGis, Openjump szorftvereken át számtalan PostGIS kompatibilis programmal használhatjuk. *(Egy SHP export után például a DigiTerra Map-pal is.)*
 
 Bár a "történet" a PostgreSQL és a PostGIS telepítésével kezdődik, előbb ejtsünk pár szót a DAT adatcsere formátumról, ami egy részletesen kidolgozott struktúra, mely egy viszonylag egyszerű felépítésű, szöveges adatfájlban ölt testet. Minden egyes fájl, a DAT szabályzatban rögzített táblázatoknak megfelelő szerkezetben tárolja az adatokat. A fejlécet követően egy-egy sor nevesíti a táblázatot, melyet a táblázat sorai követnek, az egyes adatokat '\*' karakterrel elválasztva.
-Az DAT adatbázis kezelési egysége a település, mely egy-egy sémának nevezett gyűjtőben, a szabványon **alapuló**, előre létrehozott táblákba töltődik be. Így sémánként, azaz településenként ~80 tábla és ~20 tárolt eljárás keletkezik az adatbázisban, nyilván némi replikációval... A választásom ezért esett mégis erre a megoldásra, mert így az egyes települések önállóan is "életképesek": az adott séma egyszerűen exportálható, importálható, miközben az adatokkal, a tárolt eljárásokkal nem kell különösebben foglalkozni, sőt, még a sablont sem kell export-importálni. *(A tárolást meg lehet valósítani úgy is, hogy csak egyetlen sémát hozunk létre és annak a ~80 táblájába töltjük az adatokat, miközben a betöltést-törlést egy kiemelt táblában vezetjük.)*
+Az DAT adatbázis kezelési egysége a település, mely a PostgreSQL adatbázisban egy-egy sémának nevezett gyűjtőben, a szabványon **alapuló**, előre létrehozott táblákba töltődik be. Így sémánként, azaz településenként ~80 tábla és ~20 tárolt eljárás keletkezik az adatbázisban, nyilvánvalóan némi replikációval... A választásom ezért esett mégis erre a megoldásra, mert így az egyes sémák, azaz települések önállóan is "életképesek": az adott séma egyszerűen exportálható, importálható, miközben az adatokkal, a tárolt eljárásokkal nem kell különösebben foglalkozni, sőt, még a sablont sem kell export-importálni. *(A tárolást meg lehet valósítani úgy is, hogy csak egyetlen sémát hozunk létre és annak a ~80 táblájába töltjük az adatokat, miközben a betöltést-törlést egy kiemelt táblában vezetjük.)*
+A DAT szabvány elérhető itt: http://fish.fomi.hu/letoltes/nyilvanos/dat/DAT-M1_20160205.pdf
 
 Ennyi kitérő után hozzunk létre egy PostgreSQL szervert!
 
 #### PostgreSQL
-Bár a PostgreSQL-nek létezik grafikus felületű, "automata" telepítője, én évek óta nem használom... Ehelyett az [EnterpriseDB](http://www.enterprisedb.com/products-services-training/pgbindownload) oldaláról letölthető 9.4.8-as verziójú ZIP fájl letöltését és az alábbi batch fájlok alkalmazását javaslom:
+Bár a PostgreSQL-nek létezik grafikus felületű, "automata" telepítője, én évek óta nem használom... Ehelyett az [EnterpriseDB](http://www.enterprisedb.com/products-services-training/pgbindownload) oldaláról letölthető ZIP-pel tömörített, hordozható változatot használom. Példaként a 9.4.8-as verziójú ZIP fájl-ból történő beüzemelést mutatom be, az alábbi batch fájlok alkalmazásával:
 
 - datr_sablon_install.bat
 - fmo-datr_sablon.sql
@@ -54,7 +55,7 @@ function test() {
 #### Perl
 
 #######
-DAT : http://fish.fomi.hu/letoltes/nyilvanos/dat/DAT-M1_20160205.pdf
+
 
 
 
