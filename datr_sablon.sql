@@ -1,5 +1,11 @@
+--
+-- PostgreSQL database dump
+--
 
+-- Dumped from database version 9.6.15
+-- Dumped by pg_dump version 9.6.17
 
+-- Started on 2020-08-10 07:34:22
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,16 +18,29 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- TOC entry 12 (class 2615 OID 26616704)
+-- Name: datr_sablon; Type: SCHEMA; Schema: -; Owner: postgres
+--
 
 CREATE SCHEMA datr_sablon;
 
 
 ALTER SCHEMA datr_sablon OWNER TO postgres;
 
+--
+-- TOC entry 51657 (class 0 OID 0)
+-- Dependencies: 12
+-- Name: SCHEMA datr_sablon; Type: COMMENT; Schema: -; Owner: postgres
+--
 
 COMMENT ON SCHEMA datr_sablon IS 'DatR-ből kiírt DAT feldolgozása... (datr_sablon)';
 
 
+--
+-- TOC entry 14656 (class 1255 OID 26619171)
+-- Name: alosztaly_megirasok_generalasa(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.alosztaly_megirasok_generalasa() RETURNS SETOF text
     LANGUAGE plpgsql
@@ -72,10 +91,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.alosztaly_megirasok_generalasa() OWNER TO postgres;
 
+--
+-- TOC entry 51658 (class 0 OID 0)
+-- Dependencies: 14656
+-- Name: FUNCTION alosztaly_megirasok_generalasa(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.alosztaly_megirasok_generalasa() IS 'Alosztály megírások beszúrási pontjának generálása';
 
 
+--
+-- TOC entry 14657 (class 1255 OID 26619172)
+-- Name: bc_bd_letrehozas(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.bc_bd_letrehozas() RETURNS text
     LANGUAGE sql
@@ -92,10 +120,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.bc_bd_letrehozas() OWNER TO postgres;
 
+--
+-- TOC entry 51659 (class 0 OID 0)
+-- Dependencies: 14657
+-- Name: FUNCTION bc_bd_letrehozas(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.bc_bd_letrehozas() IS 'A BC és BD objektum-féleségeket egyetlen táblában összevonó funkció.';
 
 
+--
+-- TOC entry 14658 (class 1255 OID 26619173)
+-- Name: find_el_id(numeric); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.find_el_id(hv_id numeric) RETURNS SETOF numeric
     LANGUAGE sql
@@ -108,10 +145,19 @@ $_$;
 
 ALTER FUNCTION datr_sablon.find_el_id(hv_id numeric) OWNER TO postgres;
 
+--
+-- TOC entry 51660 (class 0 OID 0)
+-- Dependencies: 14658
+-- Name: FUNCTION find_el_id(hv_id numeric); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.find_el_id(hv_id numeric) IS '"Él" keresése "határvonal" azonosító alapján';
 
 
+--
+-- TOC entry 14659 (class 1255 OID 26619174)
+-- Name: find_felulet_id(numeric); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.find_felulet_id(h_id numeric) RETURNS SETOF numeric
     LANGUAGE sql
@@ -124,10 +170,19 @@ $_$;
 
 ALTER FUNCTION datr_sablon.find_felulet_id(h_id numeric) OWNER TO postgres;
 
+--
+-- TOC entry 51661 (class 0 OID 0)
+-- Dependencies: 14659
+-- Name: FUNCTION find_felulet_id(h_id numeric); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.find_felulet_id(h_id numeric) IS '"Felület" keresése "határ" azonosító alapján';
 
 
+--
+-- TOC entry 14660 (class 1255 OID 26619175)
+-- Name: find_gyuru_id(numeric); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.find_gyuru_id(h_id numeric) RETURNS SETOF numeric
     LANGUAGE sql
@@ -140,10 +195,19 @@ $_$;
 
 ALTER FUNCTION datr_sablon.find_gyuru_id(h_id numeric) OWNER TO postgres;
 
+--
+-- TOC entry 51662 (class 0 OID 0)
+-- Dependencies: 14660
+-- Name: FUNCTION find_gyuru_id(h_id numeric); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.find_gyuru_id(h_id numeric) IS '"Gyűrű" keresése "határ" azonosító alapján';
 
 
+--
+-- TOC entry 14661 (class 1255 OID 26619176)
+-- Name: find_hatar_id(numeric); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.find_hatar_id(hv_id numeric) RETURNS SETOF numeric
     LANGUAGE sql
@@ -156,10 +220,19 @@ $_$;
 
 ALTER FUNCTION datr_sablon.find_hatar_id(hv_id numeric) OWNER TO postgres;
 
+--
+-- TOC entry 51663 (class 0 OID 0)
+-- Dependencies: 14661
+-- Name: FUNCTION find_hatar_id(hv_id numeric); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.find_hatar_id(hv_id numeric) IS '"Határ" keresése "határvonal" azonosító alapján';
 
 
+--
+-- TOC entry 14662 (class 1255 OID 26619177)
+-- Name: find_hatarvonal_id(numeric); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.find_hatarvonal_id(p_id numeric) RETURNS SETOF numeric
     LANGUAGE sql
@@ -173,10 +246,19 @@ $_$;
 
 ALTER FUNCTION datr_sablon.find_hatarvonal_id(p_id numeric) OWNER TO postgres;
 
+--
+-- TOC entry 51664 (class 0 OID 0)
+-- Dependencies: 14662
+-- Name: FUNCTION find_hatarvonal_id(p_id numeric); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.find_hatarvonal_id(p_id numeric) IS '"Határvonal" keresése "pont" azonosító alapján';
 
 
+--
+-- TOC entry 14663 (class 1255 OID 26619178)
+-- Name: find_pont_id(numeric, numeric); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.find_pont_id(x numeric, y numeric) RETURNS SETOF numeric
     LANGUAGE sql
@@ -190,10 +272,19 @@ $_$;
 
 ALTER FUNCTION datr_sablon.find_pont_id(x numeric, y numeric) OWNER TO postgres;
 
+--
+-- TOC entry 51665 (class 0 OID 0)
+-- Dependencies: 14663
+-- Name: FUNCTION find_pont_id(x numeric, y numeric); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.find_pont_id(x numeric, y numeric) IS '"Pont" keresése koordináta alapján';
 
 
+--
+-- TOC entry 14664 (class 1255 OID 26619179)
+-- Name: geometria_mezo_feltoltes_ba(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_ba() RETURNS text
     LANGUAGE plpgsql
@@ -213,6 +304,10 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_ba() OWNER TO postgres;
 
+--
+-- TOC entry 14665 (class 1255 OID 26619180)
+-- Name: geometria_mezo_feltoltes_ba(boolean); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_ba(generalt boolean) RETURNS text
     LANGUAGE plpgsql
@@ -269,10 +364,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_ba(generalt boolean) OWNER TO postgres;
 
+--
+-- TOC entry 51666 (class 0 OID 0)
+-- Dependencies: 14665
+-- Name: FUNCTION geometria_mezo_feltoltes_ba(generalt boolean); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_ba(generalt boolean) IS 'A BA tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14666 (class 1255 OID 26619181)
+-- Name: geometria_mezo_feltoltes_bb(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bb() RETURNS text
     LANGUAGE plpgsql
@@ -292,6 +396,10 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bb() OWNER TO postgres;
 
+--
+-- TOC entry 14667 (class 1255 OID 26619182)
+-- Name: geometria_mezo_feltoltes_bb(boolean); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bb(generalt boolean) RETURNS text
     LANGUAGE plpgsql
@@ -348,10 +456,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bb(generalt boolean) OWNER TO postgres;
 
+--
+-- TOC entry 51667 (class 0 OID 0)
+-- Dependencies: 14667
+-- Name: FUNCTION geometria_mezo_feltoltes_bb(generalt boolean); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_bb(generalt boolean) IS 'A BB tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14668 (class 1255 OID 26619183)
+-- Name: geometria_mezo_feltoltes_bc(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bc() RETURNS text
     LANGUAGE plpgsql
@@ -371,6 +488,10 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bc() OWNER TO postgres;
 
+--
+-- TOC entry 14669 (class 1255 OID 26619184)
+-- Name: geometria_mezo_feltoltes_bc(boolean); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bc(generalt boolean) RETURNS text
     LANGUAGE plpgsql
@@ -427,10 +548,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bc(generalt boolean) OWNER TO postgres;
 
+--
+-- TOC entry 51668 (class 0 OID 0)
+-- Dependencies: 14669
+-- Name: FUNCTION geometria_mezo_feltoltes_bc(generalt boolean); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_bc(generalt boolean) IS 'A BC tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14670 (class 1255 OID 26619185)
+-- Name: geometria_mezo_feltoltes_bd(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bd() RETURNS text
     LANGUAGE plpgsql
@@ -450,6 +580,10 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bd() OWNER TO postgres;
 
+--
+-- TOC entry 14671 (class 1255 OID 26619186)
+-- Name: geometria_mezo_feltoltes_bd(boolean); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bd(generalt boolean) RETURNS text
     LANGUAGE plpgsql
@@ -506,10 +640,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bd(generalt boolean) OWNER TO postgres;
 
+--
+-- TOC entry 51669 (class 0 OID 0)
+-- Dependencies: 14671
+-- Name: FUNCTION geometria_mezo_feltoltes_bd(generalt boolean); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_bd(generalt boolean) IS 'A BD tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14672 (class 1255 OID 26619187)
+-- Name: geometria_mezo_feltoltes_be(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_be() RETURNS text
     LANGUAGE plpgsql
@@ -529,26 +672,44 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_be() OWNER TO postgres;
 
+--
+-- TOC entry 51670 (class 0 OID 0)
+-- Dependencies: 14672
+-- Name: FUNCTION geometria_mezo_feltoltes_be(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_be() IS 'A BE tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14673 (class 1255 OID 26619188)
+-- Name: geometria_mezo_feltoltes_be(boolean); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_be(generalt boolean) RETURNS text
     LANGUAGE plpgsql
-    AS $$DECLARE  eredeti integer := 0;  szamlalo integer := 0;  uzenet text;  kezdes timestamp;  befejezes timestamp;BEGIN
-  SELECT INTO kezdes clock_timestamp();  SELECT INTO uzenet datr_sablon.geometria_mezo_keszites('obj_attrbe');  SELECT count (*) INTO STRICT eredeti FROM datr_sablon.t_obj_attrbe;  if generalt then
-	  UPDATE datr_sablon.t_obj_attrbe AS be SET geometria=poligon_epites.geometria	  FROM (	    SELECT linestring_epites.felulet_id,		   ST_BuildArea(ST_Union(linestring_epites.geometria)) AS geometria	    FROM (	      SELECT f.felulet_id,		     ST_GeomFromText( 'LINESTRING (' || p1.pont_y || ' ' || p1.pont_x || ', ' || p2.pont_y || ' ' || p2.pont_x || ')' , 23700) AS geometria	      FROM datr_sablon.t_pont p1,		   datr_sablon.t_pont p2,		   datr_sablon.t_hatarvonal hv,		   datr_sablon.t_hatar h,		   datr_sablon.t_felulet f,		   datr_sablon.t_obj_attrbe abe	      WHERE hv.pont_id_1=p1.pont_id		AND hv.pont_id_2=p2.pont_id		AND h.hatarvonal_id=hv.hatarvonal_id		AND f.hatar_id=h.hatar_id		AND f.felulet_id=abe.felulet_id	      ) AS linestring_epites	    GROUP BY felulet_id	    ) AS poligon_epites	  WHERE poligon_epites.felulet_id=be.felulet_id;  else	  UPDATE datr_sablon.t_obj_attrbe AS b SET geometria=f.geometria	  FROM datr_sablon.t_felulet AS f	  WHERE b.felulet_id=f.felulet_id;  end if;
-  --  SELECT count (*) INTO STRICT szamlalo FROM datr_sablon.t_obj_attrbe WHERE geometria IS NOT NULL;  SELECT INTO befejezes clock_timestamp();  RETURN uzenet || chr(10) ||         'A ' || eredeti || ' darab geometriát tároló mezőt ' || szamlalo || ' esetben feltöltöttem!' || chr(10) ||         'Kezdés:    ' || kezdes || chr(10) || 'Befejezés: ' || befejezes || chr(10) || 'Időtartam: ' || befejezes-kezdes;EXCEPTION   WHEN others THEN RETURN SQLSTATE || ': ' || SQLERRM;END;
+    AS $$DECLARE  eredeti integer := 0;  szamlalo integer := 0;  uzenet text;  kezdes timestamp;  befejezes timestamp;BEGIN
+  SELECT INTO kezdes clock_timestamp();  SELECT INTO uzenet datr_sablon.geometria_mezo_keszites('obj_attrbe');  SELECT count (*) INTO STRICT eredeti FROM datr_sablon.t_obj_attrbe;  if generalt then
+	  UPDATE datr_sablon.t_obj_attrbe AS be SET geometria=poligon_epites.geometria	  FROM (	    SELECT linestring_epites.felulet_id,		   ST_BuildArea(ST_Union(linestring_epites.geometria)) AS geometria	    FROM (	      SELECT f.felulet_id,		     ST_GeomFromText( 'LINESTRING (' || p1.pont_y || ' ' || p1.pont_x || ', ' || p2.pont_y || ' ' || p2.pont_x || ')' , 23700) AS geometria	      FROM datr_sablon.t_pont p1,		   datr_sablon.t_pont p2,		   datr_sablon.t_hatarvonal hv,		   datr_sablon.t_hatar h,		   datr_sablon.t_felulet f,		   datr_sablon.t_obj_attrbe abe	      WHERE hv.pont_id_1=p1.pont_id		AND hv.pont_id_2=p2.pont_id		AND h.hatarvonal_id=hv.hatarvonal_id		AND f.hatar_id=h.hatar_id		AND f.felulet_id=abe.felulet_id	      ) AS linestring_epites	    GROUP BY felulet_id	    ) AS poligon_epites	  WHERE poligon_epites.felulet_id=be.felulet_id;  else	  UPDATE datr_sablon.t_obj_attrbe AS b SET geometria=f.geometria	  FROM datr_sablon.t_felulet AS f	  WHERE b.felulet_id=f.felulet_id;  end if;
+  --  SELECT count (*) INTO STRICT szamlalo FROM datr_sablon.t_obj_attrbe WHERE geometria IS NOT NULL;  SELECT INTO befejezes clock_timestamp();  RETURN uzenet || chr(10) ||         'A ' || eredeti || ' darab geometriát tároló mezőt ' || szamlalo || ' esetben feltöltöttem!' || chr(10) ||         'Kezdés:    ' || kezdes || chr(10) || 'Befejezés: ' || befejezes || chr(10) || 'Időtartam: ' || befejezes-kezdes;EXCEPTION   WHEN others THEN RETURN SQLSTATE || ': ' || SQLERRM;END;
 $$;
 
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_be(generalt boolean) OWNER TO postgres;
 
+--
+-- TOC entry 51671 (class 0 OID 0)
+-- Dependencies: 14673
+-- Name: FUNCTION geometria_mezo_feltoltes_be(generalt boolean); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_be(generalt boolean) IS 'A BE tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14674 (class 1255 OID 26619189)
+-- Name: geometria_mezo_feltoltes_bf(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bf() RETURNS text
     LANGUAGE plpgsql
@@ -568,27 +729,45 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bf() OWNER TO postgres;
 
+--
+-- TOC entry 51672 (class 0 OID 0)
+-- Dependencies: 14674
+-- Name: FUNCTION geometria_mezo_feltoltes_bf(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_bf() IS 'A BF tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14675 (class 1255 OID 26619190)
+-- Name: geometria_mezo_feltoltes_bf(boolean); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bf(generalt boolean) RETURNS text
     LANGUAGE plpgsql
-    AS $$DECLARE  eredeti integer := 0;  szamlalo integer := 0;  uzenet text;  kezdes timestamp;  befejezes timestamp;BEGIN
-  SELECT INTO kezdes clock_timestamp();  SELECT INTO uzenet datr_sablon.geometria_mezo_keszites('obj_attrbf');  SELECT count (*) INTO STRICT eredeti FROM datr_sablon.t_obj_attrbf;  if generalt then
-	  UPDATE datr_sablon.t_obj_attrbf AS bf SET geometria=poligon_epites.geometria	  FROM (	    SELECT linestring_epites.felulet_id,		   ST_BuildArea(ST_Union(linestring_epites.geometria)) AS geometria	    FROM (	      SELECT f.felulet_id,		     ST_GeomFromText( 'LINESTRING (' || p1.pont_y || ' ' || p1.pont_x || ', ' || p2.pont_y || ' ' || p2.pont_x || ')' , 23700) AS geometria	      FROM datr_sablon.t_pont p1,		   datr_sablon.t_pont p2,		   datr_sablon.t_hatarvonal hv,		   datr_sablon.t_hatar h,		   datr_sablon.t_felulet f,		   datr_sablon.t_obj_attrbf abf	      WHERE hv.pont_id_1=p1.pont_id		AND hv.pont_id_2=p2.pont_id		AND h.hatarvonal_id=hv.hatarvonal_id		AND f.hatar_id=h.hatar_id		AND f.felulet_id=abf.felulet_id	      ) AS linestring_epites	    GROUP BY felulet_id	    ) AS poligon_epites	  WHERE poligon_epites.felulet_id=bf.felulet_id; else
-	UPDATE datr_sablon.t_obj_attrbf AS b SET geometria=f.geometria	FROM datr_sablon.t_felulet AS f	WHERE b.felulet_id=f.felulet_id;  end if;
-  --    SELECT count (*) INTO STRICT szamlalo FROM datr_sablon.t_obj_attrbf WHERE geometria IS NOT NULL;  SELECT INTO befejezes clock_timestamp();  RETURN uzenet || chr(10) ||         'A ' || eredeti || ' darab geometriát tároló mezőt ' || szamlalo || ' esetben feltöltöttem!' || chr(10) ||         'Kezdés:    ' || kezdes || chr(10) || 'Befejezés: ' || befejezes || chr(10) || 'Időtartam: ' || befejezes-kezdes;EXCEPTION   WHEN others THEN RETURN SQLSTATE || ': ' || SQLERRM;END;
+    AS $$DECLARE  eredeti integer := 0;  szamlalo integer := 0;  uzenet text;  kezdes timestamp;  befejezes timestamp;BEGIN
+  SELECT INTO kezdes clock_timestamp();  SELECT INTO uzenet datr_sablon.geometria_mezo_keszites('obj_attrbf');  SELECT count (*) INTO STRICT eredeti FROM datr_sablon.t_obj_attrbf;  if generalt then
+	  UPDATE datr_sablon.t_obj_attrbf AS bf SET geometria=poligon_epites.geometria	  FROM (	    SELECT linestring_epites.felulet_id,		   ST_BuildArea(ST_Union(linestring_epites.geometria)) AS geometria	    FROM (	      SELECT f.felulet_id,		     ST_GeomFromText( 'LINESTRING (' || p1.pont_y || ' ' || p1.pont_x || ', ' || p2.pont_y || ' ' || p2.pont_x || ')' , 23700) AS geometria	      FROM datr_sablon.t_pont p1,		   datr_sablon.t_pont p2,		   datr_sablon.t_hatarvonal hv,		   datr_sablon.t_hatar h,		   datr_sablon.t_felulet f,		   datr_sablon.t_obj_attrbf abf	      WHERE hv.pont_id_1=p1.pont_id		AND hv.pont_id_2=p2.pont_id		AND h.hatarvonal_id=hv.hatarvonal_id		AND f.hatar_id=h.hatar_id		AND f.felulet_id=abf.felulet_id	      ) AS linestring_epites	    GROUP BY felulet_id	    ) AS poligon_epites	  WHERE poligon_epites.felulet_id=bf.felulet_id; else
+	UPDATE datr_sablon.t_obj_attrbf AS b SET geometria=f.geometria	FROM datr_sablon.t_felulet AS f	WHERE b.felulet_id=f.felulet_id;  end if;
+  --    SELECT count (*) INTO STRICT szamlalo FROM datr_sablon.t_obj_attrbf WHERE geometria IS NOT NULL;  SELECT INTO befejezes clock_timestamp();  RETURN uzenet || chr(10) ||         'A ' || eredeti || ' darab geometriát tároló mezőt ' || szamlalo || ' esetben feltöltöttem!' || chr(10) ||         'Kezdés:    ' || kezdes || chr(10) || 'Befejezés: ' || befejezes || chr(10) || 'Időtartam: ' || befejezes-kezdes;EXCEPTION   WHEN others THEN RETURN SQLSTATE || ': ' || SQLERRM;END;
 $$;
 
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bf(generalt boolean) OWNER TO postgres;
 
+--
+-- TOC entry 51673 (class 0 OID 0)
+-- Dependencies: 14675
+-- Name: FUNCTION geometria_mezo_feltoltes_bf(generalt boolean); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_bf(generalt boolean) IS 'A BF tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14676 (class 1255 OID 26619191)
+-- Name: geometria_mezo_feltoltes_bg(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bg() RETURNS text
     LANGUAGE plpgsql
@@ -608,26 +787,44 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bg() OWNER TO postgres;
 
+--
+-- TOC entry 51674 (class 0 OID 0)
+-- Dependencies: 14676
+-- Name: FUNCTION geometria_mezo_feltoltes_bg(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_bg() IS 'A bg tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14677 (class 1255 OID 26619192)
+-- Name: geometria_mezo_feltoltes_bg(boolean); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_bg(generalt boolean) RETURNS text
     LANGUAGE plpgsql
-    AS $$DECLARE  eredeti integer := 0;  szamlalo integer := 0;  uzenet text;  kezdes timestamp;  befejezes timestamp;BEGIN
-  SELECT INTO kezdes clock_timestamp();  SELECT INTO uzenet datr_sablon.geometria_mezo_keszites('obj_attrbg');  SELECT count (*) INTO STRICT eredeti FROM datr_sablon.t_obj_attrbg;  if generalt then	  UPDATE datr_sablon.t_obj_attrbg AS bg SET geometria=poligon_epites.geometria	  FROM (	    SELECT linestring_epites.felulet_id,		   ST_BuildArea(ST_Union(linestring_epites.geometria)) AS geometria	    FROM (	      SELECT f.felulet_id,		     ST_GeomFromText( 'LINESTRING (' || p1.pont_y || ' ' || p1.pont_x || ', ' || p2.pont_y || ' ' || p2.pont_x || ')' , 23700) AS geometria	      FROM datr_sablon.t_pont p1,		   datr_sablon.t_pont p2,		   datr_sablon.t_hatarvonal hv,		   datr_sablon.t_hatar h,		   datr_sablon.t_felulet f,		   datr_sablon.t_obj_attrbg abg	      WHERE hv.pont_id_1=p1.pont_id		AND hv.pont_id_2=p2.pont_id		AND h.hatarvonal_id=hv.hatarvonal_id		AND f.hatar_id=h.hatar_id		AND f.felulet_id=abg.felulet_id	      ) AS linestring_epites	    GROUP BY felulet_id	    ) AS poligon_epites	  WHERE poligon_epites.felulet_id=bg.felulet_id;  else
-	  UPDATE datr_sablon.t_obj_attrbg AS b SET geometria=f.geometria	  FROM datr_sablon.t_felulet AS f	  WHERE b.felulet_id=f.felulet_id;  end if;
-  --    SELECT count (*) INTO STRICT szamlalo FROM datr_sablon.t_obj_attrbg WHERE geometria IS NOT NULL;  SELECT INTO befejezes clock_timestamp();  RETURN uzenet || chr(10) ||         'A ' || eredeti || ' darab geometriát tároló mezőt ' || szamlalo || ' esetben feltöltöttem!' || chr(10) ||         'Kezdés:    ' || kezdes || chr(10) || 'Befejezés: ' || befejezes || chr(10) || 'Időtartam: ' || befejezes-kezdes;EXCEPTION   WHEN others THEN RETURN SQLSTATE || ': ' || SQLERRM;END;
+    AS $$DECLARE  eredeti integer := 0;  szamlalo integer := 0;  uzenet text;  kezdes timestamp;  befejezes timestamp;BEGIN
+  SELECT INTO kezdes clock_timestamp();  SELECT INTO uzenet datr_sablon.geometria_mezo_keszites('obj_attrbg');  SELECT count (*) INTO STRICT eredeti FROM datr_sablon.t_obj_attrbg;  if generalt then	  UPDATE datr_sablon.t_obj_attrbg AS bg SET geometria=poligon_epites.geometria	  FROM (	    SELECT linestring_epites.felulet_id,		   ST_BuildArea(ST_Union(linestring_epites.geometria)) AS geometria	    FROM (	      SELECT f.felulet_id,		     ST_GeomFromText( 'LINESTRING (' || p1.pont_y || ' ' || p1.pont_x || ', ' || p2.pont_y || ' ' || p2.pont_x || ')' , 23700) AS geometria	      FROM datr_sablon.t_pont p1,		   datr_sablon.t_pont p2,		   datr_sablon.t_hatarvonal hv,		   datr_sablon.t_hatar h,		   datr_sablon.t_felulet f,		   datr_sablon.t_obj_attrbg abg	      WHERE hv.pont_id_1=p1.pont_id		AND hv.pont_id_2=p2.pont_id		AND h.hatarvonal_id=hv.hatarvonal_id		AND f.hatar_id=h.hatar_id		AND f.felulet_id=abg.felulet_id	      ) AS linestring_epites	    GROUP BY felulet_id	    ) AS poligon_epites	  WHERE poligon_epites.felulet_id=bg.felulet_id;  else
+	  UPDATE datr_sablon.t_obj_attrbg AS b SET geometria=f.geometria	  FROM datr_sablon.t_felulet AS f	  WHERE b.felulet_id=f.felulet_id;  end if;
+  --    SELECT count (*) INTO STRICT szamlalo FROM datr_sablon.t_obj_attrbg WHERE geometria IS NOT NULL;  SELECT INTO befejezes clock_timestamp();  RETURN uzenet || chr(10) ||         'A ' || eredeti || ' darab geometriát tároló mezőt ' || szamlalo || ' esetben feltöltöttem!' || chr(10) ||         'Kezdés:    ' || kezdes || chr(10) || 'Befejezés: ' || befejezes || chr(10) || 'Időtartam: ' || befejezes-kezdes;EXCEPTION   WHEN others THEN RETURN SQLSTATE || ': ' || SQLERRM;END;
 $$;
 
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_bg(generalt boolean) OWNER TO postgres;
 
+--
+-- TOC entry 51675 (class 0 OID 0)
+-- Dependencies: 14677
+-- Name: FUNCTION geometria_mezo_feltoltes_bg(generalt boolean); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_bg(generalt boolean) IS 'A bg tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14678 (class 1255 OID 26619193)
+-- Name: geometria_mezo_feltoltes_ca(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_ca() RETURNS text
     LANGUAGE plpgsql
@@ -647,25 +844,43 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_ca() OWNER TO postgres;
 
+--
+-- TOC entry 51676 (class 0 OID 0)
+-- Dependencies: 14678
+-- Name: FUNCTION geometria_mezo_feltoltes_ca(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_ca() IS 'A CA tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14679 (class 1255 OID 26619194)
+-- Name: geometria_mezo_feltoltes_ca(boolean); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_ca(generalt boolean) RETURNS text
     LANGUAGE plpgsql
-    AS $$DECLARE  eredeti integer := 0;  szamlalo integer := 0;  uzenet text;  kezdes timestamp;  befejezes timestamp;BEGIN
-  SELECT INTO kezdes clock_timestamp();  SELECT INTO uzenet datr_sablon.geometria_mezo_keszites('obj_attrca');  SELECT count (*) INTO STRICT eredeti FROM datr_sablon.t_obj_attrca;
-  if generalt then	  UPDATE datr_sablon.t_obj_attrca AS ca SET geometria=poligon_epites.geometria	  FROM (	    SELECT linestring_epites.felulet_id,		   ST_BuildArea(ST_Union(linestring_epites.geometria)) AS geometria	    FROM (	      SELECT f.felulet_id,		     ST_GeomFromText( 'LINESTRING (' || p1.pont_y || ' ' || p1.pont_x || ', ' || p2.pont_y || ' ' || p2.pont_x || ')' , 23700) AS geometria	      FROM datr_sablon.t_pont p1,		   datr_sablon.t_pont p2,		   datr_sablon.t_hatarvonal hv,		   datr_sablon.t_hatar h,		   datr_sablon.t_felulet f,		   datr_sablon.t_obj_attrca aca	      WHERE hv.pont_id_1=p1.pont_id		AND hv.pont_id_2=p2.pont_id		AND h.hatarvonal_id=hv.hatarvonal_id		AND f.hatar_id=h.hatar_id		AND f.felulet_id=aca.felulet_id	      ) AS linestring_epites	    GROUP BY felulet_id	    ) AS poligon_epites	  WHERE poligon_epites.felulet_id=ca.felulet_id;  else	  UPDATE datr_sablon.t_obj_attrca AS c SET geometria=f.geometria	  FROM datr_sablon.t_felulet AS f	  WHERE c.felulet_id=f.felulet_id;
-  end if;  --    SELECT count (*) INTO STRICT szamlalo FROM datr_sablon.t_obj_attrca WHERE geometria IS NOT NULL;  SELECT INTO befejezes clock_timestamp();  RETURN '[datr_sablon.t_obj_attrca]' || chr(10) ||         uzenet || chr(10) ||         'A ' || eredeti || ' darab geometriát tároló mezőt ' || szamlalo || ' esetben feltöltöttem!' || chr(10) ||         'Kezdés:    ' || kezdes || chr(10) || 'Befejezés: ' || befejezes || chr(10) || 'Időtartam: ' || befejezes-kezdes;EXCEPTION   WHEN others THEN RETURN SQLSTATE || ': ' || SQLERRM;END;$$;
+    AS $$DECLARE  eredeti integer := 0;  szamlalo integer := 0;  uzenet text;  kezdes timestamp;  befejezes timestamp;BEGIN
+  SELECT INTO kezdes clock_timestamp();  SELECT INTO uzenet datr_sablon.geometria_mezo_keszites('obj_attrca');  SELECT count (*) INTO STRICT eredeti FROM datr_sablon.t_obj_attrca;
+  if generalt then	  UPDATE datr_sablon.t_obj_attrca AS ca SET geometria=poligon_epites.geometria	  FROM (	    SELECT linestring_epites.felulet_id,		   ST_BuildArea(ST_Union(linestring_epites.geometria)) AS geometria	    FROM (	      SELECT f.felulet_id,		     ST_GeomFromText( 'LINESTRING (' || p1.pont_y || ' ' || p1.pont_x || ', ' || p2.pont_y || ' ' || p2.pont_x || ')' , 23700) AS geometria	      FROM datr_sablon.t_pont p1,		   datr_sablon.t_pont p2,		   datr_sablon.t_hatarvonal hv,		   datr_sablon.t_hatar h,		   datr_sablon.t_felulet f,		   datr_sablon.t_obj_attrca aca	      WHERE hv.pont_id_1=p1.pont_id		AND hv.pont_id_2=p2.pont_id		AND h.hatarvonal_id=hv.hatarvonal_id		AND f.hatar_id=h.hatar_id		AND f.felulet_id=aca.felulet_id	      ) AS linestring_epites	    GROUP BY felulet_id	    ) AS poligon_epites	  WHERE poligon_epites.felulet_id=ca.felulet_id;  else	  UPDATE datr_sablon.t_obj_attrca AS c SET geometria=f.geometria	  FROM datr_sablon.t_felulet AS f	  WHERE c.felulet_id=f.felulet_id;
+  end if;  --    SELECT count (*) INTO STRICT szamlalo FROM datr_sablon.t_obj_attrca WHERE geometria IS NOT NULL;  SELECT INTO befejezes clock_timestamp();  RETURN '[datr_sablon.t_obj_attrca]' || chr(10) ||         uzenet || chr(10) ||         'A ' || eredeti || ' darab geometriát tároló mezőt ' || szamlalo || ' esetben feltöltöttem!' || chr(10) ||         'Kezdés:    ' || kezdes || chr(10) || 'Befejezés: ' || befejezes || chr(10) || 'Időtartam: ' || befejezes-kezdes;EXCEPTION   WHEN others THEN RETURN SQLSTATE || ': ' || SQLERRM;END;$$;
 
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_ca(generalt boolean) OWNER TO postgres;
 
+--
+-- TOC entry 51677 (class 0 OID 0)
+-- Dependencies: 14679
+-- Name: FUNCTION geometria_mezo_feltoltes_ca(generalt boolean); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_ca(generalt boolean) IS 'A CA tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14680 (class 1255 OID 26619195)
+-- Name: geometria_mezo_feltoltes_felirat(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_felirat() RETURNS text
     LANGUAGE plpgsql
@@ -698,10 +913,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_felirat() OWNER TO postgres;
 
+--
+-- TOC entry 51678 (class 0 OID 0)
+-- Dependencies: 14680
+-- Name: FUNCTION geometria_mezo_feltoltes_felirat(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_felirat() IS 'A FELIRAT tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14681 (class 1255 OID 26619196)
+-- Name: geometria_mezo_feltoltes_felulet(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_felulet() RETURNS text
     LANGUAGE plpgsql
@@ -749,10 +973,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_felulet() OWNER TO postgres;
 
+--
+-- TOC entry 51679 (class 0 OID 0)
+-- Dependencies: 14681
+-- Name: FUNCTION geometria_mezo_feltoltes_felulet(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_felulet() IS 'A FELULET tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14682 (class 1255 OID 26619197)
+-- Name: geometria_mezo_feltoltes_hatar(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_hatar() RETURNS text
     LANGUAGE plpgsql
@@ -789,10 +1022,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_hatar() OWNER TO postgres;
 
+--
+-- TOC entry 51680 (class 0 OID 0)
+-- Dependencies: 14682
+-- Name: FUNCTION geometria_mezo_feltoltes_hatar(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_hatar() IS 'A HATAR tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14683 (class 1255 OID 26619198)
+-- Name: geometria_mezo_feltoltes_hatarvonal(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_hatarvonal() RETURNS text
     LANGUAGE plpgsql
@@ -827,10 +1069,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_hatarvonal() OWNER TO postgres;
 
+--
+-- TOC entry 51681 (class 0 OID 0)
+-- Dependencies: 14683
+-- Name: FUNCTION geometria_mezo_feltoltes_hatarvonal(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_hatarvonal() IS 'A HATARVONAL tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14684 (class 1255 OID 26619199)
+-- Name: geometria_mezo_feltoltes_pont(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_pont() RETURNS text
     LANGUAGE plpgsql
@@ -861,10 +1112,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_pont() OWNER TO postgres;
 
+--
+-- TOC entry 51682 (class 0 OID 0)
+-- Dependencies: 14684
+-- Name: FUNCTION geometria_mezo_feltoltes_pont(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_pont() IS 'A PONT tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14685 (class 1255 OID 26619200)
+-- Name: geometria_mezo_feltoltes_vonal(); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_feltoltes_vonal() RETURNS text
     LANGUAGE plpgsql
@@ -899,10 +1159,19 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_feltoltes_vonal() OWNER TO postgres;
 
+--
+-- TOC entry 51683 (class 0 OID 0)
+-- Dependencies: 14685
+-- Name: FUNCTION geometria_mezo_feltoltes_vonal(); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_feltoltes_vonal() IS 'A vonal tábla geometriát tároló mezőjének feltöltése.';
 
 
+--
+-- TOC entry 14686 (class 1255 OID 26619201)
+-- Name: geometria_mezo_keszites(character); Type: FUNCTION; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE FUNCTION datr_sablon.geometria_mezo_keszites(tabla character) RETURNS text
     LANGUAGE plpgsql
@@ -927,6 +1196,11 @@ $$;
 
 ALTER FUNCTION datr_sablon.geometria_mezo_keszites(tabla character) OWNER TO postgres;
 
+--
+-- TOC entry 51684 (class 0 OID 0)
+-- Dependencies: 14686
+-- Name: FUNCTION geometria_mezo_keszites(tabla character); Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON FUNCTION datr_sablon.geometria_mezo_keszites(tabla character) IS 'A paraméterként megadott tábla geometriát tároló mezőjének elkészítése. [Pl: "t_pont" helyett "pont" a megadandó]';
 
@@ -935,6 +1209,10 @@ SET default_tablespace = '';
 
 SET default_with_oids = true;
 
+--
+-- TOC entry 353 (class 1259 OID 26631319)
+-- Name: t_obj_attrbc; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbc (
     parcel_id numeric(10,0) NOT NULL,
@@ -970,118 +1248,262 @@ CREATE TABLE datr_sablon.t_obj_attrbc (
 
 ALTER TABLE datr_sablon.t_obj_attrbc OWNER TO postgres;
 
+--
+-- TOC entry 51685 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: TABLE t_obj_attrbc; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbc IS 'Földrészletek I. (közterületi)';
 
 
+--
+-- TOC entry 51686 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.parcel_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.parcel_id IS 'Földrészlet azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51687 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.obj_fels IS 'Földrészlet objektumféleségének kódja';
 
 
+--
+-- TOC entry 51688 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.felulet_id IS 'A földrészlet geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 51689 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.helyr_szam IS 'A földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 51690 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.cim_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.cim_id IS 'A földrészlet postacímének kódja';
 
 
+--
+-- TOC entry 51691 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.fekves; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.fekves IS 'Fekvés kódja';
 
 
+--
+-- TOC entry 51692 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.kozter_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.kozter_jell IS 'Közterület jelleg kódja';
 
 
+--
+-- TOC entry 51693 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.terulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.terulet IS 'Számított terület nagysága';
 
 
+--
+-- TOC entry 51694 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.foldert; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.foldert IS 'Földérték';
 
 
+--
+-- TOC entry 51695 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.forg_ertek; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.forg_ertek IS 'A földrészlet szerzéskori forgalmi értéke';
 
 
+--
+-- TOC entry 51696 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.val_nem; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.val_nem IS 'A forgalmi érték valuta neme';
 
 
+--
+-- TOC entry 51697 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.szerv_tip; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.szerv_tip IS 'Szektor';
 
 
+--
+-- TOC entry 51698 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.jogi_jelleg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.jogi_jelleg IS 'Jogi jelleg';
 
 
+--
+-- TOC entry 51699 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.jogallas; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.jogallas IS 'Jogállás';
 
 
+--
+-- TOC entry 51700 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.ceg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.ceg_id IS 'Vagyonkezelő vagy használó szervezet  név- és címadatai';
 
 
+--
+-- TOC entry 51701 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 51702 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 51703 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.elozo_parcel_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.elozo_parcel_id IS 'A földrészlet legutóbb érvényes adatrekordjának azonosítója';
 
 
+--
+-- TOC entry 51704 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.l_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.l_datum IS 'Dátum';
 
 
+--
+-- TOC entry 51705 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.hatarozat; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.hatarozat IS 'Határozat iktatási száma';
 
 
+--
+-- TOC entry 51706 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.valt_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.valt_jell IS 'Változási jelleg (pl. egyesítés, szolgalmi jog)';
 
 
+--
+-- TOC entry 51707 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.tar_hely; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.tar_hely IS 'Változási vázrajz tárolási helye';
 
 
+--
+-- TOC entry 51708 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.blokk_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.blokk_id IS 'A földrészletet és környezetét dokumentáló légi fénykép raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 51709 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 51710 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51711 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51712 (class 0 OID 0)
+-- Dependencies: 353
+-- Name: COLUMN t_obj_attrbc.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbc.pont_id IS 'Földrészlet geokódját kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 354 (class 1259 OID 26631325)
+-- Name: t_obj_attrbd; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbd (
     parcel_id numeric(10,0) NOT NULL,
@@ -1117,118 +1539,262 @@ CREATE TABLE datr_sablon.t_obj_attrbd (
 
 ALTER TABLE datr_sablon.t_obj_attrbd OWNER TO postgres;
 
+--
+-- TOC entry 51713 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: TABLE t_obj_attrbd; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbd IS 'Földrészletek II. (nem közterületi)';
 
 
+--
+-- TOC entry 51714 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.parcel_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.parcel_id IS 'Földrészlet azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51715 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.obj_fels IS 'Földrészlet objektumféleségének kódja';
 
 
+--
+-- TOC entry 51716 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.felulet_id IS 'A földrészlet geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 51717 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.helyr_szam IS 'A földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 51718 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.cim_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.cim_id IS 'A földrészlet postacímének kódja';
 
 
+--
+-- TOC entry 51719 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.fekves; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.fekves IS 'Fekvés kódja';
 
 
+--
+-- TOC entry 51720 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.terulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.terulet IS 'Számított terület nagysága';
 
 
+--
+-- TOC entry 51721 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.foldert; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.foldert IS 'Földérték';
 
 
+--
+-- TOC entry 51722 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.forg_ertek; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.forg_ertek IS 'A földrészlet  szerzéskori forgalmi értéke';
 
 
+--
+-- TOC entry 51723 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.val_nem; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.val_nem IS 'A forgalmi érték valuta neme';
 
 
+--
+-- TOC entry 51724 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.szerv_tip; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.szerv_tip IS 'Szektor';
 
 
+--
+-- TOC entry 51725 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.jogi_jelleg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.jogi_jelleg IS 'Jogi jelleg';
 
 
+--
+-- TOC entry 51726 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.jogallas; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.jogallas IS 'Jogállás';
 
 
+--
+-- TOC entry 51727 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.szemely_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.szemely_id IS 'Vagyonkezelő személy, név- és címadatai (vagy)';
 
 
+--
+-- TOC entry 51728 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.ceg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.ceg_id IS 'Vagyonkezelő szervezet név- és címadatai (vagy)';
 
 
+--
+-- TOC entry 51729 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 51730 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 51731 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.elozo_parcel_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.elozo_parcel_id IS 'A földrészlet legutóbb érvényes adatrekordjának azonosítója';
 
 
+--
+-- TOC entry 51732 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.l_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.l_datum IS 'Dátum';
 
 
+--
+-- TOC entry 51733 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.hatarozat; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.hatarozat IS 'Határozat iktatási száma';
 
 
+--
+-- TOC entry 51734 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.valt_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.valt_jell IS 'Változási jelleg (pl. egyesítés, megosztás, szolgalmi jog)';
 
 
+--
+-- TOC entry 51735 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.tar_hely; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.tar_hely IS 'Változási vázrajz tárolási helye';
 
 
+--
+-- TOC entry 51736 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.blokk_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.blokk_id IS 'A földrészlet és környezetét dokumentáló légi fénykép raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 51737 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 51738 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51739 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51740 (class 0 OID 0)
+-- Dependencies: 354
+-- Name: COLUMN t_obj_attrbd.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbd.pont_id IS 'Földrészlet geokódját kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 355 (class 1259 OID 26631331)
+-- Name: bc_bd; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.bc_bd AS
  SELECT bc.parcel_id AS id,
@@ -1296,6 +1862,10 @@ UNION
 
 ALTER TABLE datr_sablon.bc_bd OWNER TO postgres;
 
+--
+-- TOC entry 356 (class 1259 OID 26631336)
+-- Name: bc_bd_regi; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.bc_bd_regi AS
  SELECT bc.oid,
@@ -1367,6 +1937,10 @@ ALTER TABLE datr_sablon.bc_bd_regi OWNER TO postgres;
 
 SET default_with_oids = false;
 
+--
+-- TOC entry 357 (class 1259 OID 26631341)
+-- Name: t_felirat; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_felirat (
     id numeric(10,0) NOT NULL,
@@ -1384,48 +1958,102 @@ CREATE TABLE datr_sablon.t_felirat (
 
 ALTER TABLE datr_sablon.t_felirat OWNER TO postgres;
 
+--
+-- TOC entry 51741 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: TABLE t_felirat; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_felirat IS 'Magyarázó szövegek, feliratok és névrajzi megírások táblázata';
 
 
+--
+-- TOC entry 51742 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: COLUMN t_felirat.id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat.id IS 'A szöveg azonosító sorszáma';
 
 
+--
+-- TOC entry 51743 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: COLUMN t_felirat.felirat_text; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat.felirat_text IS 'A szöveg tartalma';
 
 
+--
+-- TOC entry 51744 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: COLUMN t_felirat.pont_id_text; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat.pont_id_text IS 'A szöveg első karakterének bal alsó sarkához tartozó beszúrási pont koordinátáit tartalmazó rekord azonosítója';
 
 
+--
+-- TOC entry 51745 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: COLUMN t_felirat.irany_text; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat.irany_text IS 'A megírás iránya É-hoz képest';
 
 
+--
+-- TOC entry 51746 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: COLUMN t_felirat.font_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat.font_id IS 'Az alkalmazandó betűtípus és -méretek azonosító kódja';
 
 
+--
+-- TOC entry 51747 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: COLUMN t_felirat.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 51748 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: COLUMN t_felirat.tabla_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat.tabla_nev IS 'A hivatkozó táblázat neve';
 
 
+--
+-- TOC entry 51749 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: COLUMN t_felirat.sor_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat.sor_id IS 'A hivatkozó táblázat sorának azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51750 (class 0 OID 0)
+-- Dependencies: 357
+-- Name: COLUMN t_felirat.jelleg_kod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat.jelleg_kod IS 'A felirat használatának jellegére utal';
 
 
 SET default_with_oids = true;
 
+--
+-- TOC entry 358 (class 1259 OID 26631347)
+-- Name: t_pont; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_pont (
     pont_id numeric(8,0) NOT NULL,
@@ -1440,34 +2068,73 @@ CREATE TABLE datr_sablon.t_pont (
 
 ALTER TABLE datr_sablon.t_pont OWNER TO postgres;
 
+--
+-- TOC entry 51751 (class 0 OID 0)
+-- Dependencies: 358
+-- Name: TABLE t_pont; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_pont IS 'Pont geometriai alapelemek táblázata';
 
 
+--
+-- TOC entry 51752 (class 0 OID 0)
+-- Dependencies: 358
+-- Name: COLUMN t_pont.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_pont.pont_id IS 'A pont geometriai alapelem azonosítója';
 
 
+--
+-- TOC entry 51753 (class 0 OID 0)
+-- Dependencies: 358
+-- Name: COLUMN t_pont.pont_x; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_pont.pont_x IS 'A pont EOV x koordinátája';
 
 
+--
+-- TOC entry 51754 (class 0 OID 0)
+-- Dependencies: 358
+-- Name: COLUMN t_pont.pont_y; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_pont.pont_y IS 'A pont EOV y koordinátája';
 
 
+--
+-- TOC entry 51755 (class 0 OID 0)
+-- Dependencies: 358
+-- Name: COLUMN t_pont.pont_h; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_pont.pont_h IS 'A pont EOMA magassága';
 
 
+--
+-- TOC entry 51756 (class 0 OID 0)
+-- Dependencies: 358
+-- Name: COLUMN t_pont.kozephiba_oszt_v; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_pont.kozephiba_oszt_v IS 'A pont által képviselt vízszintes vagy háromdimenziós alappont, vagy síkrajzi részletpont melyik pontossági osztályba tartozik';
 
 
+--
+-- TOC entry 51757 (class 0 OID 0)
+-- Dependencies: 358
+-- Name: COLUMN t_pont.kozephiba_oszt_m; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_pont.kozephiba_oszt_m IS 'A pont által képviselt magassági alappont, vagy magassági részletpont melyik pontossági osztályba tartozik';
 
 
+--
+-- TOC entry 359 (class 1259 OID 26631353)
+-- Name: beszurasi_pont_nelkuli_feliratok; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.beszurasi_pont_nelkuli_feliratok AS
  SELECT f.felirat_text,
@@ -1481,6 +2148,10 @@ ALTER TABLE datr_sablon.beszurasi_pont_nelkuli_feliratok OWNER TO postgres;
 
 SET default_with_oids = false;
 
+--
+-- TOC entry 360 (class 1259 OID 26631357)
+-- Name: t_cim; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_cim (
     cim_id numeric(10,0),
@@ -1509,10 +2180,19 @@ CREATE TABLE datr_sablon.t_cim (
 
 ALTER TABLE datr_sablon.t_cim OWNER TO postgres;
 
+--
+-- TOC entry 51758 (class 0 OID 0)
+-- Dependencies: 360
+-- Name: TABLE t_cim; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_cim IS 'Postacímek táblázata';
 
 
+--
+-- TOC entry 361 (class 1259 OID 26631360)
+-- Name: t_kozter_jell; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_kozter_jell (
     kozter_jell numeric(4,0),
@@ -1523,10 +2203,19 @@ CREATE TABLE datr_sablon.t_kozter_jell (
 
 ALTER TABLE datr_sablon.t_kozter_jell OWNER TO postgres;
 
+--
+-- TOC entry 51759 (class 0 OID 0)
+-- Dependencies: 361
+-- Name: TABLE t_kozter_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_kozter_jell IS '+-> Közterület jelleg kódtáblázata';
 
 
+--
+-- TOC entry 362 (class 1259 OID 26631363)
+-- Name: t_kozter_nev; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_kozter_nev (
     kozter_nev numeric(12,0),
@@ -1536,10 +2225,19 @@ CREATE TABLE datr_sablon.t_kozter_nev (
 
 ALTER TABLE datr_sablon.t_kozter_nev OWNER TO postgres;
 
+--
+-- TOC entry 51760 (class 0 OID 0)
+-- Dependencies: 362
+-- Name: TABLE t_kozter_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_kozter_nev IS '+-> Közterület nevek kódtáblázata';
 
 
+--
+-- TOC entry 363 (class 1259 OID 26631366)
+-- Name: cimek; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.cimek AS
  SELECT c.cim_id,
@@ -1571,10 +2269,19 @@ CREATE VIEW datr_sablon.cimek AS
 
 ALTER TABLE datr_sablon.cimek OWNER TO postgres;
 
+--
+-- TOC entry 51761 (class 0 OID 0)
+-- Dependencies: 363
+-- Name: VIEW cimek; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON VIEW datr_sablon.cimek IS 'A címek összeállítása';
 
 
+--
+-- TOC entry 607 (class 1259 OID 188629748)
+-- Name: dupla_hrsz; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.dupla_hrsz AS
  SELECT a.oid AS a_oid,
@@ -1590,6 +2297,10 @@ CREATE VIEW datr_sablon.dupla_hrsz AS
 
 ALTER TABLE datr_sablon.dupla_hrsz OWNER TO postgres;
 
+--
+-- TOC entry 364 (class 1259 OID 26631375)
+-- Name: dupla_pont_id; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.dupla_pont_id AS
  SELECT a.pont_id
@@ -1602,6 +2313,10 @@ ALTER TABLE datr_sablon.dupla_pont_id OWNER TO postgres;
 
 SET default_with_oids = true;
 
+--
+-- TOC entry 365 (class 1259 OID 26631379)
+-- Name: t_vonal; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_vonal (
     vonal_id numeric(10,0) NOT NULL,
@@ -1615,34 +2330,73 @@ CREATE TABLE datr_sablon.t_vonal (
 
 ALTER TABLE datr_sablon.t_vonal OWNER TO postgres;
 
+--
+-- TOC entry 51762 (class 0 OID 0)
+-- Dependencies: 365
+-- Name: TABLE t_vonal; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_vonal IS 'Vonalt geometriai alapelemek táblázata';
 
 
+--
+-- TOC entry 51763 (class 0 OID 0)
+-- Dependencies: 365
+-- Name: COLUMN t_vonal.vonal_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_vonal.vonal_id IS 'A két vagy több pontból álló vonal azonosítója';
 
 
+--
+-- TOC entry 51764 (class 0 OID 0)
+-- Dependencies: 365
+-- Name: COLUMN t_vonal.vsub_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_vonal.vsub_id IS 'Alazonosító sorszám az egy vonalat alkotó pontpárok megkülönböztetésére';
 
 
+--
+-- TOC entry 51765 (class 0 OID 0)
+-- Dependencies: 365
+-- Name: COLUMN t_vonal.pont_id_1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_vonal.pont_id_1 IS 'Az első pont azonosítója';
 
 
+--
+-- TOC entry 51766 (class 0 OID 0)
+-- Dependencies: 365
+-- Name: COLUMN t_vonal.pont_id_2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_vonal.pont_id_2 IS 'A második pont azonosítója';
 
 
+--
+-- TOC entry 51767 (class 0 OID 0)
+-- Dependencies: 365
+-- Name: COLUMN t_vonal.osszekot_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_vonal.osszekot_mod IS 'A két pont összekötési módjának kódja';
 
 
+--
+-- TOC entry 51768 (class 0 OID 0)
+-- Dependencies: 365
+-- Name: COLUMN t_vonal.osszekot_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_vonal.osszekot_id IS 'Az összekötés leíró adatainak azonosítója az összekötés módjának megfelelő táblázatban (ha egyenes, akkor NULL)';
 
 
+--
+-- TOC entry 366 (class 1259 OID 26631382)
+-- Name: dupla_vonal_id; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.dupla_vonal_id AS
  SELECT a.vonal_id
@@ -1653,6 +2407,10 @@ CREATE VIEW datr_sablon.dupla_vonal_id AS
 
 ALTER TABLE datr_sablon.dupla_vonal_id OWNER TO postgres;
 
+--
+-- TOC entry 606 (class 1259 OID 188629744)
+-- Name: eltero_hrsz; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.eltero_hrsz AS
  SELECT b.helyr_szam,
@@ -1665,6 +2423,10 @@ CREATE VIEW datr_sablon.eltero_hrsz AS
 
 ALTER TABLE datr_sablon.eltero_hrsz OWNER TO postgres;
 
+--
+-- TOC entry 608 (class 1259 OID 188629756)
+-- Name: feliratok_beszurasi_pontja; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.feliratok_beszurasi_pontja AS
  SELECT f.felirat_text,
@@ -1682,6 +2444,10 @@ ALTER TABLE datr_sablon.feliratok_beszurasi_pontja OWNER TO postgres;
 
 SET default_with_oids = false;
 
+--
+-- TOC entry 367 (class 1259 OID 26631394)
+-- Name: t_hatar; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_hatar (
     hatar_id numeric(8,0) NOT NULL,
@@ -1693,26 +2459,55 @@ CREATE TABLE datr_sablon.t_hatar (
 
 ALTER TABLE datr_sablon.t_hatar OWNER TO postgres;
 
+--
+-- TOC entry 51769 (class 0 OID 0)
+-- Dependencies: 367
+-- Name: TABLE t_hatar; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_hatar IS 'Határ geometriai alapelemek táblázata';
 
 
+--
+-- TOC entry 51770 (class 0 OID 0)
+-- Dependencies: 367
+-- Name: COLUMN t_hatar.hatar_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatar.hatar_id IS 'Felület határát képező geometriai elem azonosító sorszáma';
 
 
+--
+-- TOC entry 51771 (class 0 OID 0)
+-- Dependencies: 367
+-- Name: COLUMN t_hatar.hsub_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatar.hsub_id IS 'Alazonosító sorszám az egy határt alkotó határvonalak megkülönböztetésére';
 
 
+--
+-- TOC entry 51772 (class 0 OID 0)
+-- Dependencies: 367
+-- Name: COLUMN t_hatar.hatarvonal_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatar.hatarvonal_id IS 'Az alkotó határvonal azonosító sorszáma';
 
 
+--
+-- TOC entry 51773 (class 0 OID 0)
+-- Dependencies: 367
+-- Name: COLUMN t_hatar.irany_valt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatar.irany_valt IS 'A határvonal irányának igazítása a határ alapirányához';
 
 
+--
+-- TOC entry 368 (class 1259 OID 26631397)
+-- Name: t_hatarvonal; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_hatarvonal (
     hatarvonal_id numeric(8,0) NOT NULL,
@@ -1727,34 +2522,73 @@ CREATE TABLE datr_sablon.t_hatarvonal (
 
 ALTER TABLE datr_sablon.t_hatarvonal OWNER TO postgres;
 
+--
+-- TOC entry 51774 (class 0 OID 0)
+-- Dependencies: 368
+-- Name: TABLE t_hatarvonal; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_hatarvonal IS 'Határvonal geometriai alapelemek táblázata';
 
 
+--
+-- TOC entry 51775 (class 0 OID 0)
+-- Dependencies: 368
+-- Name: COLUMN t_hatarvonal.hatarvonal_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatarvonal.hatarvonal_id IS 'A két vagy több pontból álló határvonal azonosítója';
 
 
+--
+-- TOC entry 51776 (class 0 OID 0)
+-- Dependencies: 368
+-- Name: COLUMN t_hatarvonal.hvsub_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatarvonal.hvsub_id IS 'Alazonosító sorszám az egy határvonalat alkotó pontpárok (szakaszok) megkülönböztetésére';
 
 
+--
+-- TOC entry 51777 (class 0 OID 0)
+-- Dependencies: 368
+-- Name: COLUMN t_hatarvonal.pont_id_1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatarvonal.pont_id_1 IS 'Az első pont azonosítója';
 
 
+--
+-- TOC entry 51778 (class 0 OID 0)
+-- Dependencies: 368
+-- Name: COLUMN t_hatarvonal.pont_id_2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatarvonal.pont_id_2 IS 'A második pont azonosítója';
 
 
+--
+-- TOC entry 51779 (class 0 OID 0)
+-- Dependencies: 368
+-- Name: COLUMN t_hatarvonal.osszekot_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatarvonal.osszekot_mod IS 'A két pont összekötési módjának kódja';
 
 
+--
+-- TOC entry 51780 (class 0 OID 0)
+-- Dependencies: 368
+-- Name: COLUMN t_hatarvonal.osszekot_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_hatarvonal.osszekot_id IS 'Az összekötés leíró adatainak azonosítója az összekötés módjának megfelelő táblázatban (ha egyenes, akkor NULL)';
 
 
+--
+-- TOC entry 369 (class 1259 OID 26631403)
+-- Name: hatarok_kozott_nem_szereplo_hatarvonalak; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.hatarok_kozott_nem_szereplo_hatarvonalak AS
  SELECT hv.hatarvonal_id,
@@ -1790,6 +2624,10 @@ CREATE VIEW datr_sablon.hatarok_kozott_nem_szereplo_hatarvonalak AS
 
 ALTER TABLE datr_sablon.hatarok_kozott_nem_szereplo_hatarvonalak OWNER TO postgres;
 
+--
+-- TOC entry 370 (class 1259 OID 26631408)
+-- Name: keress_elt; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.keress_elt AS
  SELECT datr_sablon.find_el_id(datr_sablon.find_hatarvonal_id(datr_sablon.find_pont_id(143509.64, 636848.99))) AS find_el_id;
@@ -1797,6 +2635,10 @@ CREATE VIEW datr_sablon.keress_elt AS
 
 ALTER TABLE datr_sablon.keress_elt OWNER TO postgres;
 
+--
+-- TOC entry 371 (class 1259 OID 26631412)
+-- Name: keress_feluletet; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.keress_feluletet AS
  SELECT datr_sablon.find_felulet_id(datr_sablon.find_hatar_id(datr_sablon.find_hatarvonal_id(datr_sablon.find_pont_id(143509.64, 636848.99)))) AS find_felulet_id;
@@ -1804,6 +2646,10 @@ CREATE VIEW datr_sablon.keress_feluletet AS
 
 ALTER TABLE datr_sablon.keress_feluletet OWNER TO postgres;
 
+--
+-- TOC entry 372 (class 1259 OID 26631416)
+-- Name: keress_gyurut; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.keress_gyurut AS
  SELECT datr_sablon.find_gyuru_id(datr_sablon.find_hatar_id(datr_sablon.find_hatarvonal_id(datr_sablon.find_pont_id(143509.64, 636848.99)))) AS find_gyuru_id;
@@ -1811,6 +2657,10 @@ CREATE VIEW datr_sablon.keress_gyurut AS
 
 ALTER TABLE datr_sablon.keress_gyurut OWNER TO postgres;
 
+--
+-- TOC entry 373 (class 1259 OID 26631420)
+-- Name: t_felulet; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_felulet (
     felulet_id numeric(8,0) NOT NULL,
@@ -1823,26 +2673,55 @@ CREATE TABLE datr_sablon.t_felulet (
 
 ALTER TABLE datr_sablon.t_felulet OWNER TO postgres;
 
+--
+-- TOC entry 51781 (class 0 OID 0)
+-- Dependencies: 373
+-- Name: TABLE t_felulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_felulet IS 'Felület geometriai alapelemek táblázata';
 
 
+--
+-- TOC entry 51782 (class 0 OID 0)
+-- Dependencies: 373
+-- Name: COLUMN t_felulet.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felulet.felulet_id IS 'Az egy vagy több külső határral és külső határonként nulla vagy több belső határral határolt felület azonosító sorszáma';
 
 
+--
+-- TOC entry 51783 (class 0 OID 0)
+-- Dependencies: 373
+-- Name: COLUMN t_felulet.subfel_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felulet.subfel_id IS 'Alazonosító sorszám a felületet alkotó valamely külső határ (és annak belső határai) megkülönböztetésére az ugyanazt a felületet alkotó többi külső határtól (és azok külső határaitól)';
 
 
+--
+-- TOC entry 51784 (class 0 OID 0)
+-- Dependencies: 373
+-- Name: COLUMN t_felulet.hatar_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felulet.hatar_id IS 'Az alkotó határ azonosító sorszáma';
 
 
+--
+-- TOC entry 51785 (class 0 OID 0)
+-- Dependencies: 373
+-- Name: COLUMN t_felulet.hatar_valt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felulet.hatar_valt IS 'A határ irányítottságának igazítása a külső vagy a belső határ fogalmához';
 
 
+--
+-- TOC entry 374 (class 1259 OID 26631426)
+-- Name: obj_attr_bc_bd; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.obj_attr_bc_bd AS
  SELECT o.oid,
@@ -1941,6 +2820,10 @@ CREATE VIEW datr_sablon.obj_attr_bc_bd AS
 
 ALTER TABLE datr_sablon.obj_attr_bc_bd OWNER TO postgres;
 
+--
+-- TOC entry 375 (class 1259 OID 26631431)
+-- Name: t_obj_attrba; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrba (
     kozig_idba numeric(10,0) NOT NULL,
@@ -1966,82 +2849,181 @@ CREATE TABLE datr_sablon.t_obj_attrba (
 
 ALTER TABLE datr_sablon.t_obj_attrba OWNER TO postgres;
 
+--
+-- TOC entry 51786 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: TABLE t_obj_attrba; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrba IS 'Közigazgatási egységek';
 
 
+--
+-- TOC entry 51787 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.kozig_idba; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.kozig_idba IS 'Közigazgatási egység azonosító sorszáma a táblázatban';
 
 
+--
+-- TOC entry 51788 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.obj_fels IS 'Közigazgatási egység objektumféleségének kódja';
 
 
+--
+-- TOC entry 51789 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.felulet_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 51790 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.kozig_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.kozig_id IS 'A közigazgatási egység azonosítója a KSH kódtáblázatban (KSH, NUTS, érvényesség, megszűnés)';
 
 
+--
+-- TOC entry 51791 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.kozig_kp; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.kozig_kp IS 'A közigazgatási központként szolgáló város azonosítója a KSH kódtáblázatban (állam és megye esetén)';
 
 
+--
+-- TOC entry 51792 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.ceg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.ceg_id IS 'Közigazgatást ellátó szervezet név- és címadatai';
 
 
+--
+-- TOC entry 51793 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 51794 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 51795 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.nemz_nev1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.nemz_nev1 IS 'A település egyik nemzetiségi neve (csak település esetén)';
 
 
+--
+-- TOC entry 51796 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.nemz_nev2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.nemz_nev2 IS 'A település másik nemzetiségi neve (csak település esetén)';
 
 
+--
+-- TOC entry 51797 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.elozo_kozig_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.elozo_kozig_id IS 'A közigazgatási egység legutóbbi érvényességű adatrekord-jának azonosítója';
 
 
+--
+-- TOC entry 51798 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.blokk_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.blokk_id1 IS 'A közigazgatási egységet bemutató légifénykép raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 51799 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.blokk_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.blokk_id2 IS 'A közigazgatási egységet bemutató légifénykép raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 51800 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.megsz_datum IS 'Az adatrekord megszűnése érvényességének dátuma';
 
 
+--
+-- TOC entry 51801 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51802 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51803 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.pont_id IS 'Közigazgatási központ (országház, megyei ill. települési önkormányzati központ) főbejáratának geokódját kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 51804 (class 0 OID 0)
+-- Dependencies: 375
+-- Name: COLUMN t_obj_attrba.becsl_jaras; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrba.becsl_jaras IS 'A becslőjárás kódja';
 
 
+--
+-- TOC entry 376 (class 1259 OID 26631434)
+-- Name: obj_attrba; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.obj_attrba AS
  SELECT o.kozig_idba AS id,
@@ -2068,6 +3050,10 @@ CREATE VIEW datr_sablon.obj_attrba AS
 
 ALTER TABLE datr_sablon.obj_attrba OWNER TO postgres;
 
+--
+-- TOC entry 377 (class 1259 OID 26631439)
+-- Name: t_obj_attrbb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbb (
     kozigal_id numeric(10,0) NOT NULL,
@@ -2091,74 +3077,163 @@ CREATE TABLE datr_sablon.t_obj_attrbb (
 
 ALTER TABLE datr_sablon.t_obj_attrbb OWNER TO postgres;
 
+--
+-- TOC entry 51805 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: TABLE t_obj_attrbb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbb IS 'Közigazgatási alegységek';
 
 
+--
+-- TOC entry 51806 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.kozigal_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.kozigal_id IS 'Közigazgatási alegység azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51807 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.obj_fels IS 'Közigazgatási alegység objektumféleségének kódja';
 
 
+--
+-- TOC entry 51808 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.felulet_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 51809 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.kozigal_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.kozigal_nev IS 'Közigazgatási alegység neve';
 
 
+--
+-- TOC entry 51810 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.kozig_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.kozig_id IS 'Befoglaló település azonosító sorszáma';
 
 
+--
+-- TOC entry 51811 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.l_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.l_datum IS 'A közigazgatási alegység létrejöttének dátuma';
 
 
+--
+-- TOC entry 51812 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.hatarozat; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.hatarozat IS 'A közigazgatási alegység létrejöttét regisztráló határozat iktatási száma';
 
 
+--
+-- TOC entry 51813 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 51814 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 51815 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.elozo_kozigal_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.elozo_kozigal_id IS 'A közigazgatási alegység legutóbbi érvényességű adatrekordja';
 
 
+--
+-- TOC entry 51816 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.blokk_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.blokk_id1 IS 'A közigazgatási alegységet bemutató légi fénykép raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 51817 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.blokk_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.blokk_id2 IS 'A közigazgatási alegységet bemutató légi fénykép raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 51818 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 51819 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51820 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51821 (class 0 OID 0)
+-- Dependencies: 377
+-- Name: COLUMN t_obj_attrbb.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbb.pont_id IS 'Közigazgatási alegység geokódját kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 378 (class 1259 OID 26631442)
+-- Name: obj_attrbb; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.obj_attrbb AS
  SELECT o.kozigal_id AS id,
@@ -2184,6 +3259,10 @@ CREATE VIEW datr_sablon.obj_attrbb AS
 
 ALTER TABLE datr_sablon.obj_attrbb OWNER TO postgres;
 
+--
+-- TOC entry 379 (class 1259 OID 26631447)
+-- Name: obj_attrbc; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.obj_attrbc AS
  SELECT o.parcel_id AS id,
@@ -2212,6 +3291,10 @@ CREATE VIEW datr_sablon.obj_attrbc AS
 
 ALTER TABLE datr_sablon.obj_attrbc OWNER TO postgres;
 
+--
+-- TOC entry 380 (class 1259 OID 26631452)
+-- Name: obj_attrbd; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.obj_attrbd AS
  SELECT o.parcel_id AS id,
@@ -2248,6 +3331,10 @@ CREATE VIEW datr_sablon.obj_attrbd AS
 
 ALTER TABLE datr_sablon.obj_attrbd OWNER TO postgres;
 
+--
+-- TOC entry 381 (class 1259 OID 26631457)
+-- Name: t_obj_attrbe; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbe (
     alreszlet_id numeric(10,0) NOT NULL,
@@ -2274,86 +3361,190 @@ CREATE TABLE datr_sablon.t_obj_attrbe (
 
 ALTER TABLE datr_sablon.t_obj_attrbe OWNER TO postgres;
 
+--
+-- TOC entry 51822 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: TABLE t_obj_attrbe; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbe IS 'Alrészletek és művelési ágak';
 
 
+--
+-- TOC entry 51823 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.alreszlet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.alreszlet_id IS 'Objektum azonosító sorszáma a DAT-ban ';
 
 
+--
+-- TOC entry 51824 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.obj_fels IS 'Objektum objektumféleségének kódja';
 
 
+--
+-- TOC entry 51825 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.felulet_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 51826 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.alator; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.alator IS 'Az alrészlet, művelési ág jele';
 
 
+--
+-- TOC entry 51827 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.helyr_szam IS 'A befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 51828 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.terulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.terulet IS 'Az alrészlet számított területének nagysága';
 
 
+--
+-- TOC entry 51829 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.foldert; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.foldert IS 'Földérték';
 
 
+--
+-- TOC entry 51830 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.muvel_ag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.muvel_ag IS 'Művelési ág (művelés alól kivett terület is)';
 
 
+--
+-- TOC entry 51831 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 51832 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 51833 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.elozo_alreszlet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.elozo_alreszlet_id IS 'Az alrészlet előző érvényes adatrekordjának azonosítója';
 
 
+--
+-- TOC entry 51834 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.l_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.l_datum IS 'Dátum';
 
 
+--
+-- TOC entry 51835 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.hatarozat; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.hatarozat IS 'Határozat iktatási száma';
 
 
+--
+-- TOC entry 51836 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.valt_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.valt_jell IS 'Változási jelleg (pl. egyesítés, szolgalmi jog)';
 
 
+--
+-- TOC entry 51837 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.tar_cim; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.tar_cim IS 'Változási vázrajz tárolási helye';
 
 
+--
+-- TOC entry 51838 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 51839 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51840 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51841 (class 0 OID 0)
+-- Dependencies: 381
+-- Name: COLUMN t_obj_attrbe.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe.pont_id IS 'Alrészlet geokódját kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 382 (class 1259 OID 26631460)
+-- Name: obj_attrbe; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.obj_attrbe AS
  SELECT o.alreszlet_id AS id,
@@ -2382,6 +3573,10 @@ CREATE VIEW datr_sablon.obj_attrbe AS
 
 ALTER TABLE datr_sablon.obj_attrbe OWNER TO postgres;
 
+--
+-- TOC entry 383 (class 1259 OID 26631465)
+-- Name: t_obj_attrbf; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbf (
     moszt_id numeric(10,0) NOT NULL,
@@ -2403,66 +3598,145 @@ CREATE TABLE datr_sablon.t_obj_attrbf (
 
 ALTER TABLE datr_sablon.t_obj_attrbf OWNER TO postgres;
 
+--
+-- TOC entry 51842 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: TABLE t_obj_attrbf; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbf IS 'Termőföld-minőségi osztályok';
 
 
+--
+-- TOC entry 51843 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.moszt_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.moszt_id IS 'A termőföld-minőségi osztállyal fedett terület azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51844 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.obj_fels IS 'A termőföld-minőségi osztállyal fedett terület objektumféleségének kódja';
 
 
+--
+-- TOC entry 51845 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.felulet_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 51846 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.minoseg_oszt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.minoseg_oszt IS 'Termőföld-minőségi osztály kódja';
 
 
+--
+-- TOC entry 51847 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.muvel_ag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.muvel_ag IS 'Művelési ág';
 
 
+--
+-- TOC entry 51848 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 51849 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 51850 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.elozo_moszt_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.elozo_moszt_id IS 'A legutóbb érvényes adatrekord azonosítója';
 
 
+--
+-- TOC entry 51851 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 51852 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51853 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51854 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.pont_id IS 'Geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 51855 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.helyr_szam IS 'A befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 51856 (class 0 OID 0)
+-- Dependencies: 383
+-- Name: COLUMN t_obj_attrbf.terulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf.terulet IS 'A termőföld minőségi osztállyal fedett terület számított nagysága';
 
 
+--
+-- TOC entry 384 (class 1259 OID 26631468)
+-- Name: obj_attrbf; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.obj_attrbf AS
  SELECT o.moszt_id AS id,
@@ -2486,6 +3760,10 @@ CREATE VIEW datr_sablon.obj_attrbf AS
 
 ALTER TABLE datr_sablon.obj_attrbf OWNER TO postgres;
 
+--
+-- TOC entry 385 (class 1259 OID 26631473)
+-- Name: t_obj_attrbg; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbg (
     eoi_id numeric(10,0) NOT NULL,
@@ -2521,122 +3799,271 @@ CREATE TABLE datr_sablon.t_obj_attrbg (
 
 ALTER TABLE datr_sablon.t_obj_attrbg OWNER TO postgres;
 
+--
+-- TOC entry 51857 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: TABLE t_obj_attrbg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbg IS 'Egyéb önálló ingatlanok (EÖI)';
 
 
+--
+-- TOC entry 51858 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.eoi_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.eoi_id IS 'Az EÖI azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51859 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.obj_fels IS 'Az EÖI objektumféleségének kódja';
 
 
+--
+-- TOC entry 51860 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.felulet_id IS 'Az EÖI geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 51861 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.alator_eoi; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.alator_eoi IS 'Jel az épület földrészleten belüli jelölésére';
 
 
+--
+-- TOC entry 51862 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.helyr_szam IS 'Az EÖI-t befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 51863 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.cim_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.cim_id IS 'Az EÖI postacímének kódja';
 
 
+--
+-- TOC entry 51864 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.kozter_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.kozter_jell IS 'A közterület jelleg kódja (csak a közterületről nyíló pince EÖI esetén töltendő ki ez az adatmező, egyébként NULL)';
 
 
+--
+-- TOC entry 51865 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.terulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.terulet IS 'Az EÖI nyilvántartott területének nagysága';
 
 
+--
+-- TOC entry 51866 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.forg_ertek; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.forg_ertek IS 'Az EÖI szerzéskori forgalmi értéke';
 
 
+--
+-- TOC entry 51867 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.valuta; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.valuta IS 'A forgalmi érték valuta neme';
 
 
+--
+-- TOC entry 51868 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.szerv_tip; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.szerv_tip IS 'A szektor, amelyikbe az EÖI tartozik';
 
 
+--
+-- TOC entry 51869 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.jogi_jelleg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.jogi_jelleg IS 'Jogi jelleg';
 
 
+--
+-- TOC entry 51870 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.jogallas; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.jogallas IS 'Jogállás';
 
 
+--
+-- TOC entry 51871 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.eoi_helyiseg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.eoi_helyiseg IS 'Az EÖI helyiség megjelölésének kódja';
 
 
+--
+-- TOC entry 51872 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.eoi_tulform; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.eoi_tulform IS 'Az EÖI tulajdoni formája';
 
 
+--
+-- TOC entry 51873 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.szemely_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.szemely_id IS 'Vagyonkezelő személy, név- és címadatai   ';
 
 
+--
+-- TOC entry 51874 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.ceg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.ceg_id IS 'Vagyonkezelő szervezet, név- és címadatai  ';
 
 
+--
+-- TOC entry 51875 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 51876 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 51877 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.elozo_eoi_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.elozo_eoi_id IS 'Az EÖI legutóbb érvényes adatrekordjának azonosítója';
 
 
+--
+-- TOC entry 51878 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.l_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.l_datum IS 'Dátum';
 
 
+--
+-- TOC entry 51879 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.hatarozat; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.hatarozat IS 'Határozat iktatási száma';
 
 
+--
+-- TOC entry 51880 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.valt_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.valt_jell IS 'Változási jelleg (pl. egyesítés, megosztás, szolgalmi jog)';
 
 
+--
+-- TOC entry 51881 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.tar_hely; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.tar_hely IS 'Változási vázrajz tárolási helye';
 
 
+--
+-- TOC entry 51882 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 51883 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51884 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51885 (class 0 OID 0)
+-- Dependencies: 385
+-- Name: COLUMN t_obj_attrbg.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg.pont_id IS 'Földrészlet geokódját kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 386 (class 1259 OID 26631476)
+-- Name: obj_attrbg; Type: VIEW; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE VIEW datr_sablon.obj_attrbg AS
  SELECT o.eoi_id,
@@ -2674,6 +4101,10 @@ CREATE VIEW datr_sablon.obj_attrbg AS
 
 ALTER TABLE datr_sablon.obj_attrbg OWNER TO postgres;
 
+--
+-- TOC entry 387 (class 1259 OID 26631481)
+-- Name: t_ahaszn_reg; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_ahaszn_reg (
     ahaszn_id numeric(5,0) NOT NULL,
@@ -2693,10 +4124,19 @@ CREATE TABLE datr_sablon.t_ahaszn_reg (
 
 ALTER TABLE datr_sablon.t_ahaszn_reg OWNER TO postgres;
 
+--
+-- TOC entry 51886 (class 0 OID 0)
+-- Dependencies: 387
+-- Name: TABLE t_ahaszn_reg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_ahaszn_reg IS 'Állami alapadatokhoz, alapadatokhoz és háttéradatokhoz szükséges táblázat';
 
 
+--
+-- TOC entry 388 (class 1259 OID 26631484)
+-- Name: t_attrbizn; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_attrbizn (
     attrbizn_id numeric(6,0) NOT NULL,
@@ -2709,10 +4149,19 @@ CREATE TABLE datr_sablon.t_attrbizn (
 
 ALTER TABLE datr_sablon.t_attrbizn OWNER TO postgres;
 
+--
+-- TOC entry 51887 (class 0 OID 0)
+-- Dependencies: 388
+-- Name: TABLE t_attrbizn; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_attrbizn IS 'Attribútumféleségek meghatározási bizonytalanságának táblázata';
 
 
+--
+-- TOC entry 389 (class 1259 OID 26631487)
+-- Name: t_attrelter; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_attrelter (
     attrelter_id numeric(6,0) NOT NULL,
@@ -2725,10 +4174,19 @@ CREATE TABLE datr_sablon.t_attrelter (
 
 ALTER TABLE datr_sablon.t_attrelter OWNER TO postgres;
 
+--
+-- TOC entry 51888 (class 0 OID 0)
+-- Dependencies: 389
+-- Name: TABLE t_attrelter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_attrelter IS 'Attribútumértékek eltérési minőségadatainak táblázata';
 
 
+--
+-- TOC entry 390 (class 1259 OID 26631490)
+-- Name: t_ceg; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_ceg (
     ceg_id numeric(10,0),
@@ -2749,10 +4207,19 @@ CREATE TABLE datr_sablon.t_ceg (
 
 ALTER TABLE datr_sablon.t_ceg OWNER TO postgres;
 
+--
+-- TOC entry 51889 (class 0 OID 0)
+-- Dependencies: 390
+-- Name: TABLE t_ceg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_ceg IS 'Cégek adatainak táblázata';
 
 
+--
+-- TOC entry 391 (class 1259 OID 26631493)
+-- Name: t_cim_kulfold; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_cim_kulfold (
     cimkul_id numeric(10,0),
@@ -2765,10 +4232,19 @@ CREATE TABLE datr_sablon.t_cim_kulfold (
 
 ALTER TABLE datr_sablon.t_cim_kulfold OWNER TO postgres;
 
+--
+-- TOC entry 51890 (class 0 OID 0)
+-- Dependencies: 391
+-- Name: TABLE t_cim_kulfold; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_cim_kulfold IS 'Külföldi címek táblázata';
 
 
+--
+-- TOC entry 392 (class 1259 OID 26631496)
+-- Name: t_el; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_el (
     el_id numeric(8,0) NOT NULL,
@@ -2779,10 +4255,19 @@ CREATE TABLE datr_sablon.t_el (
 
 ALTER TABLE datr_sablon.t_el OWNER TO postgres;
 
+--
+-- TOC entry 51891 (class 0 OID 0)
+-- Dependencies: 392
+-- Name: TABLE t_el; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_el IS 'Élek táblázata';
 
 
+--
+-- TOC entry 393 (class 1259 OID 26631499)
+-- Name: t_eredet; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_eredet (
     tabla_nev character varying(12),
@@ -2793,10 +4278,19 @@ CREATE TABLE datr_sablon.t_eredet (
 
 ALTER TABLE datr_sablon.t_eredet OWNER TO postgres;
 
+--
+-- TOC entry 51892 (class 0 OID 0)
+-- Dependencies: 393
+-- Name: TABLE t_eredet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_eredet IS 'Eredet adatminőségi jellemzőinek gyűjtőtáblázata';
 
 
+--
+-- TOC entry 609 (class 1259 OID 188629760)
+-- Name: t_felirat_jelleg; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_felirat_jelleg (
     kod numeric(4,0) NOT NULL,
@@ -2807,22 +4301,46 @@ CREATE TABLE datr_sablon.t_felirat_jelleg (
 
 ALTER TABLE datr_sablon.t_felirat_jelleg OWNER TO postgres;
 
+--
+-- TOC entry 51893 (class 0 OID 0)
+-- Dependencies: 609
+-- Name: TABLE t_felirat_jelleg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_felirat_jelleg IS 'Felirat jellegek kódtáblázata';
 
 
+--
+-- TOC entry 51894 (class 0 OID 0)
+-- Dependencies: 609
+-- Name: COLUMN t_felirat_jelleg.kod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat_jelleg.kod IS 'Jelleg kód';
 
 
+--
+-- TOC entry 51895 (class 0 OID 0)
+-- Dependencies: 609
+-- Name: COLUMN t_felirat_jelleg.ertek; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat_jelleg.ertek IS 'Érték';
 
 
+--
+-- TOC entry 51896 (class 0 OID 0)
+-- Dependencies: 609
+-- Name: COLUMN t_felirat_jelleg.font_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_felirat_jelleg.font_id IS 'Fontkészlet azonosító id';
 
 
+--
+-- TOC entry 610 (class 1259 OID 188629766)
+-- Name: t_font; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_font (
     kod numeric(2,0) NOT NULL,
@@ -2834,26 +4352,55 @@ CREATE TABLE datr_sablon.t_font (
 
 ALTER TABLE datr_sablon.t_font OWNER TO postgres;
 
+--
+-- TOC entry 51897 (class 0 OID 0)
+-- Dependencies: 610
+-- Name: TABLE t_font; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_font IS 'Betűtípusok (fontok) kódtáblázata';
 
 
+--
+-- TOC entry 51898 (class 0 OID 0)
+-- Dependencies: 610
+-- Name: COLUMN t_font.kod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_font.kod IS 'Fontkészlet azonosító id';
 
 
+--
+-- TOC entry 51899 (class 0 OID 0)
+-- Dependencies: 610
+-- Name: COLUMN t_font.betu_tipus; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_font.betu_tipus IS 'Betű típus';
 
 
+--
+-- TOC entry 51900 (class 0 OID 0)
+-- Dependencies: 610
+-- Name: COLUMN t_font.nagysag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_font.nagysag IS 'Nagyság';
 
 
+--
+-- TOC entry 51901 (class 0 OID 0)
+-- Dependencies: 610
+-- Name: COLUMN t_font.magassag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_font.magassag IS 'Magasság';
 
 
+--
+-- TOC entry 394 (class 1259 OID 26631502)
+-- Name: t_gyuru; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_gyuru (
     gyuru_id numeric(8,0) NOT NULL,
@@ -2863,10 +4410,19 @@ CREATE TABLE datr_sablon.t_gyuru (
 
 ALTER TABLE datr_sablon.t_gyuru OWNER TO postgres;
 
+--
+-- TOC entry 51902 (class 0 OID 0)
+-- Dependencies: 394
+-- Name: TABLE t_gyuru; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_gyuru IS 'Gyűrűk táblázata';
 
 
+--
+-- TOC entry 395 (class 1259 OID 26631505)
+-- Name: t_helyreall_gy; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_helyreall_gy (
     tabla_nev character varying(12),
@@ -2880,10 +4436,19 @@ CREATE TABLE datr_sablon.t_helyreall_gy (
 
 ALTER TABLE datr_sablon.t_helyreall_gy OWNER TO postgres;
 
+--
+-- TOC entry 51903 (class 0 OID 0)
+-- Dependencies: 395
+-- Name: TABLE t_helyreall_gy; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_helyreall_gy IS 'Alappontok helyreállítási adatainak gyűjtőtáblázata';
 
 
+--
+-- TOC entry 396 (class 1259 OID 26631508)
+-- Name: t_helyreall_gyio; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_helyreall_gyio (
     tabla_nev character varying(12),
@@ -2898,10 +4463,19 @@ CREATE TABLE datr_sablon.t_helyreall_gyio (
 
 ALTER TABLE datr_sablon.t_helyreall_gyio OWNER TO postgres;
 
+--
+-- TOC entry 51904 (class 0 OID 0)
+-- Dependencies: 396
+-- Name: TABLE t_helyreall_gyio; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_helyreall_gyio IS 'Iránypontok és őrpontok helyreállítási adatainak gyűjtőtáblázata';
 
 
+--
+-- TOC entry 397 (class 1259 OID 26631511)
+-- Name: t_helyszin_gy; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_helyszin_gy (
     tabla_nev character varying(12),
@@ -2917,10 +4491,19 @@ CREATE TABLE datr_sablon.t_helyszin_gy (
 
 ALTER TABLE datr_sablon.t_helyszin_gy OWNER TO postgres;
 
+--
+-- TOC entry 51905 (class 0 OID 0)
+-- Dependencies: 397
+-- Name: TABLE t_helyszin_gy; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_helyszin_gy IS 'Alappontok helyszínelési adatainak gyűjtőtáblázata';
 
 
+--
+-- TOC entry 398 (class 1259 OID 26631514)
+-- Name: t_helyszin_gyio; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_helyszin_gyio (
     tabla_nev character varying(12),
@@ -2936,10 +4519,19 @@ CREATE TABLE datr_sablon.t_helyszin_gyio (
 
 ALTER TABLE datr_sablon.t_helyszin_gyio OWNER TO postgres;
 
+--
+-- TOC entry 51906 (class 0 OID 0)
+-- Dependencies: 398
+-- Name: TABLE t_helyszin_gyio; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_helyszin_gyio IS 'Iránypontok és őrpontok helyszínelési adatainak gyűjtőtáblázata';
 
 
+--
+-- TOC entry 399 (class 1259 OID 26631517)
+-- Name: t_hiteles; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_hiteles (
     hiteles_id numeric(6,0) NOT NULL,
@@ -2970,10 +4562,19 @@ CREATE TABLE datr_sablon.t_hiteles (
 
 ALTER TABLE datr_sablon.t_hiteles OWNER TO postgres;
 
+--
+-- TOC entry 51907 (class 0 OID 0)
+-- Dependencies: 399
+-- Name: TABLE t_hiteles; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_hiteles IS 'Hitelesítés és állami átvétel adatainak táblázata';
 
 
+--
+-- TOC entry 400 (class 1259 OID 26631523)
+-- Name: t_iranypont_gy; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_iranypont_gy (
     tabla_nev character varying(12),
@@ -2988,10 +4589,19 @@ CREATE TABLE datr_sablon.t_iranypont_gy (
 
 ALTER TABLE datr_sablon.t_iranypont_gy OWNER TO postgres;
 
+--
+-- TOC entry 51908 (class 0 OID 0)
+-- Dependencies: 400
+-- Name: TABLE t_iranypont_gy; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_iranypont_gy IS 'Vízszintes alappontok iránypontjainak gyűjtőtáblázata';
 
 
+--
+-- TOC entry 401 (class 1259 OID 26631526)
+-- Name: t_izolalt; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_izolalt (
     izolalt_id numeric(8,0) NOT NULL,
@@ -3001,10 +4611,19 @@ CREATE TABLE datr_sablon.t_izolalt (
 
 ALTER TABLE datr_sablon.t_izolalt OWNER TO postgres;
 
+--
+-- TOC entry 51909 (class 0 OID 0)
+-- Dependencies: 401
+-- Name: TABLE t_izolalt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_izolalt IS 'Izolált csomópontok táblázata';
 
 
+--
+-- TOC entry 402 (class 1259 OID 26631529)
+-- Name: t_izolalt_l; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_izolalt_l (
     izolalt_id numeric(8,0) NOT NULL,
@@ -3014,10 +4633,19 @@ CREATE TABLE datr_sablon.t_izolalt_l (
 
 ALTER TABLE datr_sablon.t_izolalt_l OWNER TO postgres;
 
+--
+-- TOC entry 51910 (class 0 OID 0)
+-- Dependencies: 402
+-- Name: TABLE t_izolalt_l; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_izolalt_l IS 'Izolált csomópontok lapokhoz rendelésének táblázata';
 
 
+--
+-- TOC entry 403 (class 1259 OID 26631532)
+-- Name: t_konziszt; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_konziszt (
     konziszt_id numeric(6,0) NOT NULL,
@@ -3030,10 +4658,19 @@ CREATE TABLE datr_sablon.t_konziszt (
 
 ALTER TABLE datr_sablon.t_konziszt OWNER TO postgres;
 
+--
+-- TOC entry 51911 (class 0 OID 0)
+-- Dependencies: 403
+-- Name: TABLE t_konziszt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_konziszt IS 'Adatkonzisztencia jellemzőinek táblázata';
 
 
+--
+-- TOC entry 404 (class 1259 OID 26631535)
+-- Name: t_kozb_cspont; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_kozb_cspont (
     kozb_cspont_id numeric(8,0) NOT NULL,
@@ -3043,10 +4680,19 @@ CREATE TABLE datr_sablon.t_kozb_cspont (
 
 ALTER TABLE datr_sablon.t_kozb_cspont OWNER TO postgres;
 
+--
+-- TOC entry 51912 (class 0 OID 0)
+-- Dependencies: 404
+-- Name: TABLE t_kozb_cspont; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_kozb_cspont IS 'Közbenső csomópontok táblázata';
 
 
+--
+-- TOC entry 405 (class 1259 OID 26631538)
+-- Name: t_kozb_cspont_el; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_kozb_cspont_el (
     kozb_cspont_id numeric(8,0) NOT NULL,
@@ -3056,10 +4702,19 @@ CREATE TABLE datr_sablon.t_kozb_cspont_el (
 
 ALTER TABLE datr_sablon.t_kozb_cspont_el OWNER TO postgres;
 
+--
+-- TOC entry 51913 (class 0 OID 0)
+-- Dependencies: 405
+-- Name: TABLE t_kozb_cspont_el; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_kozb_cspont_el IS 'Közbenső csomópontok élekhez rendelésének táblázata';
 
 
+--
+-- TOC entry 406 (class 1259 OID 26631541)
+-- Name: t_kozb_cspont_gy; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_kozb_cspont_gy (
     kozb_cspont_id numeric(8,0) NOT NULL,
@@ -3069,10 +4724,19 @@ CREATE TABLE datr_sablon.t_kozb_cspont_gy (
 
 ALTER TABLE datr_sablon.t_kozb_cspont_gy OWNER TO postgres;
 
+--
+-- TOC entry 51914 (class 0 OID 0)
+-- Dependencies: 406
+-- Name: TABLE t_kozb_cspont_gy; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_kozb_cspont_gy IS 'Közbenső csomópontok gyűrűkhöz rendelésének táblázata';
 
 
+--
+-- TOC entry 407 (class 1259 OID 26631544)
+-- Name: t_ksh_kozig; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_ksh_kozig (
     kozig_id numeric(6,0),
@@ -3088,10 +4752,19 @@ CREATE TABLE datr_sablon.t_ksh_kozig (
 
 ALTER TABLE datr_sablon.t_ksh_kozig OWNER TO postgres;
 
+--
+-- TOC entry 51915 (class 0 OID 0)
+-- Dependencies: 407
+-- Name: TABLE t_ksh_kozig; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_ksh_kozig IS '+-> Közigazgatási egységek KSH kódtáblázata';
 
 
+--
+-- TOC entry 408 (class 1259 OID 26631548)
+-- Name: t_lap; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_lap (
     lap_id numeric(8,0) NOT NULL,
@@ -3101,10 +4774,19 @@ CREATE TABLE datr_sablon.t_lap (
 
 ALTER TABLE datr_sablon.t_lap OWNER TO postgres;
 
+--
+-- TOC entry 51916 (class 0 OID 0)
+-- Dependencies: 408
+-- Name: TABLE t_lap; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_lap IS 'Lapok táblázata';
 
 
+--
+-- TOC entry 409 (class 1259 OID 26631551)
+-- Name: t_mas_rendszer_gy; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_mas_rendszer_gy (
     tabla_nev character varying(12),
@@ -3121,10 +4803,19 @@ CREATE TABLE datr_sablon.t_mas_rendszer_gy (
 
 ALTER TABLE datr_sablon.t_mas_rendszer_gy OWNER TO postgres;
 
+--
+-- TOC entry 51917 (class 0 OID 0)
+-- Dependencies: 409
+-- Name: TABLE t_mas_rendszer_gy; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_mas_rendszer_gy IS 'Más (pl. régi) rendszerű koordináták és magasságok gyűjtőtáblázata';
 
 
+--
+-- TOC entry 410 (class 1259 OID 26631554)
+-- Name: t_megsz_datumg; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_megsz_datumg (
     tabla_nev character varying(20),
@@ -3135,22 +4826,46 @@ CREATE TABLE datr_sablon.t_megsz_datumg (
 
 ALTER TABLE datr_sablon.t_megsz_datumg OWNER TO postgres;
 
+--
+-- TOC entry 51918 (class 0 OID 0)
+-- Dependencies: 410
+-- Name: TABLE t_megsz_datumg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_megsz_datumg IS 'Geometriai alapelem adatrekordok érvényessége megszűnésének táblázata';
 
 
+--
+-- TOC entry 51919 (class 0 OID 0)
+-- Dependencies: 410
+-- Name: COLUMN t_megsz_datumg.tabla_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_megsz_datumg.tabla_nev IS 'A hivatkozó táblázat neve';
 
 
+--
+-- TOC entry 51920 (class 0 OID 0)
+-- Dependencies: 410
+-- Name: COLUMN t_megsz_datumg.azonosito_no; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_megsz_datumg.azonosito_no IS 'A geometriai alapelem azonosító sorszáma';
 
 
+--
+-- TOC entry 51921 (class 0 OID 0)
+-- Dependencies: 410
+-- Name: COLUMN t_megsz_datumg.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_megsz_datumg.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 411 (class 1259 OID 26631557)
+-- Name: t_megsz_datumt; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_megsz_datumt (
     tabla_nev character varying(20),
@@ -3161,10 +4876,19 @@ CREATE TABLE datr_sablon.t_megsz_datumt (
 
 ALTER TABLE datr_sablon.t_megsz_datumt OWNER TO postgres;
 
+--
+-- TOC entry 51922 (class 0 OID 0)
+-- Dependencies: 411
+-- Name: TABLE t_megsz_datumt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_megsz_datumt IS 'Topológiai alapelem adatrekordok érvényessége megszűnésének táblázata';
 
 
+--
+-- TOC entry 611 (class 1259 OID 188629783)
+-- Name: t_muvel_ag; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_muvel_ag (
     kod numeric(2,0) NOT NULL,
@@ -3174,18 +4898,37 @@ CREATE TABLE datr_sablon.t_muvel_ag (
 
 ALTER TABLE datr_sablon.t_muvel_ag OWNER TO postgres;
 
+--
+-- TOC entry 51923 (class 0 OID 0)
+-- Dependencies: 611
+-- Name: TABLE t_muvel_ag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_muvel_ag IS 'Művelési ágak kódtáblázata';
 
 
+--
+-- TOC entry 51924 (class 0 OID 0)
+-- Dependencies: 611
+-- Name: COLUMN t_muvel_ag.kod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_muvel_ag.kod IS 'Kód';
 
 
+--
+-- TOC entry 51925 (class 0 OID 0)
+-- Dependencies: 611
+-- Name: COLUMN t_muvel_ag.ertek; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_muvel_ag.ertek IS 'Érték';
 
 
+--
+-- TOC entry 412 (class 1259 OID 26631560)
+-- Name: t_obj_attraa; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attraa (
     alappont_id numeric(10,0) NOT NULL,
@@ -3214,94 +4957,208 @@ CREATE TABLE datr_sablon.t_obj_attraa (
 
 ALTER TABLE datr_sablon.t_obj_attraa OWNER TO postgres;
 
+--
+-- TOC entry 51926 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: TABLE t_obj_attraa; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attraa IS 'Vízszintes és 3D geodéziai alappontok';
 
 
+--
+-- TOC entry 51927 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.alappont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.alappont_id IS 'Alappont azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51928 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.obj_fels IS 'Alappont objektumféleségének kódja';
 
 
+--
+-- TOC entry 51929 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.pont_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.pont_szam IS 'EOV pontszám (és pontnév)';
 
 
+--
+-- TOC entry 51930 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.pont_id IS 'Az EOV x és y koordinátákat és az EOMA magasságot tartalmazó pont azonosítója';
 
 
+--
+-- TOC entry 51931 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.vizsz_alland1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.vizsz_alland1 IS 'Vonatkozási pont állandósítási módja';
 
 
+--
+-- TOC entry 51932 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.pontvedo; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.pontvedo IS 'Pontvédő berendezés típusa';
 
 
+--
+-- TOC entry 51933 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.vizsz_alland2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.vizsz_alland2 IS 'Föld alatti pontjel: állandósítási módja';
 
 
+--
+-- TOC entry 51934 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.v_mag2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.v_mag2 IS 'Föld alatti pontjel: magassága';
 
 
+--
+-- TOC entry 51935 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.vizsz_alland3; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.vizsz_alland3 IS 'Föld feletti pontjel: állandósítási módja';
 
 
+--
+-- TOC entry 51936 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.v_mag3; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.v_mag3 IS 'Föld feletti pontjel: magassága';
 
 
+--
+-- TOC entry 51937 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.meghat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.meghat_mod IS 'Meghatározás módja';
 
 
+--
+-- TOC entry 51938 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.szemely_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.szemely_id IS 'Meghatározást végző személy, név- és címadatai';
 
 
+--
+-- TOC entry 51939 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.all_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.all_datum IS 'Állandósítás dátuma';
 
 
+--
+-- TOC entry 51940 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.elozo_alappont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.elozo_alappont_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 51941 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.blokk_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.blokk_id IS 'Az alappontot és környezetét bemutató fénykép raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 51942 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.megsz_datum IS 'Megszüntetésének dátuma';
 
 
+--
+-- TOC entry 51943 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.tar_hely; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.tar_hely IS 'Helyszínrajz és pontleírás tárolási helye';
 
 
+--
+-- TOC entry 51944 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.digit_hely; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.digit_hely IS 'Az alappont további, digitálisan tárolt adatainak helye';
 
 
+--
+-- TOC entry 51945 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51946 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51947 (class 0 OID 0)
+-- Dependencies: 412
+-- Name: COLUMN t_obj_attraa.pontkod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attraa.pontkod IS 'A pont pontkódja';
 
 
+--
+-- TOC entry 413 (class 1259 OID 26631563)
+-- Name: t_obj_attrab; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrab (
     malapp_id numeric(10,0) NOT NULL,
@@ -3327,82 +5184,181 @@ CREATE TABLE datr_sablon.t_obj_attrab (
 
 ALTER TABLE datr_sablon.t_obj_attrab OWNER TO postgres;
 
+--
+-- TOC entry 51948 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: TABLE t_obj_attrab; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrab IS 'Magassági geodéziai alappontok';
 
 
+--
+-- TOC entry 51949 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.malapp_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.malapp_id IS 'Alappont azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51950 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.obj_fels IS 'Alappont objektumféleségének kódja';
 
 
+--
+-- TOC entry 51951 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.mpont_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.mpont_szam IS 'EOMA pontszám (és pontnév)';
 
 
+--
+-- TOC entry 51952 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.pont_id IS 'Az EOV x és y koordinátákat és az EOMA magasságot tartalmazó pont azonosítója';
 
 
+--
+-- TOC entry 51953 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.mag_alland; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.mag_alland IS 'Vonatkozási pont állandósítási módja';
 
 
+--
+-- TOC entry 51954 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.mag_allandfa; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.mag_allandfa IS 'Föld alatti pontjelek: állandósítási módja';
 
 
+--
+-- TOC entry 51955 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.mag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.mag IS 'Föld alatti pontjelek: magassága';
 
 
+--
+-- TOC entry 51956 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.meghat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.meghat_mod IS 'Meghatározás módja';
 
 
+--
+-- TOC entry 51957 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.szemely_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.szemely_id IS 'Meghatározást végző személy név- és címadatai';
 
 
+--
+-- TOC entry 51958 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.all_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.all_datum IS 'Állandósítás dátuma';
 
 
+--
+-- TOC entry 51959 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.elozo_malapp_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.elozo_malapp_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 51960 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.blokk_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.blokk_id IS 'Az alappontot és környezetét bemutató fénykép raszteres állományának azonosító sorszáma.';
 
 
+--
+-- TOC entry 51961 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.megsz_datum IS 'Megszüntetésének dátuma';
 
 
+--
+-- TOC entry 51962 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.tar_hely; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.tar_hely IS 'Helyszínrajz és pontleírás tárolási helye';
 
 
+--
+-- TOC entry 51963 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.digit_hely; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.digit_hely IS 'Az alappont további, digitálisan tárolt adatainak helye';
 
 
+--
+-- TOC entry 51964 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51965 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51966 (class 0 OID 0)
+-- Dependencies: 413
+-- Name: COLUMN t_obj_attrab.pontkod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrab.pontkod IS 'A pont pontkódja';
 
 
+--
+-- TOC entry 414 (class 1259 OID 26631566)
+-- Name: t_obj_attrac; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrac (
     rpont_id numeric(10,0) NOT NULL,
@@ -3422,58 +5378,127 @@ CREATE TABLE datr_sablon.t_obj_attrac (
 
 ALTER TABLE datr_sablon.t_obj_attrac OWNER TO postgres;
 
+--
+-- TOC entry 51967 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: TABLE t_obj_attrac; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrac IS 'Részletpontok';
 
 
+--
+-- TOC entry 51968 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.rpont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.rpont_id IS 'Részletpont azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51969 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.obj_fels IS 'Részletpont objektumféleségének kódja';
 
 
+--
+-- TOC entry 51970 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.pont_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.pont_szam IS 'Pontszám vagy pontnév';
 
 
+--
+-- TOC entry 51971 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.pont_id IS 'Az EOV x és y koordinátákat és az EOMA magasságot tartalmazó pont azonosítója';
 
 
+--
+-- TOC entry 51972 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.reszlet_alland; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.reszlet_alland IS 'Állandósítás módjának kódja';
 
 
+--
+-- TOC entry 51973 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.meghat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.meghat_mod IS 'Meghatározás módjának kódja';
 
 
+--
+-- TOC entry 51974 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.meghat_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.meghat_datum IS 'Meghatározás időpontja';
 
 
+--
+-- TOC entry 51975 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.elozo_rpont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.elozo_rpont_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 51976 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.megsz_datum IS 'Megszüntetésének időpontja';
 
 
+--
+-- TOC entry 51977 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51978 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 51979 (class 0 OID 0)
+-- Dependencies: 414
+-- Name: COLUMN t_obj_attrac.pontkod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrac.pontkod IS 'A pont pontkódja';
 
 
+--
+-- TOC entry 415 (class 1259 OID 26631569)
+-- Name: t_obj_attrad; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrad (
     cimkoord_id numeric(10,0) NOT NULL,
@@ -3495,66 +5520,145 @@ CREATE TABLE datr_sablon.t_obj_attrad (
 
 ALTER TABLE datr_sablon.t_obj_attrad OWNER TO postgres;
 
+--
+-- TOC entry 51980 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: TABLE t_obj_attrad; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrad IS 'Címkoordináták és attribútumaik táblázata';
 
 
+--
+-- TOC entry 51981 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.cimkoord_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.cimkoord_id IS 'Címkoordináta azonosító sorszáma';
 
 
+--
+-- TOC entry 51982 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.obj_fels IS 'Objektumféleségének kódja';
 
 
+--
+-- TOC entry 51983 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.pont_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.pont_szam IS 'Pontszám vagy pontnév';
 
 
+--
+-- TOC entry 51984 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.pontkod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.pontkod IS 'A pont kódja';
 
 
+--
+-- TOC entry 51985 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.pont_id IS 'A pont geometriai alapelem azonosítója';
 
 
+--
+-- TOC entry 51986 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.megsz_datum IS 'Megszüntetésének időpontja';
 
 
+--
+-- TOC entry 51987 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 51988 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.leiras; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.leiras IS 'Mire vonatkozik a címkoordináta (lakásszám, főbejárat vagy egyéb, bármilyen hozzáfűznivaló, ami az azonosítást segíti)';
 
 
+--
+-- TOC entry 51989 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.parcel_id1 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 51990 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.parcel_id2 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 51991 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.ep_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.ep_id IS 'Épület azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51992 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.eoi_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.eoi_id IS 'Az EÖI azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 51993 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.elozo_cimkoord_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.elozo_cimkoord_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 51994 (class 0 OID 0)
+-- Dependencies: 415
+-- Name: COLUMN t_obj_attrad.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrad.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 416 (class 1259 OID 26631572)
+-- Name: t_obj_attrbe_ujabb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbe_ujabb (
     alreszlet_id numeric(10,0) NOT NULL,
@@ -3583,94 +5687,208 @@ CREATE TABLE datr_sablon.t_obj_attrbe_ujabb (
 
 ALTER TABLE datr_sablon.t_obj_attrbe_ujabb OWNER TO postgres;
 
+--
+-- TOC entry 51995 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: TABLE t_obj_attrbe_ujabb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbe_ujabb IS 'Alrészletek és művelési ágak';
 
 
+--
+-- TOC entry 51996 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.alreszlet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.alreszlet_id IS 'Objektum azonosító sorszáma a DAT-ban ';
 
 
+--
+-- TOC entry 51997 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.obj_fels IS 'Objektum objektumféleségének kódja';
 
 
+--
+-- TOC entry 51998 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.felulet_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 51999 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.alator; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.alator IS 'Az alrészlet, művelési ág jele';
 
 
+--
+-- TOC entry 52000 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.helyr_szam IS 'A befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52001 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.parcel_id1 IS ' Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52002 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.parcel_id2 IS ' Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52003 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.terulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.terulet IS 'Az alrészlet számított területének nagysága';
 
 
+--
+-- TOC entry 52004 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.foldert; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.foldert IS 'Földérték';
 
 
+--
+-- TOC entry 52005 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.muvel_ag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.muvel_ag IS 'Művelési ág (művelés alól kivett terület is)';
 
 
+--
+-- TOC entry 52006 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 52007 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 52008 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.elozo_alreszlet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.elozo_alreszlet_id IS 'Az alrészlet előző érvényes adatrekordjának azonosítója';
 
 
+--
+-- TOC entry 52009 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.l_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.l_datum IS 'Dátum';
 
 
+--
+-- TOC entry 52010 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.hatarozat; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.hatarozat IS 'Határozat iktatási száma';
 
 
+--
+-- TOC entry 52011 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.valt_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.valt_jell IS 'Változási jelleg (pl. egyesítés, szolgalmi jog)';
 
 
+--
+-- TOC entry 52012 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.tar_cim; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.tar_cim IS 'Változási vázrajz tárolási helye';
 
 
+--
+-- TOC entry 52013 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52014 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52015 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52016 (class 0 OID 0)
+-- Dependencies: 416
+-- Name: COLUMN t_obj_attrbe_ujabb.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbe_ujabb.pont_id IS 'Alrészlet geokódját kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 417 (class 1259 OID 26631575)
+-- Name: t_obj_attrbf_ujabb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbf_ujabb (
     moszt_id numeric(10,0) NOT NULL,
@@ -3694,74 +5912,163 @@ CREATE TABLE datr_sablon.t_obj_attrbf_ujabb (
 
 ALTER TABLE datr_sablon.t_obj_attrbf_ujabb OWNER TO postgres;
 
+--
+-- TOC entry 52017 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: TABLE t_obj_attrbf_ujabb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbf_ujabb IS 'Termőföld-minőségi osztályok';
 
 
+--
+-- TOC entry 52018 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.moszt_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.moszt_id IS 'A termőföld-minőségi osztállyal fedett terület azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52019 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.obj_fels IS 'A termőföld-minőségi osztállyal fedett terület objektumféleségének kódja';
 
 
+--
+-- TOC entry 52020 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.felulet_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 52021 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.minoseg_oszt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.minoseg_oszt IS 'Termőföld-minőségi osztály kódja';
 
 
+--
+-- TOC entry 52022 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.muvel_ag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.muvel_ag IS 'Művelési ág';
 
 
+--
+-- TOC entry 52023 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 52024 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 52025 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.elozo_moszt_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.elozo_moszt_id IS 'A legutóbb érvényes adatrekord azonosítója';
 
 
+--
+-- TOC entry 52026 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52027 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52028 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52029 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.pont_id IS 'Geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 52030 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.helyr_szam IS 'A befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52031 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.parcel_id1 IS ' Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52032 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.parcel_id2 IS ' Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52033 (class 0 OID 0)
+-- Dependencies: 417
+-- Name: COLUMN t_obj_attrbf_ujabb.terulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbf_ujabb.terulet IS 'A termőföld minőségi osztállyal fedett terület számított nagysága';
 
 
+--
+-- TOC entry 418 (class 1259 OID 26631578)
+-- Name: t_obj_attrbg_ujabb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbg_ujabb (
     eoi_id numeric(10,0) NOT NULL,
@@ -3799,130 +6106,289 @@ CREATE TABLE datr_sablon.t_obj_attrbg_ujabb (
 
 ALTER TABLE datr_sablon.t_obj_attrbg_ujabb OWNER TO postgres;
 
+--
+-- TOC entry 52034 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: TABLE t_obj_attrbg_ujabb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbg_ujabb IS 'Egyéb önálló ingatlanok (EÖI)';
 
 
+--
+-- TOC entry 52035 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.eoi_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.eoi_id IS 'Az EÖI azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52036 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.obj_fels IS 'Az EÖI objektumféleségének kódja';
 
 
+--
+-- TOC entry 52037 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.felulet_id IS 'Az EÖI geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 52038 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.alator_eoi; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.alator_eoi IS 'Jel az épület földrészleten belüli jelölésére';
 
 
+--
+-- TOC entry 52039 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.helyr_szam IS 'Az EÖI-t befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52040 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.cim_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.cim_id IS 'Az EÖI postacímének kódja';
 
 
+--
+-- TOC entry 52041 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.kozter_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.kozter_jell IS 'A közterület jelleg kódja (csak a közterületről nyíló pince EÖI esetén töltendő ki ez az adatmező, egyébként NULL)';
 
 
+--
+-- TOC entry 52042 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.terulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.terulet IS 'Az EÖI nyilvántartott területének nagysága';
 
 
+--
+-- TOC entry 52043 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.forg_ertek; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.forg_ertek IS 'Az EÖI szerzéskori forgalmi értéke';
 
 
+--
+-- TOC entry 52044 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.valuta; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.valuta IS 'A forgalmi érték valuta neme';
 
 
+--
+-- TOC entry 52045 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.szerv_tip; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.szerv_tip IS 'A szektor, amelyikbe az EÖI tartozik';
 
 
+--
+-- TOC entry 52046 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.jogi_jelleg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.jogi_jelleg IS 'Jogi jelleg';
 
 
+--
+-- TOC entry 52047 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.jogallas; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.jogallas IS 'Jogállás';
 
 
+--
+-- TOC entry 52048 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.eoi_helyiseg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.eoi_helyiseg IS 'Az EÖI helyiség megjelölésének kódja';
 
 
+--
+-- TOC entry 52049 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.eoi_tulform; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.eoi_tulform IS 'Az EÖI tulajdoni formája';
 
 
+--
+-- TOC entry 52050 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.szemely_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.szemely_id IS 'Vagyonkezelő személy, név- és címadatai   ';
 
 
+--
+-- TOC entry 52051 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.ceg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.ceg_id IS 'Vagyonkezelő szervezet, név- és címadatai  ';
 
 
+--
+-- TOC entry 52052 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.elhat_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.elhat_jell IS 'Elhatárolás jellege';
 
 
+--
+-- TOC entry 52053 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.elhat_mod; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.elhat_mod IS 'Elhatárolás módja';
 
 
+--
+-- TOC entry 52054 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.elozo_eoi_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.elozo_eoi_id IS 'Az EÖI legutóbb érvényes adatrekordjának azonosítója';
 
 
+--
+-- TOC entry 52055 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.l_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.l_datum IS 'Dátum';
 
 
+--
+-- TOC entry 52056 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.hatarozat; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.hatarozat IS 'Határozat iktatási száma';
 
 
+--
+-- TOC entry 52057 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.valt_jell; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.valt_jell IS 'Változási jelleg (pl. egyesítés, megosztás, szolgalmi jog)';
 
 
+--
+-- TOC entry 52058 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.tar_hely; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.tar_hely IS 'Változási vázrajz tárolási helye';
 
 
+--
+-- TOC entry 52059 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52060 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52061 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52062 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.pont_id IS 'Földrészlet geokódját kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 52063 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.parcel_id1 IS ' Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52064 (class 0 OID 0)
+-- Dependencies: 418
+-- Name: COLUMN t_obj_attrbg_ujabb.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbg_ujabb.parcel_id2 IS ' Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 419 (class 1259 OID 26631581)
+-- Name: t_obj_attrbh; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbh (
     szolg_id numeric(10,0) NOT NULL,
@@ -3945,70 +6411,154 @@ CREATE TABLE datr_sablon.t_obj_attrbh (
 
 ALTER TABLE datr_sablon.t_obj_attrbh OWNER TO postgres;
 
+--
+-- TOC entry 52065 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: TABLE t_obj_attrbh; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbh IS 'Szolgalmi joggal érintett területek és attribútumaik táblázata';
 
 
+--
+-- TOC entry 52066 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.szolg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.szolg_id IS 'azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52067 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.obj_fels IS 'objektumféleségének kódja';
 
 
+--
+-- TOC entry 52068 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.obj_kiterj IS '3-felület';
 
 
+--
+-- TOC entry 52069 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.geo_ae_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 52070 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.parcel_id1 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52071 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.parcel_id2 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52072 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.terulet; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.terulet IS 'A szolgalmi joggal érintett terület nagysága';
 
 
+--
+-- TOC entry 52073 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.elozo_szolg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.elozo_szolg_id IS 'A szolgalom legutóbb érvényes adatrekordjának azonosítója';
 
 
+--
+-- TOC entry 52074 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.l_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.l_datum IS 'Dátum';
 
 
+--
+-- TOC entry 52075 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.hatarozat; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.hatarozat IS 'Határozat iktatási száma';
 
 
+--
+-- TOC entry 52076 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.megsz_datum IS 'Adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52077 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.jelkulcs IS 'Jelkulcs kódja';
 
 
+--
+-- TOC entry 52078 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.munkater_id IS 'Felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52079 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.pont_id IS 'A szolgalom geokódját kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 52080 (class 0 OID 0)
+-- Dependencies: 419
+-- Name: COLUMN t_obj_attrbh.megjegyzes; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbh.megjegyzes IS 'Tetszőleges megjegyzés';
 
 
+--
+-- TOC entry 420 (class 1259 OID 26631584)
+-- Name: t_obj_attrbi; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrbi (
     mintater_id numeric(10,0) NOT NULL,
@@ -4036,90 +6586,199 @@ CREATE TABLE datr_sablon.t_obj_attrbi (
 
 ALTER TABLE datr_sablon.t_obj_attrbi OWNER TO postgres;
 
+--
+-- TOC entry 52081 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: TABLE t_obj_attrbi; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrbi IS 'Földminősítési mintaterek és attribútumaik táblázata';
 
 
+--
+-- TOC entry 52082 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.mintater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.mintater_id IS 'A mintatér azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52083 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.obj_fels IS 'A mintatér objektumféleségének kódja';
 
 
+--
+-- TOC entry 52084 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.obj_kiterj IS '1-pont, 3-felület';
 
 
+--
+-- TOC entry 52085 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_kiterj alapján kiválasztott geometriai táblázatból származik)';
 
 
+--
+-- TOC entry 52086 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.jelleg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.jelleg IS '1-községi mintatér, 2-járási mintatér';
 
 
+--
+-- TOC entry 52087 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.helyszin_labor; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.helyszin_labor IS 'A helyszíni és a laborvizsgálat eredménye';
 
 
+--
+-- TOC entry 52088 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.parcel_id1 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52089 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.parcel_id2 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52090 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.helyr_szam IS 'Befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52091 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.elozo_mintater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.elozo_mintater_id IS 'A mintater legutóbb érvényes adatrekordjának azonosítója';
 
 
+--
+-- TOC entry 52092 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.minoseg_oszt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.minoseg_oszt IS 'Termőföld minőségi osztály kódja';
 
 
+--
+-- TOC entry 52093 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.muvel_ag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.muvel_ag IS 'Művelési ág';
 
 
+--
+-- TOC entry 52094 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.mt_melyseg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.mt_melyseg IS 'A mintatér mélysége';
 
 
+--
+-- TOC entry 52095 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.mt_feltalaj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.mt_feltalaj IS 'A mintatér feltalajának leírása';
 
 
+--
+-- TOC entry 52096 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.mt_altalaj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.mt_altalaj IS 'A mintatér altalajának leírása';
 
 
+--
+-- TOC entry 52097 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.mt_tulajdonsag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.mt_tulajdonsag IS 'A mintatér tulajdonsága';
 
 
+--
+-- TOC entry 52098 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.megsz_datum IS 'Adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52099 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.jelkulcs IS 'Jelkulcs kódja';
 
 
+--
+-- TOC entry 52100 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.munkater_id IS 'Felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52101 (class 0 OID 0)
+-- Dependencies: 420
+-- Name: COLUMN t_obj_attrbi.megjegyzes; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrbi.megjegyzes IS 'Tetszőleges megjegyzés';
 
 
+--
+-- TOC entry 421 (class 1259 OID 26631587)
+-- Name: t_obj_attrca; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrca (
     ep_id numeric(10,0),
@@ -4147,90 +6806,199 @@ CREATE TABLE datr_sablon.t_obj_attrca (
 
 ALTER TABLE datr_sablon.t_obj_attrca OWNER TO postgres;
 
+--
+-- TOC entry 52102 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: TABLE t_obj_attrca; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrca IS 'Épületek (a D, E és F objektumosztályba sorolhatók is)';
 
 
+--
+-- TOC entry 52103 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.ep_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.ep_id IS 'Épület azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52104 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.obj_fels IS 'Épület objektumféleségének kódja';
 
 
+--
+-- TOC entry 52105 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.felulet_id IS 'Az épület geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 52106 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.cim_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.cim_id IS 'Az épület postacíme';
 
 
+--
+-- TOC entry 52107 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.parcel_id1 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52108 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.parcel_id2 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52109 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.ep_sorsz; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.ep_sorsz IS 'Az épület földrészleten belüli sorszáma';
 
 
+--
+-- TOC entry 52110 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.szintek; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.szintek IS 'Szintek  száma';
 
 
+--
+-- TOC entry 52111 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.fugg_kiter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.fugg_kiter IS 'Az épület függőleges kiterjedése';
 
 
+--
+-- TOC entry 52112 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.anyag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.anyag IS 'Az épület jellemző anyagának kódja';
 
 
+--
+-- TOC entry 52113 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.epulet_tip; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.epulet_tip IS 'Az épület ingatlan-nyilvántartás szerinti típusának kódja';
 
 
+--
+-- TOC entry 52114 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.epulet_alt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.epulet_alt IS 'Az épület funkcionális altípusának kódja';
 
 
+--
+-- TOC entry 52115 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.szemely_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.szemely_id IS 'A vagyonkezelő személy, név- és címadatai ';
 
 
+--
+-- TOC entry 52116 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.ceg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.ceg_id IS 'A vagyonkezelő szervezet, név-  és címadatai';
 
 
+--
+-- TOC entry 52117 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.elozo_ep_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.elozo_ep_id IS 'Az épület legutóbbi érvényességű adatrekordjának azonosítója';
 
 
+--
+-- TOC entry 52118 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.blokk_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.blokk_id IS 'Az épületet és környezetét bemutató fénykép vagy vázrajz raszteres állomány azonosító sorszáma';
 
 
+--
+-- TOC entry 52119 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52120 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52121 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52122 (class 0 OID 0)
+-- Dependencies: 421
+-- Name: COLUMN t_obj_attrca.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrca.pont_id IS 'A főbejáratra vonatkoztatott geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 422 (class 1259 OID 26631590)
+-- Name: t_obj_attrcb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrcb (
     eptart_id numeric(10,0),
@@ -4250,58 +7018,127 @@ CREATE TABLE datr_sablon.t_obj_attrcb (
 
 ALTER TABLE datr_sablon.t_obj_attrcb OWNER TO postgres;
 
+--
+-- TOC entry 52123 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: TABLE t_obj_attrcb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrcb IS 'Épületek tartozékai (CA objektumféleségek  tartozékai)';
 
 
+--
+-- TOC entry 52124 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.eptart_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.eptart_id IS 'Épülettartozék azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52125 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.obj_fels IS 'Épülettartozék objektumféleségének kódja';
 
 
+--
+-- TOC entry 52126 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.obj_kiterj IS 'Az objektum kiterjedése. 1-pont, 2-vonal, 3-felület';
 
 
+--
+-- TOC entry 52127 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_kiterj alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik)';
 
 
+--
+-- TOC entry 52128 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.ep_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.ep_id IS 'Az épülettartozékkal bíró épület azonosító sorszáma';
 
 
+--
+-- TOC entry 52129 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.fugg_kiter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.fugg_kiter IS 'Épülettartozék függőleges kiterjedése';
 
 
+--
+-- TOC entry 52130 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.anyag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.anyag IS 'Épülettartozék jellemző anyagának kódja';
 
 
+--
+-- TOC entry 52131 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.elozo_eptart_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.elozo_eptart_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52132 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52133 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52134 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52135 (class 0 OID 0)
+-- Dependencies: 422
+-- Name: COLUMN t_obj_attrcb.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcb.pont_id IS 'A geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 423 (class 1259 OID 26631593)
+-- Name: t_obj_attrcc; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrcc (
     kerit_id numeric(10,0),
@@ -4323,66 +7160,145 @@ CREATE TABLE datr_sablon.t_obj_attrcc (
 
 ALTER TABLE datr_sablon.t_obj_attrcc OWNER TO postgres;
 
+--
+-- TOC entry 52136 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: TABLE t_obj_attrcc; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrcc IS 'Kerítések, támfalak, földművek (a D, E és F objektumosztályba sorolhatók is)';
 
 
+--
+-- TOC entry 52137 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.kerit_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.kerit_id IS 'Objektum azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52138 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.obj_fels IS 'Objektum objektumféleségének kódja';
 
 
+--
+-- TOC entry 52139 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.obj_kiterj IS 'Az objektum kiterjedése.  2-vonal, 3-felület';
 
 
+--
+-- TOC entry 52140 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_FELS alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik).';
 
 
+--
+-- TOC entry 52141 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.helyr_szam IS 'Az érintett földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52142 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.fugg_kiter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.fugg_kiter IS 'Objektum függőleges kiterjedése';
 
 
+--
+-- TOC entry 52143 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.anyag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.anyag IS 'Objektum jellemző anyagának kódja';
 
 
+--
+-- TOC entry 52144 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.szemely_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.szemely_id IS 'Tulajdonos személy, név- és címadatai ';
 
 
+--
+-- TOC entry 52145 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.ceg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.ceg_id IS 'Tulajdonos szervezet, név- és címadatai ';
 
 
+--
+-- TOC entry 52146 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.elozo_kerit_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.elozo_kerit_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52147 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52148 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52149 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52150 (class 0 OID 0)
+-- Dependencies: 423
+-- Name: COLUMN t_obj_attrcc.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc.pont_id IS 'A geokódot kijelölő pont azonosítója (kerítésnél a kapu vagy a főbejárat)';
 
 
+--
+-- TOC entry 424 (class 1259 OID 26631596)
+-- Name: t_obj_attrcc_ujabb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrcc_ujabb (
     kerit_id numeric(10,0),
@@ -4406,74 +7322,163 @@ CREATE TABLE datr_sablon.t_obj_attrcc_ujabb (
 
 ALTER TABLE datr_sablon.t_obj_attrcc_ujabb OWNER TO postgres;
 
+--
+-- TOC entry 52151 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: TABLE t_obj_attrcc_ujabb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrcc_ujabb IS 'Kerítések, támfalak, földművek (a D, E és F objektumosztályba sorolhatók is)';
 
 
+--
+-- TOC entry 52152 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.kerit_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.kerit_id IS 'Objektum azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52153 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.obj_fels IS 'Objektum objektumféleségének kódja';
 
 
+--
+-- TOC entry 52154 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.obj_kiterj IS 'Az objektum kiterjedése.  2-vonal, 3-felület';
 
 
+--
+-- TOC entry 52155 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_FELS alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik).';
 
 
+--
+-- TOC entry 52156 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.helyr_szam IS 'Az érintett földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52157 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.parcel_id1 IS 'Az érintett földrészlet azonosítója';
 
 
+--
+-- TOC entry 52158 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.parcel_id2 IS 'Az érintett földrészlet azonosítója';
 
 
+--
+-- TOC entry 52159 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.fugg_kiter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.fugg_kiter IS 'Objektum függőleges kiterjedése';
 
 
+--
+-- TOC entry 52160 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.anyag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.anyag IS 'Objektum jellemző anyagának kódja';
 
 
+--
+-- TOC entry 52161 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.szemely_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.szemely_id IS 'Tulajdonos személy, név- és címadatai ';
 
 
+--
+-- TOC entry 52162 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.ceg_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.ceg_id IS 'Tulajdonos szervezet, név- és címadatai ';
 
 
+--
+-- TOC entry 52163 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.elozo_kerit_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.elozo_kerit_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52164 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52165 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52166 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52167 (class 0 OID 0)
+-- Dependencies: 424
+-- Name: COLUMN t_obj_attrcc_ujabb.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcc_ujabb.pont_id IS 'A geokódot kijelölő pont azonosítója (kerítésnél a kapu vagy a főbejárat)';
 
 
+--
+-- TOC entry 425 (class 1259 OID 26631599)
+-- Name: t_obj_attrcd; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrcd (
     terep_id numeric(10,0),
@@ -4498,78 +7503,172 @@ CREATE TABLE datr_sablon.t_obj_attrcd (
 
 ALTER TABLE datr_sablon.t_obj_attrcd OWNER TO postgres;
 
+--
+-- TOC entry 52168 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: TABLE t_obj_attrcd; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrcd IS 'Tereptárgyak, egyedi építmények';
 
 
+--
+-- TOC entry 52169 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.terep_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.terep_id IS 'Objektum azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52170 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.obj_fels IS 'Objektum objektumféleségének kódja';
 
 
+--
+-- TOC entry 52171 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.obj_kiterj IS 'Az objektum kiterjedése. 1-pont, 2-vonal, 3-felület';
 
 
+--
+-- TOC entry 52172 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_fels alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik)';
 
 
+--
+-- TOC entry 52173 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.helyr_szam IS 'Befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52174 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.fugg_kiter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.fugg_kiter IS 'Objektum függőleges kiterjedése';
 
 
+--
+-- TOC entry 52175 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.anyag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.anyag IS 'Objektum jellemző anyagának kódja';
 
 
+--
+-- TOC entry 52176 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.szemely_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.szemely_id1 IS 'Tulajdonos személy, név- és címadatai';
 
 
+--
+-- TOC entry 52177 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai ';
 
 
+--
+-- TOC entry 52178 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.szemely_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.szemely_id2 IS 'Vagyonkezelő személy, név- és címadatai';
 
 
+--
+-- TOC entry 52179 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai ';
 
 
+--
+-- TOC entry 52180 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.elozo_terep_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.elozo_terep_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52181 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.blokk_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.blokk_id IS 'Az objektumot és környezetét bemutató fénykép vagy vázrajz raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 52182 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52183 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52184 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52185 (class 0 OID 0)
+-- Dependencies: 425
+-- Name: COLUMN t_obj_attrcd.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd.pont_id IS 'A geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 426 (class 1259 OID 26631602)
+-- Name: t_obj_attrcd_ujabb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrcd_ujabb (
     terep_id numeric(10,0),
@@ -4596,86 +7695,190 @@ CREATE TABLE datr_sablon.t_obj_attrcd_ujabb (
 
 ALTER TABLE datr_sablon.t_obj_attrcd_ujabb OWNER TO postgres;
 
+--
+-- TOC entry 52186 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: TABLE t_obj_attrcd_ujabb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrcd_ujabb IS 'Tereptárgyak, egyedi építmények';
 
 
+--
+-- TOC entry 52187 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.terep_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.terep_id IS 'Objektum azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52188 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.obj_fels IS 'Objektum objektumféleségének kódja';
 
 
+--
+-- TOC entry 52189 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.obj_kiterj IS 'Az objektum kiterjedése. 1-pont, 2-vonal, 3-felület';
 
 
+--
+-- TOC entry 52190 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_fels alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik)';
 
 
+--
+-- TOC entry 52191 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.helyr_szam IS 'Befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52192 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.parcel_id1 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52193 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.parcel_id2 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52194 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.fugg_kiter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.fugg_kiter IS 'Objektum függőleges kiterjedése';
 
 
+--
+-- TOC entry 52195 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.anyag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.anyag IS 'Objektum jellemző anyagának kódja';
 
 
+--
+-- TOC entry 52196 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.szemely_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.szemely_id1 IS 'Tulajdonos személy, név- és címadatai';
 
 
+--
+-- TOC entry 52197 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai ';
 
 
+--
+-- TOC entry 52198 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.szemely_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.szemely_id2 IS 'Vagyonkezelő személy, név- és címadatai';
 
 
+--
+-- TOC entry 52199 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai ';
 
 
+--
+-- TOC entry 52200 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.elozo_terep_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.elozo_terep_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52201 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.blokk_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.blokk_id IS 'Az objektumot és környezetét bemutató fénykép vagy vázrajz raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 52202 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52203 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52204 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52205 (class 0 OID 0)
+-- Dependencies: 426
+-- Name: COLUMN t_obj_attrcd_ujabb.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrcd_ujabb.pont_id IS 'A geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 427 (class 1259 OID 26631605)
+-- Name: t_obj_attrce; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrce (
     szobor_id numeric(10,0),
@@ -4699,74 +7902,163 @@ CREATE TABLE datr_sablon.t_obj_attrce (
 
 ALTER TABLE datr_sablon.t_obj_attrce OWNER TO postgres;
 
+--
+-- TOC entry 52206 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: TABLE t_obj_attrce; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrce IS 'Köztéri szobrok, emlékművek, emlékhelyek';
 
 
+--
+-- TOC entry 52207 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.szobor_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.szobor_id IS 'Objektum azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52208 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.obj_fels IS 'Objektum objektumféleségének kódja';
 
 
+--
+-- TOC entry 52209 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.obj_kiterj IS 'Az objektum kiterjedése. 1-pont, 3-felület';
 
 
+--
+-- TOC entry 52210 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_fels alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik)';
 
 
+--
+-- TOC entry 52211 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.helyr_szam IS 'Befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52212 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.kozter_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.kozter_nev IS 'Befoglaló közterület nevének kódja';
 
 
+--
+-- TOC entry 52213 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.fugg_kiter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.fugg_kiter IS 'Objektum függőleges kiterjedése';
 
 
+--
+-- TOC entry 52214 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.anyag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.anyag IS 'Objektum jellemző anyagának kódja';
 
 
+--
+-- TOC entry 52215 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52216 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52217 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.elozo_szobor_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.elozo_szobor_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52218 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.blokk_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.blokk_id IS 'Az objektumot és környezetét bemutató fénykép vagy vázrajz raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 52219 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52220 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52221 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52222 (class 0 OID 0)
+-- Dependencies: 427
+-- Name: COLUMN t_obj_attrce.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce.pont_id IS 'A geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 428 (class 1259 OID 26631608)
+-- Name: t_obj_attrce_ujabb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrce_ujabb (
     szobor_id numeric(10,0),
@@ -4792,82 +8084,181 @@ CREATE TABLE datr_sablon.t_obj_attrce_ujabb (
 
 ALTER TABLE datr_sablon.t_obj_attrce_ujabb OWNER TO postgres;
 
+--
+-- TOC entry 52223 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: TABLE t_obj_attrce_ujabb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrce_ujabb IS 'Köztéri szobrok, emlékművek, emlékhelyek';
 
 
+--
+-- TOC entry 52224 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.szobor_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.szobor_id IS 'Objektum azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52225 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.obj_fels IS 'Objektum objektumféleségének kódja';
 
 
+--
+-- TOC entry 52226 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.obj_kiterj IS 'Az objektum kiterjedése. 1-pont, 3-felület';
 
 
+--
+-- TOC entry 52227 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_fels alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik)';
 
 
+--
+-- TOC entry 52228 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.helyr_szam; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.helyr_szam IS 'Befoglaló földrészlet helyrajzi száma';
 
 
+--
+-- TOC entry 52229 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.parcel_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.parcel_id1 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52230 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.parcel_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.parcel_id2 IS 'Befoglaló földrészlet azonosítója';
 
 
+--
+-- TOC entry 52231 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.kozter_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.kozter_nev IS 'Befoglaló közterület nevének kódja';
 
 
+--
+-- TOC entry 52232 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.fugg_kiter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.fugg_kiter IS 'Objektum függőleges kiterjedése';
 
 
+--
+-- TOC entry 52233 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.anyag; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.anyag IS 'Objektum jellemző anyagának kódja';
 
 
+--
+-- TOC entry 52234 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52235 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52236 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.elozo_szobor_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.elozo_szobor_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52237 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.blokk_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.blokk_id IS 'Az objektumot és környezetét bemutató fénykép vagy vázrajz raszteres állományának azonosító sorszáma';
 
 
+--
+-- TOC entry 52238 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52239 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52240 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52241 (class 0 OID 0)
+-- Dependencies: 428
+-- Name: COLUMN t_obj_attrce_ujabb.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrce_ujabb.pont_id IS 'A geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 429 (class 1259 OID 26631611)
+-- Name: t_obj_attrda; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrda (
     kozut_id numeric(10,0),
@@ -4887,58 +8278,127 @@ CREATE TABLE datr_sablon.t_obj_attrda (
 
 ALTER TABLE datr_sablon.t_obj_attrda OWNER TO postgres;
 
+--
+-- TOC entry 52242 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: TABLE t_obj_attrda; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrda IS 'Közlekedési létesítmények azonosítópontjai';
 
 
+--
+-- TOC entry 52243 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.kozut_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.kozut_id IS 'Azonosítópont azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52244 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.obj_fels IS 'Azonosítópont objektumféleség kódja';
 
 
+--
+-- TOC entry 52245 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.pont_id IS 'Az objektumot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 52246 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.szakag_sz; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.szakag_sz IS 'Szakági pontszáma vagy neve';
 
 
+--
+-- TOC entry 52247 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.kozut_az; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.kozut_az IS 'Szakági típusa';
 
 
+--
+-- TOC entry 52248 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.szak_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.szak_nev IS 'Befoglaló út szakági neve kódjának sorszáma';
 
 
+--
+-- TOC entry 52249 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52250 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52251 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.elozo_kozut_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.elozo_kozut_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52252 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52253 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52254 (class 0 OID 0)
+-- Dependencies: 429
+-- Name: COLUMN t_obj_attrda.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrda.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 430 (class 1259 OID 26631614)
+-- Name: t_obj_attrdb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrdb (
     kozl_id numeric(10,0),
@@ -4963,78 +8423,172 @@ CREATE TABLE datr_sablon.t_obj_attrdb (
 
 ALTER TABLE datr_sablon.t_obj_attrdb OWNER TO postgres;
 
+--
+-- TOC entry 52255 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: TABLE t_obj_attrdb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrdb IS 'Belterületek közlekedési létesítményei';
 
 
+--
+-- TOC entry 52256 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.kozl_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.kozl_id IS 'Létesítmény azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52257 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.obj_fels IS 'Létesítmény objektumféleségének kódja';
 
 
+--
+-- TOC entry 52258 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.felulet_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 52259 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.szak_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.szak_nev IS 'Útszakasz esetén: a befoglaló út szakági neve kódjának sorszáma';
 
 
+--
+-- TOC entry 52260 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.szelv_meter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.szelv_meter IS 'Útszakasz esetén: az útszakasz kezdetének szelvényszáma a befoglaló út mentén';
 
 
+--
+-- TOC entry 52261 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.pont_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.pont_id1 IS 'Útszakasz esetén: az útszakasz tengelye metszi a belterületi határt (x, y)';
 
 
+--
+-- TOC entry 52262 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.anyag_burk; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.anyag_burk IS 'Létesítmény jellemző anyaga';
 
 
+--
+-- TOC entry 52263 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.jell_adat1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.jell_adat1 IS 'A létesítmény jellemzői (pl. teherbírása, áteresztőképessége, befogadóképessége) kódjának sorszáma';
 
 
+--
+-- TOC entry 52264 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.jell_adat2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.jell_adat2 IS 'A létesítmény jellemzői (pl. teherbírása, áteresztőképessége, befogadóképessége) kódjának sorszáma';
 
 
+--
+-- TOC entry 52265 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.jell_adat3; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.jell_adat3 IS 'A létesítmény jellemzői (pl. teherbírása, áteresztőképessége, befogadóképessége) kódjának sorszáma';
 
 
+--
+-- TOC entry 52266 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52267 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52268 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.elozo_kozl_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.elozo_kozl_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52269 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52270 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52271 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52272 (class 0 OID 0)
+-- Dependencies: 430
+-- Name: COLUMN t_obj_attrdb.pont_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdb.pont_id2 IS 'Geokódot jelölő pont azonosítója (útszakasz kezdete, nem útszakasz vonatkozási pontja)';
 
 
+--
+-- TOC entry 431 (class 1259 OID 26631617)
+-- Name: t_obj_attrdc; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrdc (
     kozl_id numeric(10,0),
@@ -5060,82 +8614,181 @@ CREATE TABLE datr_sablon.t_obj_attrdc (
 
 ALTER TABLE datr_sablon.t_obj_attrdc OWNER TO postgres;
 
+--
+-- TOC entry 52273 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: TABLE t_obj_attrdc; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrdc IS 'Külterületek közlekedési létesítményei';
 
 
+--
+-- TOC entry 52274 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.kozl_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.kozl_id IS 'Létesítmény azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52275 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.obj_fels IS 'Létesítmény objektumféleségének kódja';
 
 
+--
+-- TOC entry 52276 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.felulet_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 52277 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.szak_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.szak_nev IS 'Befoglaló út szakági neve kódjának sorszáma';
 
 
+--
+-- TOC entry 52278 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.szelv_meter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.szelv_meter IS 'Az útszakasz kezdetére vagy a nem útszakasz létesítmény vonatkozási pontjára érvényes szelvényszám a befoglaló út mentén';
 
 
+--
+-- TOC entry 52279 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.anyag_burk; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.anyag_burk IS 'Létesítmény jellemző anyaga';
 
 
+--
+-- TOC entry 52280 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.jell_adat1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.jell_adat1 IS 'A létesítmény jellemzői (pl. teherbírása, áteresztőképessége, befogadóképessége) kódjának sorszáma';
 
 
+--
+-- TOC entry 52281 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.jell_adat2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.jell_adat2 IS 'A létesítmény jellemzői (pl. teherbírása, áteresztőképessége, befogadóképessége) kódjának sorszáma';
 
 
+--
+-- TOC entry 52282 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.jell_adat3; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.jell_adat3 IS 'A létesítmény jellemzői (pl. teherbírása, áteresztőképessége, befogadóképessége) kódjának sorszáma';
 
 
+--
+-- TOC entry 52283 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.pont_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.pont_id1 IS 'Az útszakasz tengelye metszi a belterületi határt (x, y)';
 
 
+--
+-- TOC entry 52284 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.pont_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.pont_id2 IS 'a településhatárt    (x, y)';
 
 
+--
+-- TOC entry 52285 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.ceg_id1 IS 'Tulajdonos szervezet név- és címadatai';
 
 
+--
+-- TOC entry 52286 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.ceg_id2 IS 'Vagyonkezelő szervezet név- és címadatai';
 
 
+--
+-- TOC entry 52287 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.elozo_kozl_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.elozo_kozl_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52288 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52289 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52290 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52291 (class 0 OID 0)
+-- Dependencies: 431
+-- Name: COLUMN t_obj_attrdc.pont_id3; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdc.pont_id3 IS 'A geokódot kijelölő pont azonosítója (útszakasz kezdete, nem útszakasz vonatkozási pontja)';
 
 
+--
+-- TOC entry 432 (class 1259 OID 26631620)
+-- Name: t_obj_attrdd; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrdd (
     vasut_id numeric(10,0),
@@ -5164,94 +8817,208 @@ CREATE TABLE datr_sablon.t_obj_attrdd (
 
 ALTER TABLE datr_sablon.t_obj_attrdd OWNER TO postgres;
 
+--
+-- TOC entry 52292 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: TABLE t_obj_attrdd; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrdd IS 'Vasutak és más kötöttpályás közlekedési létesítmények';
 
 
+--
+-- TOC entry 52293 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.vasut_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.vasut_id IS 'Pályaszakasz vagy állomás azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52294 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.obj_fels IS 'Pályaszakasz vagy állomás objektumféleségének kódja';
 
 
+--
+-- TOC entry 52295 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.obj_kiterj IS 'Az objektum kiterjedése. 2-vonal, 3-felület';
 
 
+--
+-- TOC entry 52296 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_fels alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik)';
 
 
+--
+-- TOC entry 52297 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.szak_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.szak_nev IS 'Befoglaló kötöttpályás közlekedési létesítmény szakági neve kódjának sorszáma';
 
 
+--
+-- TOC entry 52298 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.szelv_meter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.szelv_meter IS 'A pályaszakasz kezdetének vagy az állomás vonatkozási pontjának szelvényszáma a befoglaló közlekedési létesítmény mentén';
 
 
+--
+-- TOC entry 52299 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.kiterj IS 'A pályaszakasz kezdetének magassága (+) vagy mélysége (–) a terep tengelyvonalbeli felszínéhez képest';
 
 
+--
+-- TOC entry 52300 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.pont_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.pont_id1 IS 'A pályaszakasz tengelye metszi a belterületi határt (x, y)';
 
 
+--
+-- TOC entry 52301 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.pont_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.pont_id2 IS 'a településhatárt  (x, y)';
 
 
+--
+-- TOC entry 52302 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.kereszt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.kereszt IS 'Pályaszakasz esetén: keresztez-e vonalas közlekedési létesítményt vagy nem';
 
 
+--
+-- TOC entry 52303 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.obj_az; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.obj_az IS 'Ha keresztez, akkor a keresztezett objektum azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52304 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.obj_fels1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.obj_fels1 IS 'Ha keresztez, akkor a keresztezett objektum objektumféleségének kódja';
 
 
+--
+-- TOC entry 52305 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.szint_dif; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.szint_dif IS 'Ha keresztez, akkor a kereszteződés szintkülönbsége tengelyben (ha a kereszteződés egyszintű, akkor 0, ha a keresztezett objektum felül van, akkor +, ha alul, akkor –)';
 
 
+--
+-- TOC entry 52306 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.pont_id3; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.pont_id3 IS 'Ha keresztez, akkor a kereszteződés koordinátái tengelyben';
 
 
+--
+-- TOC entry 52307 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52308 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52309 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.elozo_vasut_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.elozo_vasut_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52310 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52311 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52312 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52313 (class 0 OID 0)
+-- Dependencies: 432
+-- Name: COLUMN t_obj_attrdd.pont_id4; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdd.pont_id4 IS 'A geokódot kijelölő pont azonosítója (pályaszakasz kezdete vagy állomás vonatkozási pontja)';
 
 
+--
+-- TOC entry 433 (class 1259 OID 26631623)
+-- Name: t_obj_attrde; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrde (
     repter_id numeric(10,0),
@@ -5273,66 +9040,145 @@ CREATE TABLE datr_sablon.t_obj_attrde (
 
 ALTER TABLE datr_sablon.t_obj_attrde OWNER TO postgres;
 
+--
+-- TOC entry 52314 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: TABLE t_obj_attrde; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrde IS 'Légiforgalmi létesítmények';
 
 
+--
+-- TOC entry 52315 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.repter_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.repter_id IS 'Légiforgalmi létesítmény azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52316 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.obj_fels IS 'Légiforgalmi létesítmény objektumféleségének kódja';
 
 
+--
+-- TOC entry 52317 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.felulet_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.felulet_id IS 'Az objektum geometriáját leíró felület azonosítója';
 
 
+--
+-- TOC entry 52318 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.szak_nev1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.szak_nev1 IS 'Ha az objektum repülőtér, akkor annak szakági neve ';
 
 
+--
+-- TOC entry 52319 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.repter_tip; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.repter_tip IS 'Ha az objektum repülőtér, akkor annak típusa (kód)';
 
 
+--
+-- TOC entry 52320 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.repter_oszt; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.repter_oszt IS 'Ha az objektum repülőtér, akkor annak osztálybasorolása (kód)';
 
 
+--
+-- TOC entry 52321 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.szak_nev2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.szak_nev2 IS 'Ha az objektum a repülőtér valamely létesítménye, akkor a befoglaló repülőtér szakági neve kódjának sorszáma';
 
 
+--
+-- TOC entry 52322 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52323 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52324 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.elozo_repter_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.elozo_repter_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52325 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52326 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.jelkulcs IS 'Megjelenítéséhez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52327 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52328 (class 0 OID 0)
+-- Dependencies: 433
+-- Name: COLUMN t_obj_attrde.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrde.pont_id IS 'A létesítmény vonatkozási pontjára érvényes geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 434 (class 1259 OID 26631626)
+-- Name: t_obj_attrdf; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrdf (
     mutargy_id numeric(10,0),
@@ -5360,90 +9206,199 @@ CREATE TABLE datr_sablon.t_obj_attrdf (
 
 ALTER TABLE datr_sablon.t_obj_attrdf OWNER TO postgres;
 
+--
+-- TOC entry 52329 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: TABLE t_obj_attrdf; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrdf IS 'Közlekedés műtárgyai (I.)';
 
 
+--
+-- TOC entry 52330 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.mutargy_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.mutargy_id IS 'Műtárgy azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52331 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.obj_fels IS 'Műtárgy objektumféleségének kódja';
 
 
+--
+-- TOC entry 52332 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.obj_kiterj IS 'Az objektum kiterjedése. 2-vonal, 3-felület';
 
 
+--
+-- TOC entry 52333 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_fels alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik)';
 
 
+--
+-- TOC entry 52334 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.szak_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.szak_nev IS 'Befoglaló út vagy pálya szakági neve kódjának sorszáma';
 
 
+--
+-- TOC entry 52335 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.szelv_meter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.szelv_meter IS 'A műtárgy szelvényszáma a befoglaló út vagy pálya mentén';
 
 
+--
+-- TOC entry 52336 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.athid_szerk; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.athid_szerk IS 'Műtárgy szerkezeti rendszere';
 
 
+--
+-- TOC entry 52337 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.anyag_burk; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.anyag_burk IS 'Műtárgy anyaga';
 
 
+--
+-- TOC entry 52338 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.teherbir; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.teherbir IS 'Műtárgy teherbírása';
 
 
+--
+-- TOC entry 52339 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.athid_allapot; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.athid_allapot IS 'Műtárgy komplex állapotkódja';
 
 
+--
+-- TOC entry 52340 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.athid_akad; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.athid_akad IS 'Áthidalt akadály vagy az átsegített forgalom típusa';
 
 
+--
+-- TOC entry 52341 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.szeles; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.szeles IS 'Szabad nyílás szélessége';
 
 
+--
+-- TOC entry 52342 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.magas; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.magas IS 'Szabad nyílás magassága';
 
 
+--
+-- TOC entry 52343 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52344 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52345 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.elozo_mutargy_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.elozo_mutargy_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52346 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52347 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52348 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52349 (class 0 OID 0)
+-- Dependencies: 434
+-- Name: COLUMN t_obj_attrdf.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdf.pont_id IS 'A műtárgy vonatkozási pontjára vonatkozó geokódot kijelölő pont (pl. tengelyvonalak kereszteződése) azonosítója';
 
 
+--
+-- TOC entry 435 (class 1259 OID 26631629)
+-- Name: t_obj_attrdg; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrdg (
     mutargy_id numeric(10,0),
@@ -5465,66 +9420,145 @@ CREATE TABLE datr_sablon.t_obj_attrdg (
 
 ALTER TABLE datr_sablon.t_obj_attrdg OWNER TO postgres;
 
+--
+-- TOC entry 52350 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: TABLE t_obj_attrdg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrdg IS 'Közlekedés műtárgyai (II.)';
 
 
+--
+-- TOC entry 52351 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.mutargy_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.mutargy_id IS 'Műtárgy azonosító sorszáma a DAT-ban';
 
 
+--
+-- TOC entry 52352 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.obj_fels; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.obj_fels IS 'Műtárgy objektumféleségének kódja';
 
 
+--
+-- TOC entry 52353 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.obj_kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.obj_kiterj IS 'Az objektum kiterjedése. 1-pont, 2-vonal, 3-felület';
 
 
+--
+-- TOC entry 52354 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.geo_ae_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.geo_ae_id IS 'Az objektum geometriáját leíró geometriai alapelem azonosító sorszáma (amely az obj_fels alapján a T_GEOM-ban kiválasztott geo_ae_tabla nevű táblázatból származik)';
 
 
+--
+-- TOC entry 52355 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.szak_nev; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.szak_nev IS 'Befoglaló út vagy pálya szakági neve kódjának sorszáma';
 
 
+--
+-- TOC entry 52356 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.szelv_meter; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.szelv_meter IS 'A pontszerű műtárgynak vagy a nem pontszerű műtárgy szakaszkezdetének szelvényszáma a befoglaló út vagy pálya mentén';
 
 
+--
+-- TOC entry 52357 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.kiterj; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.kiterj IS 'A műtárgy függőleges kiterjedése';
 
 
+--
+-- TOC entry 52358 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.ceg_id1; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.ceg_id1 IS 'Tulajdonos szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52359 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.ceg_id2; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.ceg_id2 IS 'Vagyonkezelő szervezet, név- és címadatai';
 
 
+--
+-- TOC entry 52360 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.elozo_mutargy_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.elozo_mutargy_id IS 'Az objektum legutóbbi érvényességű azonosítója';
 
 
+--
+-- TOC entry 52361 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.megsz_datum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.megsz_datum IS 'Az adatrekord érvényessége megszűnésének dátuma';
 
 
+--
+-- TOC entry 52362 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.jelkulcs; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.jelkulcs IS 'Megjelenítéshez a jelkulcs kódja';
 
 
+--
+-- TOC entry 52363 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.munkater_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.munkater_id IS 'A vonatkozó felmérési munkaterület azonosítója';
 
 
+--
+-- TOC entry 52364 (class 0 OID 0)
+-- Dependencies: 435
+-- Name: COLUMN t_obj_attrdg.pont_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_obj_attrdg.pont_id IS 'A műtárgy szakaszkezdetére vagy vonatkozási pontjára vonatkozó geokódot kijelölő pont azonosítója';
 
 
+--
+-- TOC entry 436 (class 1259 OID 26631632)
+-- Name: t_obj_attrea; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrea (
     id numeric(10,0),
@@ -5557,10 +9591,19 @@ CREATE TABLE datr_sablon.t_obj_attrea (
 
 ALTER TABLE datr_sablon.t_obj_attrea OWNER TO postgres;
 
+--
+-- TOC entry 52365 (class 0 OID 0)
+-- Dependencies: 436
+-- Name: TABLE t_obj_attrea; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrea IS 'Távvezetékek, függőpályák tengelyvonalai';
 
 
+--
+-- TOC entry 437 (class 1259 OID 26631635)
+-- Name: t_obj_attreb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attreb (
     id numeric(10,0),
@@ -5585,10 +9628,19 @@ CREATE TABLE datr_sablon.t_obj_attreb (
 
 ALTER TABLE datr_sablon.t_obj_attreb OWNER TO postgres;
 
+--
+-- TOC entry 52366 (class 0 OID 0)
+-- Dependencies: 437
+-- Name: TABLE t_obj_attreb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attreb IS 'Távvezetékek, függőpályák műtárgyai';
 
 
+--
+-- TOC entry 438 (class 1259 OID 26631638)
+-- Name: t_obj_attrfa; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrfa (
     id numeric(10,0),
@@ -5618,10 +9670,19 @@ CREATE TABLE datr_sablon.t_obj_attrfa (
 
 ALTER TABLE datr_sablon.t_obj_attrfa OWNER TO postgres;
 
+--
+-- TOC entry 52367 (class 0 OID 0)
+-- Dependencies: 438
+-- Name: TABLE t_obj_attrfa; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrfa IS 'Folyóvizek és állóvizek';
 
 
+--
+-- TOC entry 439 (class 1259 OID 26631641)
+-- Name: t_obj_attrfb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrfb (
     id numeric(10,0),
@@ -5655,10 +9716,19 @@ CREATE TABLE datr_sablon.t_obj_attrfb (
 
 ALTER TABLE datr_sablon.t_obj_attrfb OWNER TO postgres;
 
+--
+-- TOC entry 52368 (class 0 OID 0)
+-- Dependencies: 439
+-- Name: TABLE t_obj_attrfb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrfb IS 'Vízi közművek';
 
 
+--
+-- TOC entry 440 (class 1259 OID 26631644)
+-- Name: t_obj_attrfc; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrfc (
     id numeric(10,0),
@@ -5684,10 +9754,19 @@ CREATE TABLE datr_sablon.t_obj_attrfc (
 
 ALTER TABLE datr_sablon.t_obj_attrfc OWNER TO postgres;
 
+--
+-- TOC entry 52369 (class 0 OID 0)
+-- Dependencies: 440
+-- Name: TABLE t_obj_attrfc; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrfc IS 'Vízügyi műtárgyak';
 
 
+--
+-- TOC entry 441 (class 1259 OID 26631647)
+-- Name: t_obj_attrga; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrga (
     id numeric(10,0),
@@ -5703,10 +9782,19 @@ CREATE TABLE datr_sablon.t_obj_attrga (
 
 ALTER TABLE datr_sablon.t_obj_attrga OWNER TO postgres;
 
+--
+-- TOC entry 52370 (class 0 OID 0)
+-- Dependencies: 441
+-- Name: TABLE t_obj_attrga; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrga IS 'Szintvonalak';
 
 
+--
+-- TOC entry 442 (class 1259 OID 26631650)
+-- Name: t_obj_attrgb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrgb (
     id numeric(10,0),
@@ -5726,10 +9814,19 @@ CREATE TABLE datr_sablon.t_obj_attrgb (
 
 ALTER TABLE datr_sablon.t_obj_attrgb OWNER TO postgres;
 
+--
+-- TOC entry 52371 (class 0 OID 0)
+-- Dependencies: 442
+-- Name: TABLE t_obj_attrgb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrgb IS 'Domborzati alakzatok';
 
 
+--
+-- TOC entry 443 (class 1259 OID 26631653)
+-- Name: t_obj_attrha; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrha (
     id numeric(10,0),
@@ -5767,10 +9864,19 @@ CREATE TABLE datr_sablon.t_obj_attrha (
 
 ALTER TABLE datr_sablon.t_obj_attrha OWNER TO postgres;
 
+--
+-- TOC entry 52372 (class 0 OID 0)
+-- Dependencies: 443
+-- Name: TABLE t_obj_attrha; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrha IS 'Felmérési munkaterületek';
 
 
+--
+-- TOC entry 444 (class 1259 OID 26631656)
+-- Name: t_obj_attrhb; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrhb (
     id numeric(10,0),
@@ -5787,10 +9893,19 @@ CREATE TABLE datr_sablon.t_obj_attrhb (
 
 ALTER TABLE datr_sablon.t_obj_attrhb OWNER TO postgres;
 
+--
+-- TOC entry 52373 (class 0 OID 0)
+-- Dependencies: 444
+-- Name: TABLE t_obj_attrhb; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrhb IS 'DAT adatbázis kezelési egységek';
 
 
+--
+-- TOC entry 445 (class 1259 OID 26631659)
+-- Name: t_obj_attrhc; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_obj_attrhc (
     id numeric(10,0),
@@ -5809,10 +9924,19 @@ CREATE TABLE datr_sablon.t_obj_attrhc (
 
 ALTER TABLE datr_sablon.t_obj_attrhc OWNER TO postgres;
 
+--
+-- TOC entry 52374 (class 0 OID 0)
+-- Dependencies: 445
+-- Name: TABLE t_obj_attrhc; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_obj_attrhc IS 'Térség jellegű területek';
 
 
+--
+-- TOC entry 446 (class 1259 OID 26631662)
+-- Name: t_orpont_gy; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_orpont_gy (
     tabla_nev character varying(12),
@@ -5826,10 +9950,19 @@ CREATE TABLE datr_sablon.t_orpont_gy (
 
 ALTER TABLE datr_sablon.t_orpont_gy OWNER TO postgres;
 
+--
+-- TOC entry 52375 (class 0 OID 0)
+-- Dependencies: 446
+-- Name: TABLE t_orpont_gy; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_orpont_gy IS 'Magassági alappontok őrpontjainak gyűjtőtáblázata';
 
 
+--
+-- TOC entry 447 (class 1259 OID 26631665)
+-- Name: t_osadatal12; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_osadatal12 (
     osadat12_id numeric(6,0) NOT NULL,
@@ -5858,10 +9991,19 @@ CREATE TABLE datr_sablon.t_osadatal12 (
 
 ALTER TABLE datr_sablon.t_osadatal12 OWNER TO postgres;
 
+--
+-- TOC entry 52376 (class 0 OID 0)
+-- Dependencies: 447
+-- Name: TABLE t_osadatal12; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_osadatal12 IS 'Ősadatállomány minőségadatainak táblázata';
 
 
+--
+-- TOC entry 448 (class 1259 OID 26631671)
+-- Name: t_osszekot_iv; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_osszekot_iv (
     osszekot_id numeric(8,0),
@@ -5873,26 +10015,55 @@ CREATE TABLE datr_sablon.t_osszekot_iv (
 
 ALTER TABLE datr_sablon.t_osszekot_iv OWNER TO postgres;
 
+--
+-- TOC entry 52377 (class 0 OID 0)
+-- Dependencies: 448
+-- Name: TABLE t_osszekot_iv; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_osszekot_iv IS 'Pontok összekötése adatainak táblázata';
 
 
+--
+-- TOC entry 52378 (class 0 OID 0)
+-- Dependencies: 448
+-- Name: COLUMN t_osszekot_iv.osszekot_id; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_osszekot_iv.osszekot_id IS 'Az összekötés-előfordulás azonosító sorszáma';
 
 
+--
+-- TOC entry 52379 (class 0 OID 0)
+-- Dependencies: 448
+-- Name: COLUMN t_osszekot_iv.center_x; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_osszekot_iv.center_x IS 'Az ív középpontjának EOV x koordinátája';
 
 
+--
+-- TOC entry 52380 (class 0 OID 0)
+-- Dependencies: 448
+-- Name: COLUMN t_osszekot_iv.center_y; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_osszekot_iv.center_y IS 'Az ív középpontjának EOV y koordinátája';
 
 
+--
+-- TOC entry 52381 (class 0 OID 0)
+-- Dependencies: 448
+-- Name: COLUMN t_osszekot_iv.sugar; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_osszekot_iv.sugar IS 'Az ív sugara';
 
 
+--
+-- TOC entry 449 (class 1259 OID 26631674)
+-- Name: t_qgeometria; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_qgeometria (
     qgeometria_id numeric(6,0) NOT NULL,
@@ -6054,10 +10225,19 @@ CREATE TABLE datr_sablon.t_qgeometria (
 
 ALTER TABLE datr_sablon.t_qgeometria OWNER TO postgres;
 
+--
+-- TOC entry 52382 (class 0 OID 0)
+-- Dependencies: 449
+-- Name: TABLE t_qgeometria; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_qgeometria IS 'Geometriai adatok minőségének táblázata';
 
 
+--
+-- TOC entry 450 (class 1259 OID 26631677)
+-- Name: t_szemely; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_szemely (
     szemely_id numeric(10,0),
@@ -6087,10 +10267,19 @@ CREATE TABLE datr_sablon.t_szemely (
 
 ALTER TABLE datr_sablon.t_szemely OWNER TO postgres;
 
+--
+-- TOC entry 52383 (class 0 OID 0)
+-- Dependencies: 450
+-- Name: TABLE t_szemely; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_szemely IS 'Személyek adatainak táblázata';
 
 
+--
+-- TOC entry 451 (class 1259 OID 26631680)
+-- Name: t_szimbolum; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_szimbolum (
     szimbolum_id numeric(10,0),
@@ -6105,10 +10294,19 @@ CREATE TABLE datr_sablon.t_szimbolum (
 
 ALTER TABLE datr_sablon.t_szimbolum OWNER TO postgres;
 
+--
+-- TOC entry 52384 (class 0 OID 0)
+-- Dependencies: 451
+-- Name: TABLE t_szimbolum; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_szimbolum IS 'Állami alapadatokhoz és alapadatokhoz szükséges táblázat';
 
 
+--
+-- TOC entry 452 (class 1259 OID 26631683)
+-- Name: t_teljesseg; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_teljesseg (
     teljesseg_id numeric(6,0) NOT NULL,
@@ -6127,16 +10325,30 @@ CREATE TABLE datr_sablon.t_teljesseg (
 
 ALTER TABLE datr_sablon.t_teljesseg OWNER TO postgres;
 
+--
+-- TOC entry 52385 (class 0 OID 0)
+-- Dependencies: 452
+-- Name: TABLE t_teljesseg; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_teljesseg IS 'Adatok teljességét leíró táblázat
 Ordas.dat beolvasásakor az "obj_fels_h" mezőt "185" karakteresre kellett állítani!
 ';
 
 
+--
+-- TOC entry 52386 (class 0 OID 0)
+-- Dependencies: 452
+-- Name: COLUMN t_teljesseg.obj_fels_h; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON COLUMN datr_sablon.t_teljesseg.obj_fels_h IS 'Ordas.dat miatt 99-ről növelve 185-re';
 
 
+--
+-- TOC entry 453 (class 1259 OID 26631689)
+-- Name: t_veg_cspont; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_veg_cspont (
     veg_cspont_id numeric(8,0) NOT NULL,
@@ -6146,10 +10358,19 @@ CREATE TABLE datr_sablon.t_veg_cspont (
 
 ALTER TABLE datr_sablon.t_veg_cspont OWNER TO postgres;
 
+--
+-- TOC entry 52387 (class 0 OID 0)
+-- Dependencies: 453
+-- Name: TABLE t_veg_cspont; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_veg_cspont IS 'Végcsomópontok táblázata';
 
 
+--
+-- TOC entry 454 (class 1259 OID 26631692)
+-- Name: t_veg_cspont_el; Type: TABLE; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE TABLE datr_sablon.t_veg_cspont_el (
     veg_cspont_id1 numeric(8,0),
@@ -6160,37 +10381,92 @@ CREATE TABLE datr_sablon.t_veg_cspont_el (
 
 ALTER TABLE datr_sablon.t_veg_cspont_el OWNER TO postgres;
 
+--
+-- TOC entry 52388 (class 0 OID 0)
+-- Dependencies: 454
+-- Name: TABLE t_veg_cspont_el; Type: COMMENT; Schema: datr_sablon; Owner: postgres
+--
 
 COMMENT ON TABLE datr_sablon.t_veg_cspont_el IS 'Végcsomópontok élekhez rendelésének táblázata';
 
 
+--
+-- TOC entry 51581 (class 0 OID 26631481)
+-- Dependencies: 387
+-- Data for Name: t_ahaszn_reg; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51582 (class 0 OID 26631484)
+-- Dependencies: 388
+-- Data for Name: t_attrbizn; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51583 (class 0 OID 26631487)
+-- Dependencies: 389
+-- Data for Name: t_attrelter; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51584 (class 0 OID 26631490)
+-- Dependencies: 390
+-- Data for Name: t_ceg; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51569 (class 0 OID 26631357)
+-- Dependencies: 360
+-- Data for Name: t_cim; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51585 (class 0 OID 26631493)
+-- Dependencies: 391
+-- Data for Name: t_cim_kulfold; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51586 (class 0 OID 26631496)
+-- Dependencies: 392
+-- Data for Name: t_el; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51587 (class 0 OID 26631499)
+-- Dependencies: 393
+-- Data for Name: t_eredet; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51567 (class 0 OID 26631341)
+-- Dependencies: 357
+-- Data for Name: t_felirat; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51649 (class 0 OID 188629760)
+-- Dependencies: 609
+-- Data for Name: t_felirat_jelleg; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 INSERT INTO datr_sablon.t_felirat_jelleg (kod, ertek, font_id) VALUES (0, '-', 1);
 INSERT INTO datr_sablon.t_felirat_jelleg (kod, ertek, font_id) VALUES (1, 'Vízszintes felső és IV-V. rendű alappont', 8);
@@ -6268,9 +10544,19 @@ INSERT INTO datr_sablon.t_felirat_jelleg (kod, ertek, font_id) VALUES (98, 'Egy�
 INSERT INTO datr_sablon.t_felirat_jelleg (kod, ertek, font_id) VALUES (105, 'Hibás érték!!!', 0);
 
 
+--
+-- TOC entry 51575 (class 0 OID 26631420)
+-- Dependencies: 373
+-- Data for Name: t_felulet; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51650 (class 0 OID 188629766)
+-- Dependencies: 610
+-- Data for Name: t_font; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 INSERT INTO datr_sablon.t_font (kod, betu_tipus, nagysag, magassag) VALUES (0, 'ismeretlen', 1, 1.00);
 INSERT INTO datr_sablon.t_font (kod, betu_tipus, nagysag, magassag) VALUES (1, 'ARIAL CE álló', 6, 1.50);
@@ -6302,72 +10588,187 @@ INSERT INTO datr_sablon.t_font (kod, betu_tipus, nagysag, magassag) VALUES (26, 
 INSERT INTO datr_sablon.t_font (kod, betu_tipus, nagysag, magassag) VALUES (27, 'ARIAL CE álló', 0, 0.00);
 
 
+--
+-- TOC entry 51588 (class 0 OID 26631502)
+-- Dependencies: 394
+-- Data for Name: t_gyuru; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51573 (class 0 OID 26631394)
+-- Dependencies: 367
+-- Data for Name: t_hatar; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51574 (class 0 OID 26631397)
+-- Dependencies: 368
+-- Data for Name: t_hatarvonal; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51589 (class 0 OID 26631505)
+-- Dependencies: 395
+-- Data for Name: t_helyreall_gy; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51590 (class 0 OID 26631508)
+-- Dependencies: 396
+-- Data for Name: t_helyreall_gyio; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51591 (class 0 OID 26631511)
+-- Dependencies: 397
+-- Data for Name: t_helyszin_gy; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51592 (class 0 OID 26631514)
+-- Dependencies: 398
+-- Data for Name: t_helyszin_gyio; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51593 (class 0 OID 26631517)
+-- Dependencies: 399
+-- Data for Name: t_hiteles; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51594 (class 0 OID 26631523)
+-- Dependencies: 400
+-- Data for Name: t_iranypont_gy; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51595 (class 0 OID 26631526)
+-- Dependencies: 401
+-- Data for Name: t_izolalt; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51596 (class 0 OID 26631529)
+-- Dependencies: 402
+-- Data for Name: t_izolalt_l; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51597 (class 0 OID 26631532)
+-- Dependencies: 403
+-- Data for Name: t_konziszt; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51598 (class 0 OID 26631535)
+-- Dependencies: 404
+-- Data for Name: t_kozb_cspont; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51599 (class 0 OID 26631538)
+-- Dependencies: 405
+-- Data for Name: t_kozb_cspont_el; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51600 (class 0 OID 26631541)
+-- Dependencies: 406
+-- Data for Name: t_kozb_cspont_gy; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51570 (class 0 OID 26631360)
+-- Dependencies: 361
+-- Data for Name: t_kozter_jell; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51571 (class 0 OID 26631363)
+-- Dependencies: 362
+-- Data for Name: t_kozter_nev; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51601 (class 0 OID 26631544)
+-- Dependencies: 407
+-- Data for Name: t_ksh_kozig; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51602 (class 0 OID 26631548)
+-- Dependencies: 408
+-- Data for Name: t_lap; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51603 (class 0 OID 26631551)
+-- Dependencies: 409
+-- Data for Name: t_mas_rendszer_gy; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51604 (class 0 OID 26631554)
+-- Dependencies: 410
+-- Data for Name: t_megsz_datumg; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51605 (class 0 OID 26631557)
+-- Dependencies: 411
+-- Data for Name: t_megsz_datumt; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51651 (class 0 OID 188629783)
+-- Dependencies: 611
+-- Data for Name: t_muvel_ag; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 INSERT INTO datr_sablon.t_muvel_ag (kod, ertek) VALUES (1, 'szántó');
 INSERT INTO datr_sablon.t_muvel_ag (kod, ertek) VALUES (2, 'rét');
@@ -6380,476 +10781,1028 @@ INSERT INTO datr_sablon.t_muvel_ag (kod, ertek) VALUES (8, 'erdő');
 INSERT INTO datr_sablon.t_muvel_ag (kod, ertek) VALUES (9, 'kivett');
 
 
+--
+-- TOC entry 51606 (class 0 OID 26631560)
+-- Dependencies: 412
+-- Data for Name: t_obj_attraa; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51607 (class 0 OID 26631563)
+-- Dependencies: 413
+-- Data for Name: t_obj_attrab; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51608 (class 0 OID 26631566)
+-- Dependencies: 414
+-- Data for Name: t_obj_attrac; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51609 (class 0 OID 26631569)
+-- Dependencies: 415
+-- Data for Name: t_obj_attrad; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51576 (class 0 OID 26631431)
+-- Dependencies: 375
+-- Data for Name: t_obj_attrba; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51577 (class 0 OID 26631439)
+-- Dependencies: 377
+-- Data for Name: t_obj_attrbb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51565 (class 0 OID 26631319)
+-- Dependencies: 353
+-- Data for Name: t_obj_attrbc; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51566 (class 0 OID 26631325)
+-- Dependencies: 354
+-- Data for Name: t_obj_attrbd; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51578 (class 0 OID 26631457)
+-- Dependencies: 381
+-- Data for Name: t_obj_attrbe; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51610 (class 0 OID 26631572)
+-- Dependencies: 416
+-- Data for Name: t_obj_attrbe_ujabb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51579 (class 0 OID 26631465)
+-- Dependencies: 383
+-- Data for Name: t_obj_attrbf; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51611 (class 0 OID 26631575)
+-- Dependencies: 417
+-- Data for Name: t_obj_attrbf_ujabb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51580 (class 0 OID 26631473)
+-- Dependencies: 385
+-- Data for Name: t_obj_attrbg; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51612 (class 0 OID 26631578)
+-- Dependencies: 418
+-- Data for Name: t_obj_attrbg_ujabb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51613 (class 0 OID 26631581)
+-- Dependencies: 419
+-- Data for Name: t_obj_attrbh; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51614 (class 0 OID 26631584)
+-- Dependencies: 420
+-- Data for Name: t_obj_attrbi; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51615 (class 0 OID 26631587)
+-- Dependencies: 421
+-- Data for Name: t_obj_attrca; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51616 (class 0 OID 26631590)
+-- Dependencies: 422
+-- Data for Name: t_obj_attrcb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51617 (class 0 OID 26631593)
+-- Dependencies: 423
+-- Data for Name: t_obj_attrcc; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51618 (class 0 OID 26631596)
+-- Dependencies: 424
+-- Data for Name: t_obj_attrcc_ujabb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51619 (class 0 OID 26631599)
+-- Dependencies: 425
+-- Data for Name: t_obj_attrcd; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51620 (class 0 OID 26631602)
+-- Dependencies: 426
+-- Data for Name: t_obj_attrcd_ujabb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51621 (class 0 OID 26631605)
+-- Dependencies: 427
+-- Data for Name: t_obj_attrce; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51622 (class 0 OID 26631608)
+-- Dependencies: 428
+-- Data for Name: t_obj_attrce_ujabb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51623 (class 0 OID 26631611)
+-- Dependencies: 429
+-- Data for Name: t_obj_attrda; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51624 (class 0 OID 26631614)
+-- Dependencies: 430
+-- Data for Name: t_obj_attrdb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51625 (class 0 OID 26631617)
+-- Dependencies: 431
+-- Data for Name: t_obj_attrdc; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51626 (class 0 OID 26631620)
+-- Dependencies: 432
+-- Data for Name: t_obj_attrdd; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51627 (class 0 OID 26631623)
+-- Dependencies: 433
+-- Data for Name: t_obj_attrde; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51628 (class 0 OID 26631626)
+-- Dependencies: 434
+-- Data for Name: t_obj_attrdf; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51629 (class 0 OID 26631629)
+-- Dependencies: 435
+-- Data for Name: t_obj_attrdg; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51630 (class 0 OID 26631632)
+-- Dependencies: 436
+-- Data for Name: t_obj_attrea; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51631 (class 0 OID 26631635)
+-- Dependencies: 437
+-- Data for Name: t_obj_attreb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51632 (class 0 OID 26631638)
+-- Dependencies: 438
+-- Data for Name: t_obj_attrfa; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51633 (class 0 OID 26631641)
+-- Dependencies: 439
+-- Data for Name: t_obj_attrfb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51634 (class 0 OID 26631644)
+-- Dependencies: 440
+-- Data for Name: t_obj_attrfc; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51635 (class 0 OID 26631647)
+-- Dependencies: 441
+-- Data for Name: t_obj_attrga; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51636 (class 0 OID 26631650)
+-- Dependencies: 442
+-- Data for Name: t_obj_attrgb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51637 (class 0 OID 26631653)
+-- Dependencies: 443
+-- Data for Name: t_obj_attrha; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51638 (class 0 OID 26631656)
+-- Dependencies: 444
+-- Data for Name: t_obj_attrhb; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51639 (class 0 OID 26631659)
+-- Dependencies: 445
+-- Data for Name: t_obj_attrhc; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51640 (class 0 OID 26631662)
+-- Dependencies: 446
+-- Data for Name: t_orpont_gy; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51641 (class 0 OID 26631665)
+-- Dependencies: 447
+-- Data for Name: t_osadatal12; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51642 (class 0 OID 26631671)
+-- Dependencies: 448
+-- Data for Name: t_osszekot_iv; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51568 (class 0 OID 26631347)
+-- Dependencies: 358
+-- Data for Name: t_pont; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51643 (class 0 OID 26631674)
+-- Dependencies: 449
+-- Data for Name: t_qgeometria; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51644 (class 0 OID 26631677)
+-- Dependencies: 450
+-- Data for Name: t_szemely; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51645 (class 0 OID 26631680)
+-- Dependencies: 451
+-- Data for Name: t_szimbolum; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51646 (class 0 OID 26631683)
+-- Dependencies: 452
+-- Data for Name: t_teljesseg; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51647 (class 0 OID 26631689)
+-- Dependencies: 453
+-- Data for Name: t_veg_cspont; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51648 (class 0 OID 26631692)
+-- Dependencies: 454
+-- Data for Name: t_veg_cspont_el; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 51572 (class 0 OID 26631379)
+-- Dependencies: 365
+-- Data for Name: t_vonal; Type: TABLE DATA; Schema: datr_sablon; Owner: postgres
+--
 
 
 
+--
+-- TOC entry 48864 (class 2606 OID 39902765)
+-- Name: t_obj_attrad pk_cimkoord_id; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrad
     ADD CONSTRAINT pk_cimkoord_id PRIMARY KEY (cimkoord_id);
 
 
+--
+-- TOC entry 48816 (class 2606 OID 39902767)
+-- Name: t_felirat pk_t_felirat; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_felirat
     ADD CONSTRAINT pk_t_felirat PRIMARY KEY (id);
 
 
+--
+-- TOC entry 48895 (class 2606 OID 188629764)
+-- Name: t_felirat_jelleg pk_t_felirat_jelleg; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_felirat_jelleg
     ADD CONSTRAINT pk_t_felirat_jelleg PRIMARY KEY (kod);
 
 
+--
+-- TOC entry 48828 (class 2606 OID 39902769)
+-- Name: t_felulet pk_t_felulet; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_felulet
     ADD CONSTRAINT pk_t_felulet PRIMARY KEY (felulet_id, subfel_id, hatar_id, hatar_valt);
 
 
+--
+-- TOC entry 48897 (class 2606 OID 188629770)
+-- Name: t_font pk_t_font; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_font
     ADD CONSTRAINT pk_t_font PRIMARY KEY (kod);
 
 
+--
+-- TOC entry 48823 (class 2606 OID 39902771)
+-- Name: t_hatar pk_t_hatar; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_hatar
     ADD CONSTRAINT pk_t_hatar PRIMARY KEY (hatar_id, hsub_id);
 
 
+--
+-- TOC entry 48825 (class 2606 OID 39902773)
+-- Name: t_hatarvonal pk_t_hatarvonal; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_hatarvonal
     ADD CONSTRAINT pk_t_hatarvonal PRIMARY KEY (hatarvonal_id, hvsub_id);
 
 
+--
+-- TOC entry 48899 (class 2606 OID 188629787)
+-- Name: t_muvel_ag pk_t_muvel_ag; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_muvel_ag
     ADD CONSTRAINT pk_t_muvel_ag PRIMARY KEY (kod);
 
 
+--
+-- TOC entry 48855 (class 2606 OID 39902775)
+-- Name: t_obj_attraa pk_t_obj_attraa; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attraa
     ADD CONSTRAINT pk_t_obj_attraa PRIMARY KEY (alappont_id);
 
 
+--
+-- TOC entry 48858 (class 2606 OID 39902777)
+-- Name: t_obj_attrab pk_t_obj_attrab; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrab
     ADD CONSTRAINT pk_t_obj_attrab PRIMARY KEY (malapp_id);
 
 
+--
+-- TOC entry 48861 (class 2606 OID 39902779)
+-- Name: t_obj_attrac pk_t_obj_attrac; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrac
     ADD CONSTRAINT pk_t_obj_attrac PRIMARY KEY (rpont_id);
 
 
+--
+-- TOC entry 48831 (class 2606 OID 39902781)
+-- Name: t_obj_attrba pk_t_obj_attrba; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrba
     ADD CONSTRAINT pk_t_obj_attrba PRIMARY KEY (kozig_idba);
 
 
+--
+-- TOC entry 48834 (class 2606 OID 39902783)
+-- Name: t_obj_attrbb pk_t_obj_attrbb; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbb
     ADD CONSTRAINT pk_t_obj_attrbb PRIMARY KEY (kozigal_id);
 
 
+--
+-- TOC entry 48808 (class 2606 OID 39902785)
+-- Name: t_obj_attrbc pk_t_obj_attrbc; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbc
     ADD CONSTRAINT pk_t_obj_attrbc PRIMARY KEY (parcel_id);
 
 
+--
+-- TOC entry 48812 (class 2606 OID 39902787)
+-- Name: t_obj_attrbd pk_t_obj_attrbd; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbd
     ADD CONSTRAINT pk_t_obj_attrbd PRIMARY KEY (parcel_id);
 
 
+--
+-- TOC entry 48837 (class 2606 OID 39902789)
+-- Name: t_obj_attrbe pk_t_obj_attrbe; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbe
     ADD CONSTRAINT pk_t_obj_attrbe PRIMARY KEY (alreszlet_id);
 
 
+--
+-- TOC entry 48867 (class 2606 OID 39902791)
+-- Name: t_obj_attrbe_ujabb pk_t_obj_attrbe_ujabb; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbe_ujabb
     ADD CONSTRAINT pk_t_obj_attrbe_ujabb PRIMARY KEY (alreszlet_id);
 
 
+--
+-- TOC entry 48840 (class 2606 OID 39902793)
+-- Name: t_obj_attrbf pk_t_obj_attrbf; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbf
     ADD CONSTRAINT pk_t_obj_attrbf PRIMARY KEY (moszt_id);
 
 
+--
+-- TOC entry 48870 (class 2606 OID 39902795)
+-- Name: t_obj_attrbf_ujabb pk_t_obj_attrbf_ujabb; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbf_ujabb
     ADD CONSTRAINT pk_t_obj_attrbf_ujabb PRIMARY KEY (moszt_id);
 
 
+--
+-- TOC entry 48843 (class 2606 OID 39902797)
+-- Name: t_obj_attrbg pk_t_obj_attrbg; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbg
     ADD CONSTRAINT pk_t_obj_attrbg PRIMARY KEY (eoi_id);
 
 
+--
+-- TOC entry 48873 (class 2606 OID 39902799)
+-- Name: t_obj_attrbg_ujabb pk_t_obj_attrbg_ujabb; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbg_ujabb
     ADD CONSTRAINT pk_t_obj_attrbg_ujabb PRIMARY KEY (eoi_id);
 
 
+--
+-- TOC entry 48875 (class 2606 OID 39902801)
+-- Name: t_obj_attrbh pk_t_obj_attrbh; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbh
     ADD CONSTRAINT pk_t_obj_attrbh PRIMARY KEY (szolg_id);
 
 
+--
+-- TOC entry 48877 (class 2606 OID 39902803)
+-- Name: t_obj_attrbi pk_t_obj_attrbi; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_obj_attrbi
     ADD CONSTRAINT pk_t_obj_attrbi PRIMARY KEY (mintater_id);
 
 
+--
+-- TOC entry 48819 (class 2606 OID 39902805)
+-- Name: t_pont pk_t_pont; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_pont
     ADD CONSTRAINT pk_t_pont PRIMARY KEY (pont_id);
 
 
+--
+-- TOC entry 48821 (class 2606 OID 39902807)
+-- Name: t_vonal pk_t_vonal; Type: CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_vonal
     ADD CONSTRAINT pk_t_vonal PRIMARY KEY (vonal_id, vsub_id);
 
 
+--
+-- TOC entry 48893 (class 1259 OID 188629782)
+-- Name: fki_felirat_2_font; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_felirat_2_font ON datr_sablon.t_felirat_jelleg USING btree (font_id);
 
 
+--
+-- TOC entry 48813 (class 1259 OID 188629776)
+-- Name: fki_felirat_2_jelleg; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_felirat_2_jelleg ON datr_sablon.t_felirat USING btree (jelleg_kod);
 
 
+--
+-- TOC entry 48844 (class 1259 OID 39908283)
+-- Name: fki_t_el_2_t_hatarvonal_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_el_2_t_hatarvonal_id ON datr_sablon.t_el USING btree (hatarvonal_id);
 
 
+--
+-- TOC entry 48845 (class 1259 OID 39908284)
+-- Name: fki_t_el_2_t_vonal_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_el_2_t_vonal_id ON datr_sablon.t_el USING btree (vonal_id);
 
 
+--
+-- TOC entry 48846 (class 1259 OID 39908285)
+-- Name: fki_t_gyuru_2_t_hatar_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_gyuru_2_t_hatar_id ON datr_sablon.t_gyuru USING btree (hatar_id);
 
 
+--
+-- TOC entry 48847 (class 1259 OID 39908286)
+-- Name: fki_t_izolalt_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_izolalt_2_t_pont_id ON datr_sablon.t_izolalt USING btree (pont_id);
 
 
+--
+-- TOC entry 48848 (class 1259 OID 39908287)
+-- Name: fki_t_izolalt_l_2_t_lap_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_izolalt_l_2_t_lap_id ON datr_sablon.t_izolalt_l USING btree (lap_id);
 
 
+--
+-- TOC entry 48849 (class 1259 OID 39908288)
+-- Name: fki_t_kozb_cspont_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_kozb_cspont_2_t_pont_id ON datr_sablon.t_kozb_cspont USING btree (pont_id);
 
 
+--
+-- TOC entry 48850 (class 1259 OID 39908289)
+-- Name: fki_t_kozb_cspont_el_2_t_el_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_kozb_cspont_el_2_t_el_id ON datr_sablon.t_kozb_cspont_el USING btree (el_id);
 
 
+--
+-- TOC entry 48851 (class 1259 OID 39908290)
+-- Name: fki_t_kozb_cspont_gy_2_t_gyuru_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_kozb_cspont_gy_2_t_gyuru_id ON datr_sablon.t_kozb_cspont_gy USING btree (gyuru_id);
 
 
+--
+-- TOC entry 48852 (class 1259 OID 39908291)
+-- Name: fki_t_lap_2_t_gyuru_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_lap_2_t_gyuru_id ON datr_sablon.t_lap USING btree (gyuru_id);
 
 
+--
+-- TOC entry 48853 (class 1259 OID 39908292)
+-- Name: fki_t_obj_attraa_2_t_pont; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attraa_2_t_pont ON datr_sablon.t_obj_attraa USING btree (pont_id);
 
 
+--
+-- TOC entry 48856 (class 1259 OID 39908293)
+-- Name: fki_t_obj_attrab_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrab_2_t_pont_id ON datr_sablon.t_obj_attrab USING btree (pont_id);
 
 
+--
+-- TOC entry 48859 (class 1259 OID 39908294)
+-- Name: fki_t_obj_attrac_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrac_2_t_pont_id ON datr_sablon.t_obj_attrac USING btree (pont_id);
 
 
+--
+-- TOC entry 48862 (class 1259 OID 39908295)
+-- Name: fki_t_obj_attrad_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrad_2_t_pont_id ON datr_sablon.t_obj_attrad USING btree (pont_id);
 
 
+--
+-- TOC entry 48829 (class 1259 OID 39908296)
+-- Name: fki_t_obj_attrba_2_t_felulet; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrba_2_t_felulet ON datr_sablon.t_obj_attrba USING btree (felulet_id);
 
 
+--
+-- TOC entry 48832 (class 1259 OID 39908297)
+-- Name: fki_t_obj_attrbb_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrbb_2_t_felulet_id ON datr_sablon.t_obj_attrbb USING btree (felulet_id);
 
 
+--
+-- TOC entry 48805 (class 1259 OID 39908298)
+-- Name: fki_t_obj_attrbc_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrbc_2_t_felulet_id ON datr_sablon.t_obj_attrbc USING btree (felulet_id);
 
 
+--
+-- TOC entry 48809 (class 1259 OID 39908299)
+-- Name: fki_t_obj_attrbd_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrbd_2_t_felulet_id ON datr_sablon.t_obj_attrbd USING btree (felulet_id);
 
 
+--
+-- TOC entry 48835 (class 1259 OID 39908300)
+-- Name: fki_t_obj_attrbe_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrbe_2_t_felulet_id ON datr_sablon.t_obj_attrbe USING btree (felulet_id);
 
 
+--
+-- TOC entry 48865 (class 1259 OID 39908301)
+-- Name: fki_t_obj_attrbe_ujabb_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrbe_ujabb_2_t_felulet_id ON datr_sablon.t_obj_attrbe_ujabb USING btree (felulet_id);
 
 
+--
+-- TOC entry 48838 (class 1259 OID 39908302)
+-- Name: fki_t_obj_attrbf_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrbf_2_t_felulet_id ON datr_sablon.t_obj_attrbf USING btree (felulet_id);
 
 
+--
+-- TOC entry 48868 (class 1259 OID 39908303)
+-- Name: fki_t_obj_attrbf_ujabb_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrbf_ujabb_2_t_felulet_id ON datr_sablon.t_obj_attrbf_ujabb USING btree (felulet_id);
 
 
+--
+-- TOC entry 48841 (class 1259 OID 39908304)
+-- Name: fki_t_obj_attrbg_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrbg_2_t_felulet_id ON datr_sablon.t_obj_attrbg USING btree (felulet_id);
 
 
+--
+-- TOC entry 48871 (class 1259 OID 39908305)
+-- Name: fki_t_obj_attrbg_ujabb_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrbg_ujabb_2_t_felulet_id ON datr_sablon.t_obj_attrbg_ujabb USING btree (felulet_id);
 
 
+--
+-- TOC entry 48878 (class 1259 OID 39908306)
+-- Name: fki_t_obj_attrca_2_t_felulet_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrca_2_t_felulet_id ON datr_sablon.t_obj_attrca USING btree (felulet_id);
 
 
+--
+-- TOC entry 48879 (class 1259 OID 39908307)
+-- Name: fki_t_obj_attrca_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrca_2_t_pont_id ON datr_sablon.t_obj_attrca USING btree (pont_id);
 
 
+--
+-- TOC entry 48880 (class 1259 OID 39908308)
+-- Name: fki_t_obj_attrcb_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrcb_2_t_pont_id ON datr_sablon.t_obj_attrcb USING btree (pont_id);
 
 
+--
+-- TOC entry 48881 (class 1259 OID 39908309)
+-- Name: fki_t_obj_attrcc_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrcc_2_t_pont_id ON datr_sablon.t_obj_attrcc USING btree (pont_id);
 
 
+--
+-- TOC entry 48882 (class 1259 OID 39908310)
+-- Name: fki_t_obj_attrcc_ujabb_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrcc_ujabb_2_t_pont_id ON datr_sablon.t_obj_attrcc_ujabb USING btree (pont_id);
 
 
+--
+-- TOC entry 48883 (class 1259 OID 39908311)
+-- Name: fki_t_obj_attrcd_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrcd_2_t_pont_id ON datr_sablon.t_obj_attrcd USING btree (pont_id);
 
 
+--
+-- TOC entry 48884 (class 1259 OID 39908312)
+-- Name: fki_t_obj_attrcd_ujabb_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrcd_ujabb_2_t_pont_id ON datr_sablon.t_obj_attrcd_ujabb USING btree (pont_id);
 
 
+--
+-- TOC entry 48885 (class 1259 OID 39908313)
+-- Name: fki_t_obj_attrce_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrce_2_t_pont_id ON datr_sablon.t_obj_attrce USING btree (pont_id);
 
 
+--
+-- TOC entry 48886 (class 1259 OID 39908314)
+-- Name: fki_t_obj_attrce_ujabb_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrce_ujabb_2_t_pont_id ON datr_sablon.t_obj_attrce_ujabb USING btree (pont_id);
 
 
+--
+-- TOC entry 48887 (class 1259 OID 39908316)
+-- Name: fki_t_obj_attrda_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrda_2_t_pont_id ON datr_sablon.t_obj_attrda USING btree (pont_id);
 
 
+--
+-- TOC entry 48888 (class 1259 OID 39908317)
+-- Name: fki_t_obj_attrhb_2_t_felulet; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_obj_attrhb_2_t_felulet ON datr_sablon.t_obj_attrhb USING btree (felulet_id);
 
 
+--
+-- TOC entry 48889 (class 1259 OID 39908318)
+-- Name: fki_t_veg_cspont_2_t_pont_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_veg_cspont_2_t_pont_id ON datr_sablon.t_veg_cspont USING btree (pont_id);
 
 
+--
+-- TOC entry 48890 (class 1259 OID 39908319)
+-- Name: fki_t_veg_cspont_el_2_t_el_id; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_veg_cspont_el_2_t_el_id ON datr_sablon.t_veg_cspont_el USING btree (el_id);
 
 
+--
+-- TOC entry 48891 (class 1259 OID 39908320)
+-- Name: fki_t_veg_cspont_el_2_t_veg_cspont_id1; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_veg_cspont_el_2_t_veg_cspont_id1 ON datr_sablon.t_veg_cspont_el USING btree (veg_cspont_id1);
 
 
+--
+-- TOC entry 48892 (class 1259 OID 39908321)
+-- Name: fki_t_veg_cspont_el_2_t_veg_cspont_id2; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX fki_t_veg_cspont_el_2_t_veg_cspont_id2 ON datr_sablon.t_veg_cspont_el USING btree (veg_cspont_id2);
 
 
+--
+-- TOC entry 48814 (class 1259 OID 39908322)
+-- Name: i_t_felirat_geometria; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX i_t_felirat_geometria ON datr_sablon.t_felirat USING gist (geometria);
 
 
+--
+-- TOC entry 48826 (class 1259 OID 39908323)
+-- Name: i_t_felulet_geometria; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX i_t_felulet_geometria ON datr_sablon.t_felulet USING gist (geometria);
 
 
+--
+-- TOC entry 48806 (class 1259 OID 39908324)
+-- Name: i_t_obj_attrbc_geometria; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX i_t_obj_attrbc_geometria ON datr_sablon.t_obj_attrbc USING gist (geometria);
 
 
+--
+-- TOC entry 48810 (class 1259 OID 39908325)
+-- Name: i_t_obj_attrbd_geometria; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX i_t_obj_attrbd_geometria ON datr_sablon.t_obj_attrbd USING gist (geometria);
 
 
+--
+-- TOC entry 48817 (class 1259 OID 39908326)
+-- Name: i_t_pont_geometria; Type: INDEX; Schema: datr_sablon; Owner: postgres
+--
 
 CREATE INDEX i_t_pont_geometria ON datr_sablon.t_pont USING gist (geometria);
 
 
+--
+-- TOC entry 48901 (class 2606 OID 188629777)
+-- Name: t_felirat_jelleg fk_felirat_2_font; Type: FK CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_felirat_jelleg
     ADD CONSTRAINT fk_felirat_2_font FOREIGN KEY (font_id) REFERENCES datr_sablon.t_font(kod) ON UPDATE CASCADE;
 
 
+--
+-- TOC entry 48900 (class 2606 OID 188629771)
+-- Name: t_felirat fk_felirat_2_jelleg; Type: FK CONSTRAINT; Schema: datr_sablon; Owner: postgres
+--
 
 ALTER TABLE ONLY datr_sablon.t_felirat
     ADD CONSTRAINT fk_felirat_2_jelleg FOREIGN KEY (jelleg_kod) REFERENCES datr_sablon.t_felirat_jelleg(kod) ON UPDATE CASCADE;
 
 
+-- Completed on 2020-08-10 07:34:35
 
+--
+-- PostgreSQL database dump complete
+--
 
