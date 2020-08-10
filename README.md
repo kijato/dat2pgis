@@ -1,6 +1,5 @@
 # Szerkesztés alatt...!
 
-
 ## dat2pgis, avagy a DAT adatcsere formátum kezelése PostgreSQL/PostGIS-ben
 
 #### Előszó
