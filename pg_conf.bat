@@ -1,13 +1,10 @@
 
 set pgdrive=c:
 
-set pghome=%pgdrive%\PostgreSQL\postgresql-9.4.8-1
-set pgdata=%pgdrive%\PostgreSQL\postgresql-9.4
+set pghome=%pgdrive%\PostgreSQL\12.3-2-x64
+set pgdata=%pgdrive%\PostgreSQL\12.3
 
 mkdir %pgdata%
-
-rem set pghome=%pgdrive%\PostgreSQL\postgresql-9.5.3-1\
-rem set pgdata=%pgdrive%\PostgreSQL\postgresql-9.5
 
 set pgbin=%pghome%\bin
 set pglog=%pgdata%\postgresql.log

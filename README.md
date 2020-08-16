@@ -1,6 +1,6 @@
 # Szerkesztés alatt...!
 
-## dat2pgis, avagy a DAT adatcsere formátum kezelése PostgreSQL/PostGIS-ben
+## dat2pgis, avagy a DAT adatcsere formátum beolvasása PostgreSQL/PostGIS-ben
 
 #### Előszó
 
@@ -8,19 +8,31 @@ Amióta elterjedt a hazai földmérésben a DAT adatcsere fomátum **(és mert s
 
 #### Bevezetés
 
-A leírás valójában nem egy konkrét programról szól, sokkal inkább egy módszerről, mellyel a DAT adatcsere formátumú fájlok a PostGIS segítségével feldogozhatók és ezt követően sokoldalúan felhasználhatók, hiszen ha már a térkép "be van töltve" az adatbázisba, akkor az érdemi adatokat a "nyers" SQL parancsoktól kezdve a QGis, Openjump szorftvereken át számtalan PostGIS kompatibilis programmal használhatjuk. *(Egy SHP export után például a DigiTerra Map-pal is.)*
+Ez a leírás nem egy konkrét programról szól, sokkal inkább egy módszerről, mellyel a DAT adatcsere formátumú fájlok a PostGIS segítségével feldogozhatók és ezt követően sokoldalúan felhasználhatók, hiszen ha már a térkép "be van töltve" az adatbázisba, akkor az érdemi adatokat a "nyers" SQL parancsoktól kezdve a QGis, Openjump szorftvereken át számtalan PostGIS kompatibilis programmal használhatjuk. *(Egy SHP export után például a DigiTerra Map-pal/Explorer-rel is.)*
 
-Bár a "történet" a PostgreSQL és a PostGIS telepítésével kezdődik, előbb ejtsünk pár szót a DAT adatcsere formátumról, ami egy részletesen kidolgozott struktúra, mely egy viszonylag egyszerű felépítésű, szöveges adatfájlban ölt testet. Minden egyes fájl, a DAT szabályzatban rögzített táblázatoknak megfelelő szerkezetben tárolja az adatokat. A fejlécet követően egy-egy sor nevesíti a táblázatot, melyet a táblázat sorai követnek, az egyes adatokat '\*' karakterrel elválasztva.
-Az DAT adatbázis kezelési egysége a település, mely a PostgreSQL adatbázisban egy-egy sémának nevezett gyűjtőben, a szabványon **alapuló**, előre létrehozott táblákba töltődik be. Így sémánként, azaz településenként ~80 tábla és ~20 tárolt eljárás keletkezik az adatbázisban, nyilvánvalóan némi replikációval... A választásom ezért esett mégis erre a megoldásra, mert így az egyes sémák, azaz települések önállóan is "életképesek": az adott séma egyszerűen exportálható, importálható, miközben az adatokkal, a tárolt eljárásokkal nem kell különösebben foglalkozni, sőt, még a sablont sem kell export-importálni. *(A tárolást meg lehet valósítani úgy is, hogy csak egyetlen sémát hozunk létre és annak a ~80 táblájába töltjük az adatokat, miközben a betöltést-törlést egy kiemelt táblában vezetjük.)*
+Bár a "történet" a PostgreSQL és a PostGIS telepítésével kezdődik, előbb ejtsünk pár szót a DAT adatcsere formátumról, ami egy részletesen kidolgozott struktúra, mely egy viszonylag egyszerű felépítésű, szöveges adatfájlban ölt testet. Minden egyes fájl, a DAT szabályzatban rögzített táblázatoknak megfelelő szerkezetben tárolja az adatokat. A fejlécet követően egy-egy sor nevesíti a táblázatot, melyet a táblázat sorai követnek, az egyes adatmezőket '\*' karakterrel elválasztva. (Végső soron ez olyasmi, mintha több CSV állományt egybemásoltunk volna, annyi különbséggel, hogy "itt" nincs fejléc, csupán a táblázat neve.)
+Az DAT adatbázis kezelési egysége a település, mely a PostgreSQL adatbázisban egy-egy sémának nevezett gyűjtőben, a szabványon **alapuló**, előre létrehozott táblákba töltődik be. Így sémánként, azaz településenként ~80 tábla és ~20 tárolt eljárás keletkezik az adatbázisban, nyilvánvalóan nem kevés replikációval... A választás ezért esett mégis erre a megoldásra, mert így az egyes sémák, azaz települések önállóan is "életképesek": az adott séma egyszerűen exportálható, importálható, miközben az adatokkal, a tárolt eljárásokkal nem kell különösebben foglalkozni, sőt, még a sablont sem kell exportálni-importálni. *(A tárolást meg lehetne valósítani úgy is, hogy csak egyetlen sémát hozunk létre és annak a ~80 táblájába töltjük az adatokat, miközben a betöltés-törlés nyilvántartását egy kiemelt táblában vezetjük.)*
 A DAT szabvány elérhető itt: http://fish.fomi.hu/letoltes/nyilvanos/dat/DAT-M1_20160205.pdf
 
 Ennyi kitérő után hozzunk létre egy PostgreSQL szervert!
 
 #### PostgreSQL
-Bár a PostgreSQL-nek létezik grafikus felületű, "automata" telepítője, én évek óta nem használom... Ehelyett az [EnterpriseDB](http://www.enterprisedb.com/products-services-training/pgbindownload) oldaláról letölthető ZIP-pel tömörített, hordozható változatot használom. Példaként a 9.4.8-as verziójú ZIP fájl-ból történő beüzemelést mutatom be, az alábbi batch fájlok alkalmazásával:
+Bár a PostgreSQL-nek létezik grafikus felületű, "automata" telepítője, én nem használom, mert szeretem látni, hogy mi is történik a háttérben, különösen upgrade esetén. Tehát akkor töltsük le az [EnterpriseDB](http://www.enterprisedb.com/products-services-training/pgbindownload) oldaláról a ZIP-pel tömörített, hordozható változatot, majd a fájlt tömörítsük ki egy tetszőleges (célszerűen szóközt nem tartalmazó nevű) könyvtárba. A ZIP fájl egy "pgsql" könyvtárat rejt, amit nevezzünk is át a verziónak megfelelően. Mikor ezen sorokat írom, a 12.3-as verzió a legfrissebb, tehát valami ilyesmi kell történjen:
 
+mkdir c:\PostgreSQL
+cd c:\PostgreSQL
+wget -nd -nH http://get.enterprisedb.com/postgresql/postgresql-12.3-2-windows-x64-binaries.zip
+unzip postgresql-12.3-2-windows-x64-binaries.zip
+rename pgsql 12.3-2-x64
+
+https://download.osgeo.org/postgis/windows/pg12/
+https://download.osgeo.org/postgis/windows/pg12/postgis-bundle-pg12-3.0.1x64.zip
+unzip postgis-bundle-pg12-3.0.1x64.zip
+
+
+jú ZIP fájl-ból történő beüzemelést mutatom be, az alábbi batch fájlok alkalmazásával:
 - datr_sablon_install.bat
-- fmo-datr_sablon.sql
+- datr_sablon.sql
 - pg_admin3.bat
 - pg_conf.bat
 - pg_init.bat
