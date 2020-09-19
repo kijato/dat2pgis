@@ -1,4 +1,13 @@
+@echo off
 
-call pg_conf.bat
+chcp 1250
 
-%pgbin%\pg_ctl.exe stop -D %pgdata%
+if exist pg_conf.bat call pg_conf.bat
+
+TITLE PostgreSQL leállítása [%PGDATADIR%] (%date% %time%)
+
+%PGBIN%\pg_ctl.exe stop -D %PGDATADIR%
+
+if not errorlevel 0 pause
+
+rem EXIT

@@ -3,10 +3,10 @@ cmd.exe
 
 chcp 1250
 
-d:
+c:
 
-mkdir d:\PostgreSQL
-cd d:\PostgreSQL
+mkdir c:\PostgreSQL
+cd c:\PostgreSQL
 
 	Download:
 
@@ -23,12 +23,34 @@ cd d:\PostgreSQL
 	powershell -command "& { iwr https://vvs.ru/pg/pgadmin3-1-26.msi -OutFile pgadmin3-1-26.msi }"
 
 unzip postgresql-12.4-1-windows-x64-binaries.zip
-rename pgsql 12.4-1-x64
 
+Fájlkezelővel másoljuk be/mozgassuk át a postgis-bundle-pg12-3.0.2x64.zip tartalmát - a makepostgisdb_using_extensions.bat fájl kivételével - a pgsql könyvtárba. (A már létező fájlokat írjuk felül.)
+
+rename pgsql 12.4-1-x64
 mkdir 12.4
 
 notepad pg_conf.bat
- 
+
+	set pgdrive=c:
+
+	set pghome=%pgdrive%\PostgreSQL\12.4-1-x64
+	set pgdata=%pgdrive%\PostgreSQL\12.4
+
+	set pgbin=%pghome%\bin
+	set pglogfile=%pgdata%\postgresql.log
+
+	set pguser=postgres
+	set pghost=localhost
+	set pgport=5432
+	set pgdb=GIS
+
+	rem set pgencoding=UTF8
+
+	set PERLBIN=%pgdrive%\PostgreSQL\strawberry_perl_5.30.2.1-64bit_core 
+	set EXT=.orig
+
+	set path=%pgbin%;%perlbin%;%path%  
+	
 call pg_conf.bat
 
 %pgbin%\pg_ctl.exe init -D %pgdata%
@@ -41,12 +63,12 @@ The default text search configuration will be set to "hungarian".
 
 Data page checksums are disabled.
 
-fixing permissions on existing directory d:/PostgreSQL/12.4 ... ok
+fixing permissions on existing directory c:/PostgreSQL/12.4 ... ok
 creating subdirectories ... ok
 selecting dynamic shared memory implementation ... windows
 selecting default max_connections ... 100
 selecting default shared_buffers ... 128MB
-selecting default time zone ... Europe/Belgrade
+selecting default time zone ... GMT
 creating configuration files ... ok
 running bootstrap script ... ok
 performing post-bootstrap initialization ... ok
@@ -58,8 +80,7 @@ You can change this by editing pg_hba.conf or using the option -A, or
 
 Success. You can now start the database server using:
 
-    d:/PostgreSQL/12.4-1-x64/bin/pg_ctl -D d:/PostgreSQL/12.4 -l logfile start
-
+    c:/PostgreSQL/12.4-1-x64/bin/pg_ctl -D c:/PostgreSQL/12.4 -l logfile start
 
 notepad %pgdata%\postgresql.conf
 	listen_addresses = '*'
@@ -70,9 +91,43 @@ notepad %pgdata%\postgresql.conf
 notepad %pgdata%\ph_hba.conf
 	host	all	all	<your_ip>/32	md5
 
-%pgbin%\pg_ctl.exe start -D %pgdata% -l %pglogfile%
 
-if not localhost: Windows Firewall -> Elérés engedélyezése
+rem %pgbin%\pg_ctl.exe start -D %pgdata% -l %pglogfile%
+
+pg_start.bat
+	@echo off
+
+	chcp 1250
+
+	if exist pg_conf.bat call pg_conf.bat
+
+	TITLE PostgreSQL indítása [%PGDATADIR%] (%date% %time%)
+
+	rem runas /user:%USERNAME% "%PGDIR%\bin\pg_ctl.exe start -U %USERNAME% -w -D %PGDATADIR% -l %PGLOGFILE%"
+	%PGBIN%\pg_ctl.exe start -D %PGDATADIR% -l %PGLOGFILE%
+
+	if not errorlevel 0 pause
+
+	rem EXIT
+
+pg_stop.bat
+	@echo off
+
+	chcp 1250
+
+	if exist pg_conf.bat call.bat pg_conf.bat
+
+	TITLE PostgreSQL leállítása [%PGDATADIR%] (%date% %time%)
+
+	%PGBIN%\pg_ctl.exe stop -D %PGDATADIR%
+
+	if not errorlevel 0 pause
+
+	rem EXIT
+
+call pg_start.bat
+
+if not localhost: Windows Firewall -> Elérés engedélyezése (az alapértelmezett hálózatokon)
 
 %pgbin%\psql -U %username% -d postgres -c "select version()"
                           version
@@ -80,49 +135,35 @@ if not localhost: Windows Firewall -> Elérés engedélyezése
  PostgreSQL 12.4, compiled by Visual C++ build 1914, 64-bit
 (1 row)
 
+Ha értelmezhető a verziószám, akkor elkészült egy csupasz adatbázis klaszter, benne egy alapértelmezett 'postgres' nevű adatbázissal.
+Az eljárás szépséghibája, hogy ez az alapértelmezett adatbázis jelenleg az aktuális Windows felhasználó, azaz a %USERNAME% tulajdonában van, miközben számos alapértelmezés a 'postgres' felhasználó meglétére számít, mint adatbázis adminisztrátor. Ezt korrigáljuk is:
+
 %pgbin%\psql -U %username% -d postgres -c "CREATE ROLE postgres LOGIN SUPERUSER INHERIT CREATEDB CREATEROLE REPLICATION"
 CREATE ROLE
 
 %pgbin%\psql -U %username% -d postgres -c "ALTER DATABASE postgres OWNER TO postgres"
-ALTER DATABASE
 
 rem PostGIS
 
-%pgbin%\pg_ctl.exe stop -D %pgdata%
+Hozzunk létre egy új adatbázist, melyhez hozzáadjuk a PostGIS kiterjesztést is:
+(Ha nagybetűt szeretnénk használni, akkor a nevet idézőjelbe kell tenni!)
 
-unzip postgis-bundle-pg12-3.0.2x64.zip
+%pgbin%\psql -c "CREATE DATABASE \"%pgdb%\""
+%pgbin%\psql -d "%pgdb%" -c "CREATE EXTENSION postgis"
+%pgbin%\psql -d "%pgdb%" -c "select postgis_full_version()"
+                                                                                   postgis_full_version
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ POSTGIS="3.0.2 3.0.2" [EXTENSION] PGSQL="120" GEOS="3.8.1-CAPI-1.13.3" PROJ="Rel. 5.2.0, September 15th, 2018" LIBXML="2.9.9" LIBJSON="0.12" LIBPROTOBUF="1.2.1" WAGYU="0.4.3 (Internal)"
+(1 row)
 
-cd postgis-bundle-pg12-3.0.2x64
+Ha értelmezhető a verziószám, akkor elkészült a munkára kész adatbázis.
 
-call ..\postgis_install.bat
 
-%pgbin%\pg_ctl.exe start -D %pgdata% -l %pglogfile%
-
-%pgbin%\psql -c "CREATE DATABASE %pgdb%"
-%pgbin%\psql -d "%pgdb%" -c "CREATE EXTENSION postgis;"
-rem %pgbin%\psql -d "%pgdb%" -c "CREATE EXTENSION postgis_sfcgal;"
-rem %pgbin%\psql -d "%pgdb%" -c "CREATE EXTENSION postgis_topology;"
-rem %pgbin%\psql -d "%pgdb%" -c "CREATE EXTENSION address_standardizer;"
-rem %pgbin%\psql -d "%pgdb%" -c "CREATE EXTENSION address_standardizer_data_us;"
-rem %pgbin%\psql -d "%pgdb%" -c "CREATE EXTENSION fuzzystrmatch;"
-rem %pgbin%\psql -d "%pgdb%" -c "CREATE EXTENSION postgis_tiger_geocoder;"
-
-REM Uncomment the below line if this is a template database
-REM "%PGBIN%\psql" -d "%pgdb%" -c "UPDATE pg_database SET datistemplate = true WHERE datname = '%pgdb%';GRANT ALL ON geometry_columns TO PUBLIC; GRANT ALL ON spatial_ref_sys TO PUBLIC"
-
-%pgbin%\pg_ctl.exe restart -D %pgdata%
-
-rem %pgbin%\pg_ctl.exe stop -D %pgdata%
-
+Telepítsünk fel egy igen jó segédeszközt:
 pgadmin3-1-26.msi
 
-exit /b
 
-del postgresql-12.4-1-windows-x64-binaries.zip
-del postgis-bundle-pg12-3.0.2x64.zip
-del pgadmin3-1-26.msi
-
-+
++ Ha szolgáltatásként szeretnénk használni az adatbáziskezelőt és nem batch fájlokkal indítani, akkor:
 
 runas /noprofile /user:Rendszergazda cmd.exe
 
@@ -131,16 +172,3 @@ call pg_conf.bat
 d:\PostgreSQL>%pgbin%\pg_ctl.exe register -D %pgdata% -N PostgreSQL
 
 d:\PostgreSQL>%pgbin%\pg_ctl.exe unregister -D %pgdata% -N PostgreSQL
-
-
-
-rem NET USER %pguser% /DEL
-rem NET USER %pguser% * /ADD /ACTIVE:yes /FULLNAME:"PostgreSQL User" /COMMENT:"PostgreSQL Database Administrator"
-
-rem if not defined pgencoding
-rem 	%pgbin%\initdb -U %pguser% -D %pgdata%
-rem ) else (
-rem 	%pgbin%\initdb -E %pgencoding% -U %pguser% -D %pgdata%
-rem )
-
-rem %PERLBIN%\perl -i%EXT% -p -e "s/^#?(checkpoint_segments)\s*=\s*\d+/$1=16/;s/^#?(password_encryption)\s*=\s*\w+/$1=on/" %pgdata%\postgresql.conf
