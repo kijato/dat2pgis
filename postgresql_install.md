@@ -1,15 +1,12 @@
-...
+**Válasszunk ki egy könyvtárat, ahová a PostgreSQL-t telepíteni szeretnénk:
 
-	**cmd.exe
+	cmd.exe
+	chcp 1250
+	c:
+	mkdir c:\PostgreSQL
+	cd c:\PostgreSQL
 
-	**chcp 1250
-
-	**c:
-
-	**mkdir c:\PostgreSQL
-	**cd c:\PostgreSQL
-
-Download:
+**Download:
 
 	PostgreSQL server ZIP installer from https://www.enterprisedb.com/download-postgresql-binaries
 	wget -nH -nd https://get.enterprisedb.com/postgresql/postgresql-12.4-1-windows-x64-binaries.zip
@@ -23,14 +20,18 @@ Download:
 	wget -nH -nd https://vvs.ru/pg/pgadmin3-1-26.msi
 	powershell -command "& { iwr https://vvs.ru/pg/pgadmin3-1-26.msi -OutFile pgadmin3-1-26.msi }"
 
-	**unzip postgresql-12.4-1-windows-x64-binaries.zip
+**unzip postgresql-12.4-1-windows-x64-binaries.zip
 
 Fájlkezelővel másoljuk be/mozgassuk át a postgis-bundle-pg12-3.0.2x64.zip tartalmát *- a makepostgisdb_using_extensions.bat fájl kivételével -* a pgsql könyvtárba. (A már létező fájlokat írjuk felül.)
 
-	**rename pgsql 12.4-1-x64
-	**mkdir 12.4
+Nevezzük át a "pgsql" könyvtárat a verziószámnak megfelelő nélvre:
 
-notepad pg_conf.bat
+	rename pgsql 12.4-1-x64
+	mkdir 12.4
+
+Készítsünk egy batch fájlt, ami a szerver *(, illetve a kliens program)* indítása előtt beállít néhány környezezeti változót annak érdekében, hogy kevesebb paraméter megeadására legyen szükség:
+
+**notepad pg_conf.bat
 
 	set pgdrive=c:
 
@@ -54,7 +55,8 @@ notepad pg_conf.bat
 	
 **call pg_conf.bat
 
-%pgbin%\pg_ctl.exe init -D %pgdata%
+**%pgbin%\pg_ctl.exe init -D %pgdata%
+
 	The files belonging to this database system will be owned by user "%USERNAME%".
 	This user must also own the server process.
 
@@ -84,17 +86,20 @@ notepad pg_conf.bat
 	    c:/PostgreSQL/12.4-1-x64/bin/pg_ctl -D c:/PostgreSQL/12.4 -l logfile start
 
 **notepad %pgdata%\postgresql.conf
+
 	listen_addresses = '*'
 	password_encryption = md5
 	log_timezone = 'Europe/Budapest'
 	timezone = 'Europe/Budapest'
 
-**notepad %pgdata%\ph_hba.conf
+**notepad %pgdata%\pg_hba.conf
+
 	host	all	all	<your_ip>/32	md5
 
 rem %pgbin%\pg_ctl.exe start -D %pgdata% -l %pglogfile%
 
-**pg_start.bat
+** notepad pg_start.bat
+
 	@echo off
 
 	chcp 1250
@@ -110,7 +115,8 @@ rem %pgbin%\pg_ctl.exe start -D %pgdata% -l %pglogfile%
 
 	rem EXIT
 
-pg_stop.bat
+** notepad pg_stop.bat
+
 	@echo off
 
 	chcp 1250
@@ -127,14 +133,14 @@ pg_stop.bat
 
 **call pg_start.bat
 
-if not "only localhost": Windows Firewall -> Elérés engedélyezése (az alapértelmezett hálózatokon)
+Ha a *postgresql.conf*-ban beállítottuk a *listen_addresses = '*'* paramétert, akkor nem csak a helyi gépről, hanem a helyi hálózaton bármely gépről elérhető a szerver *(a *pg_hba.conf* fájl további beállításaitól függően). Ez esetben a Windows Tűzfal jelezni fogja, hogy új szolgáltatás indul, így az "Elérés engedélyezése (az alapértelmezett hálózatokon)" lehetőséget kell választani.
 
 **%pgbin%\psql -U %username% -d postgres -c "select version()"
-				  version
+
+				version
 	------------------------------------------------------------
 	 PostgreSQL 12.4, compiled by Visual C++ build 1914, 64-bit
 	(1 row)
-
 Ha értelmezhető a verziószám, akkor elkészült egy csupasz adatbázis klaszter, benne egy alapértelmezett 'postgres' nevű adatbázissal.
 Az eljárás szépséghibája, hogy ez az alapértelmezett adatbázis jelenleg az aktuális Windows felhasználó, azaz a %USERNAME% tulajdonában van, miközben számos alapértelmezés a 'postgres' felhasználó meglétére számít, mint adatbázis adminisztrátor. Ezt korrigáljuk is:
 
@@ -144,28 +150,25 @@ Az eljárás szépséghibája, hogy ez az alapértelmezett adatbázis jelenleg a
 
 rem PostGIS hozzáadása egy adatbázishoz
 
-Hozzunk létre egy új adatbázist, melyhez hozzáadjuk a PostGIS kiterjesztést is:
-*(Ha nagybetűt szeretnénk használni, akkor a parancssorban a nevet idézőjelbe kell tenni!)*
+Hozzunk létre egy új adatbázist, melyhez hozzáadjuk a PostGIS kiterjesztést is *(Ha nagybetűt szeretnénk használni, akkor a parancssorban a nevet idézőjelbe kell tenni!)*:
 
 **%pgbin%\psql -c "CREATE DATABASE \"%pgdb%\""
 **%pgbin%\psql -d "%pgdb%" -c "CREATE EXTENSION postgis"
 **%pgbin%\psql -d "%pgdb%" -c "select postgis_full_version()"
+
 											   postgis_full_version
 	-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	 POSTGIS="3.0.2 3.0.2" [EXTENSION] PGSQL="120" GEOS="3.8.1-CAPI-1.13.3" PROJ="Rel. 5.2.0, September 15th, 2018" LIBXML="2.9.9" LIBJSON="0.12" LIBPROTOBUF="1.2.1" WAGYU="0.4.3 (Internal)"
 	(1 row)
-
 Ha értelmezhető a verziószám, akkor elkészült a munkára kész adatbázis.
 
 
 + Telepítsünk fel egy igen jó segédeszközt: pgadmin3-1-26.msi
 
+
 + Ha szolgáltatásként szeretnénk használni az adatbáziskezelőt és nem batch fájlokkal indítani, akkor:
 
 	runas /noprofile /user:Rendszergazda cmd.exe
-
 	call pg_conf.bat 
-
 	d:\PostgreSQL>%pgbin%\pg_ctl.exe register -D %pgdata% -N PostgreSQL
-
 	d:\PostgreSQL>%pgbin%\pg_ctl.exe unregister -D %pgdata% -N PostgreSQL
