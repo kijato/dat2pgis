@@ -63,10 +63,40 @@ CREATE TRIGGER u_naplo
 
 
 + adandó jogok:
+
 GRANT SELECT, UPDATE, INSERT ON TABLE meta.teszt TO admin;
 GRANT SELECT, INSERT ON TABLE meta.teszt_naplo TO admin;
 
 GRANT SELECT, UPDATE ON SEQUENCE meta.teszt_id_seq TO admin;
 GRANT SELECT, UPDATE ON SEQUENCE meta.teszt_naplo_naplo_id_seq TO admin;
+
+
++ nézetek:
+
+CREATE OR REPLACE VIEW takaros.teszt_naplo_join AS 
+ SELECT t.id,
+    t.nev,
+    t.ertek,
+    n.naplo_id,
+    n.nev AS naplo_nev,
+    n.ertek AS naplo_ertek
+   FROM takaros.teszt t
+     LEFT JOIN takaros.teszt_naplo n ON n.id = t.id
+  ORDER BY t.id, n.naplo_id;
+  
+  CREATE OR REPLACE VIEW takaros.teszt_naplo_union AS 
+ SELECT teszt.id,
+    NULL::integer AS naplo_id,
+    teszt.nev,
+    teszt.ertek
+   FROM takaros.teszt
+UNION
+ SELECT teszt_naplo.id,
+    teszt_naplo.naplo_id,
+    teszt_naplo.nev,
+    teszt_naplo.ertek
+   FROM takaros.teszt_naplo
+  ORDER BY 1, 2 DESC;
+  
 
 
