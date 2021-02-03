@@ -1,3 +1,5 @@
+-- https://www.postgresql.org/docs/12/plpgsql-trigger.html
+
 -- DROP TABLE meta.teszt;
 CREATE TABLE meta.teszt
 (
@@ -38,7 +40,6 @@ $BODY$
     BEGIN
         IF (TG_OP = 'DELETE') THEN
             --INSERT INTO emp_audit SELECT 'D', now(), user, OLD.*;
-            insert into meta.teszt_naplo (id,nev,ertek,mu,md) select OLD.*, user, now();
         ELSIF (TG_OP = 'UPDATE') THEN
             --INSERT INTO emp_audit SELECT 'U', now(), user, NEW.*;
             insert into meta.teszt_naplo (id,nev,ertek,mu,md) select OLD.*, user, now();
