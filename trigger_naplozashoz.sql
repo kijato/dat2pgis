@@ -16,7 +16,7 @@ ALTER TABLE meta.teszt OWNER TO postgres;
 -- DROP TABLE meta.teszt_naplo;
 CREATE TABLE meta.teszt_naplo
 (
-  naplo_id integer NOT NULL DEFAULT nextval('meta.teszt_naplo_azonosito_seq'::regclass),
+  naplo_id serial,
   id integer,
   nev text,
   ertek numeric,
