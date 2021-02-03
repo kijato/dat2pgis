@@ -60,3 +60,13 @@ CREATE TRIGGER u_naplo
   ON meta.teszt
   FOR EACH ROW
   EXECUTE PROCEDURE meta.teszt_naplo();
+
+
++ adandó jogok:
+GRANT SELECT, UPDATE, INSERT ON TABLE meta.teszt TO admin;
+GRANT SELECT, INSERT ON TABLE meta.teszt_naplo TO admin;
+
+GRANT SELECT, UPDATE ON SEQUENCE meta.teszt_id_seq TO admin;
+GRANT SELECT, UPDATE ON SEQUENCE meta.teszt_naplo_naplo_id_seq TO admin;
+
+
