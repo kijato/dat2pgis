@@ -1,40 +1,34 @@
 -- https://www.postgresql.org/docs/12/plpgsql-trigger.html
 
--- DROP TABLE meta.teszt;
-CREATE TABLE meta.teszt
+DROP SCHEMA IF EXISTS example CASCADE;
+DROP ROLE IF EXISTS example_user;
+
+
+CREATE SCHEMA example AUTHORIZATION postgres;
+
+CREATE TABLE example.data
 (
   id serial NOT NULL,
-  nev text,
-  ertek numeric,
-  CONSTRAINT pk_teszt PRIMARY KEY (id)
-)
-WITH ( OIDS=FALSE);
-
-ALTER TABLE meta.teszt OWNER TO postgres;
-
-
--- DROP TABLE meta.teszt_naplo;
-CREATE TABLE meta.teszt_naplo
-(
-  naplo_id serial,
-  id integer,
-  nev text,
-  ertek numeric,
-  mu character varying(10),
-  md timestamp without time zone,
-  CONSTRAINT pk_teszt_naplo PRIMARY KEY (naplo_id),
-  CONSTRAINT fk_teszt_naplo FOREIGN KEY (id) REFERENCES meta.teszt (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+  name text,
+  value numeric,
+  CONSTRAINT pk_data PRIMARY KEY (id)
 )
 WITH ( OIDS=FALSE );
 
-ALTER TABLE meta.teszt_naplo OWNER TO postgres;
+CREATE TABLE example.data_log
+(
+  id serial NOT NULL,
+  data_id integer,
+  name text,
+  value numeric,
+  mu text,
+  md timestamp without time zone,
+  CONSTRAINT pk_data_log PRIMARY KEY (id),
+  CONSTRAINT fk_data_log FOREIGN KEY (data_id) REFERENCES example.data (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH ( OIDS=FALSE );
 
--- DROP INDEX meta.fki_teszt_naplo;
-CREATE INDEX fki_teszt_naplo ON meta.teszt_naplo USING btree (id);
-
-
--- DROP FUNCTION meta.teszt_naplo();
-CREATE OR REPLACE FUNCTION meta.teszt_naplo()
+CREATE OR REPLACE FUNCTION example.data_log()
   RETURNS trigger AS
 $BODY$
     BEGIN
@@ -42,7 +36,7 @@ $BODY$
             --INSERT INTO emp_audit SELECT 'D', now(), user, OLD.*;
         ELSIF (TG_OP = 'UPDATE') THEN
             --INSERT INTO emp_audit SELECT 'U', now(), user, NEW.*;
-            insert into meta.teszt_naplo (id,nev,ertek,mu,md) select OLD.*, user, now();
+            insert into example.data_log ( data_id, name, value, mu, md ) select OLD.*, user, now();
         ELSIF (TG_OP = 'INSERT') THEN
             --INSERT INTO emp_audit SELECT 'I', now(), user, NEW.*;
         END IF;
@@ -51,52 +45,33 @@ $BODY$
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION meta.teszt_naplo()
-  OWNER TO postgres;
 
--- DROP TRIGGER u_naplo ON meta.teszt;
-CREATE TRIGGER u_naplo
-  AFTER UPDATE
-  ON meta.teszt
-  FOR EACH ROW
-  EXECUTE PROCEDURE meta.teszt_naplo();
+CREATE TRIGGER u_data_logger AFTER UPDATE ON example.data FOR EACH ROW EXECUTE PROCEDURE example.data_log();
 
 
-+ adandó jogok:
+CREATE OR REPLACE VIEW example.data_log_join AS 
+SELECT d.id data_id, d.name d_name, d.value d_value, l.id log_id, l.name l_name, l.value l_value, l.md
+FROM example.data d
+  LEFT JOIN example.data_log l ON l.data_id = d.id
+ORDER BY d.id, l.id;
 
-GRANT SELECT, UPDATE, INSERT ON TABLE meta.teszt TO admin;
-GRANT SELECT, INSERT ON TABLE meta.teszt_naplo TO admin;
-
-GRANT SELECT, UPDATE ON SEQUENCE meta.teszt_id_seq TO admin;
-GRANT SELECT, UPDATE ON SEQUENCE meta.teszt_naplo_naplo_id_seq TO admin;
-
-
-+ nézetek:
-
-CREATE OR REPLACE VIEW takaros.teszt_naplo_join AS 
- SELECT t.id,
-    t.nev,
-    t.ertek,
-    n.naplo_id,
-    n.nev AS naplo_nev,
-    n.ertek AS naplo_ertek
-   FROM takaros.teszt t
-     LEFT JOIN takaros.teszt_naplo n ON n.id = t.id
-  ORDER BY t.id, n.naplo_id;
-  
-  CREATE OR REPLACE VIEW takaros.teszt_naplo_union AS 
- SELECT teszt.id,
-    NULL::integer AS naplo_id,
-    teszt.nev,
-    teszt.ertek
-   FROM takaros.teszt
-UNION
- SELECT teszt_naplo.id,
-    teszt_naplo.naplo_id,
-    teszt_naplo.nev,
-    teszt_naplo.ertek
-   FROM takaros.teszt_naplo
-  ORDER BY 1, 2 DESC;
-  
+CREATE OR REPLACE VIEW example.data_log_union AS 
+SELECT id data_id, NULL log_id, name, value, NULL md
+FROM example.data
+  UNION
+SELECT data_id, id log_id, name, value, md
+FROM example.data_log
+ORDER BY 1, 2 DESC;
 
 
+CREATE ROLE example_user LOGIN PASSWORD 'example' NOSUPERUSER NOINHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
+GRANT USAGE ON SCHEMA example TO example_user;
+
+GRANT SELECT, UPDATE, INSERT ON TABLE example.data TO example_user;
+GRANT SELECT, INSERT ON TABLE example.data_log TO example_user;
+
+GRANT UPDATE ON SEQUENCE example.data_id_seq TO example_user;
+GRANT UPDATE ON SEQUENCE example.data_log_id_seq TO example_user;
+
+GRANT SELECT ON TABLE example.data_log_join TO public;
+GRANT SELECT ON TABLE example.data_log_union TO public;
