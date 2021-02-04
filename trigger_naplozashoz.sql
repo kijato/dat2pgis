@@ -73,5 +73,5 @@ GRANT SELECT, INSERT ON TABLE example.data_log TO example_user;
 GRANT UPDATE ON SEQUENCE example.data_id_seq TO example_user;
 GRANT UPDATE ON SEQUENCE example.data_log_id_seq TO example_user;
 
-GRANT SELECT ON TABLE example.data_log_join TO public;
-GRANT SELECT ON TABLE example.data_log_union TO public;
+GRANT SELECT ON TABLE example.data_log_join TO example_user;
+GRANT SELECT ON TABLE example.data_log_union TO example_user;
